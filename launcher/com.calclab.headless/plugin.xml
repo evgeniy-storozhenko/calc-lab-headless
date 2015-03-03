@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.calclab.headless.launcher"
+            name="Calculation Laboratory Headless">
+         <property
+               name="appName"
+               value="Calculation Laboratory Headless">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="launcher"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="com.calclab.headless.internal.HeadlessCalculationApp">
+         </run>
+      </application>
+   </extension>
+
+</plugin>
