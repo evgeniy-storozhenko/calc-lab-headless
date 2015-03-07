@@ -62,13 +62,13 @@ public class CalculationConfiguration {
 				break;
 			case Help:
 				showHelp();
-				return false;
+				return true;
 			case Version:
 				showVersion();
-				return false;
+				return true;
 			default:
 				showHelp();
-				return false;
+				return true;
 			}
 		}
 		return true;
