@@ -1,4 +1,4 @@
-package com.calclab.headless.internal;
+package com.calclab.headless;
 
 import java.io.File;
 import java.util.Arrays;
@@ -6,18 +6,20 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.Platform;
 
+import com.calclab.headless.internal.HeadlessCalculationPlugin;
+
 public class CalculationConfiguration {
 
-	private boolean html = false;
 	private String inputData = null;
 	private File fileInput = null;
-	private File fileOutput = null;
+	private File rowOutput = null;
+	private File htmlOutput = null;
 
 	enum CommandArg {
 		Input("Input expression for calculation", "input", "i"),
 		FileInput("Input file for calculation", "f"),
-		Output("Output result of calculation", "output", "o"),
-		HTML("Type of output", "html"),
+		Row("Output result of calculation as row", "row"),
+		HTML("Output result of calculation as html", "html"),
 		Help("Help", "help", "h", "?"),
 		Version("Current version", "version", "v");
 
@@ -54,35 +56,23 @@ public class CalculationConfiguration {
 			case FileInput:
 				getFileInputArg(i);
 				break;
-			case Output:
-				getFileOutputArg(i);
+			case Row:
+				rowOutput = new File(i.next());
 				break;
 			case HTML:
-				html = true;
+				htmlOutput = new File(i.next());
 				break;
 			case Help:
 				showHelp();
-				return true;
+				break;
 			case Version:
 				showVersion();
-				return true;
+				break;
 			default:
-				showHelp();
-				return true;
+				return false;
 			}
 		}
 		return true;
-	}
-
-	private void getFileOutputArg(Iterator<String> i) {
-		final String fileOutputPath = i.next();
-		final File fileOutput = new File(fileOutputPath);
-		if (fileOutput.exists() && fileOutput.isDirectory()) {
-			this.fileOutput = fileOutput;
-		} else {
-			System.out.println(String.format(
-					"Invalid output path in '-o' arg: %s", fileOutputPath));
-		}
 	}
 
 	private void getFileInputArg(Iterator<String> i) {
@@ -109,7 +99,7 @@ public class CalculationConfiguration {
 		return null;
 	}
 
-	private void showHelp() {
+	public void showHelp() {
 		System.out.println("Calculation Laboratory Headless command line arguments:");
 		for (CommandArg v : CommandArg.values()) {
 			System.out.print("\t");
@@ -141,8 +131,8 @@ public class CalculationConfiguration {
 		return version.substring(0, dotPos);
 	}
 
-	public boolean isHtml() {
-		return html;
+	public File getRowOutput() {
+		return rowOutput;
 	}
 
 	public String getInputData() {
@@ -153,8 +143,8 @@ public class CalculationConfiguration {
 		return fileInput;
 	}
 
-	public File getFileOutput() {
-		return fileOutput;
+	public File getHtmlFileOutput() {
+		return htmlOutput;
 	}
 
 }
