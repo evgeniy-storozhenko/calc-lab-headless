@@ -3,6 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>calclab-headless</artifactId>
   <packaging>eclipse-application</packaging>
+  
   <parent>
   	<groupId>com.calclab.headless</groupId>
     <version>1.0.0-SNAPSHOT</version>
