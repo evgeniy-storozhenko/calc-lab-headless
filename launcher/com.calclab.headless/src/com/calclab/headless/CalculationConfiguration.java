@@ -11,15 +11,15 @@ import com.calclab.headless.internal.HeadlessCalculationPlugin;
 public class CalculationConfiguration {
 
 	private String inputData = null;
-	private File fileInput = null;
-	private File rowOutput = null;
-	private File htmlOutput = null;
+	private File inputFile = null;
+	private File rowFileOutput = null;
+	private File htmlFileOutput = null;
 
 	enum CommandArg {
-		Input("Input expression for calculation", "input", "i"),
-		FileInput("Input file for calculation", "f"),
-		Row("Output result of calculation as row", "row"),
-		HTML("Output result of calculation as html", "html"),
+		InputData("Input expression for calculation", "input", "i"),
+		InputFile("Input file for calculation", "file", "f"),
+		RowFile("Output result of calculation as row", "row", "r"),
+		HTMLFile("Output result of calculation as html", "html", "H"),
 		Help("Help", "help", "h", "?"),
 		Version("Current version", "version", "v");
 
@@ -50,17 +50,17 @@ public class CalculationConfiguration {
 				continue;
 			}
 			switch (cmdArg) {
-			case Input:
+			case InputData:
 				inputData = i.next();
 				break;
-			case FileInput:
+			case InputFile:
 				getFileInputArg(i);
 				break;
-			case Row:
-				rowOutput = new File(i.next());
+			case RowFile:
+				rowFileOutput = new File(i.next());
 				break;
-			case HTML:
-				htmlOutput = new File(i.next());
+			case HTMLFile:
+				htmlFileOutput = new File(i.next());
 				break;
 			case Help:
 				showHelp();
@@ -78,11 +78,11 @@ public class CalculationConfiguration {
 	private void getFileInputArg(Iterator<String> i) {
 		final String fileInputPath = i.next();
 		final File fileInput = new File(fileInputPath);
-		if (fileInput.exists() && fileInput.isDirectory()) {
-			this.fileInput = fileInput;
+		if (fileInput.exists() && fileInput.isFile() && fileInput.canRead()) {
+			inputFile = fileInput;
 		} else {
 			System.out.println(String.format(
-					"Invalid input path in '-f' arg: %s", fileInputPath));
+					"Invalid input path or access denied in '-f' arg: %s", fileInputPath));
 		}
 	}
 
@@ -131,20 +131,20 @@ public class CalculationConfiguration {
 		return version.substring(0, dotPos);
 	}
 
-	public File getRowOutput() {
-		return rowOutput;
-	}
-
 	public String getInputData() {
 		return inputData;
 	}
 
-	public File getFileInput() {
-		return fileInput;
+	public File getInputFile() {
+		return inputFile;
+	}
+
+	public File getRowFileOutput() {
+		return rowFileOutput;
 	}
 
 	public File getHtmlFileOutput() {
-		return htmlOutput;
+		return htmlFileOutput;
 	}
 
 }

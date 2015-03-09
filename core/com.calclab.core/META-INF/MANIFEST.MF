@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Core
+Bundle-SymbolicName: com.calclab.core
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Calculation Laboratory
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: com.calclab.core.input
