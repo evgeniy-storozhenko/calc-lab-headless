@@ -9,6 +9,9 @@ import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
 import com.calclab.headless.utils.HeadlessCalculationHelper;
 
+/**
+ * Bootstrap type for an application.
+ */
 public class HeadlessCalculationApp implements IApplication {
 
 	public static final int ILLEGAL_ARGUMENT = 64;

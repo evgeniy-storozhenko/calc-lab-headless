@@ -10,6 +10,4 @@ public interface IVariable {
 
 	void setValue(IOperand operand);
 
-	void setKey(IKey operand);
-
 }
