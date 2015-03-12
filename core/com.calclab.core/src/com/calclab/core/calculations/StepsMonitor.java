@@ -5,10 +5,10 @@ import java.util.List;
 /**
  * Traces the intermediate steps
  */
-public interface IStepsMonitor {
+public interface StepsMonitor {
 
-	void addStep(IStep step);
+	void addStep(Step step);
 
-	List<IStep> getSteps();
+	List<Step> getSteps();
 
 }

@@ -3,6 +3,6 @@ package com.calclab.core.calculations;
 /**
  * Intermediate step
  */
-public interface IStep {
+public interface Step {
 	// TODO
 }

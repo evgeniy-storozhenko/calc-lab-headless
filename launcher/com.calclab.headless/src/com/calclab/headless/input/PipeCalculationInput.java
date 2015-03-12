@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputException;
 
-public class PipeCalculationInput implements ICalculationInput {
+public class PipeCalculationInput implements CalculationInput {
 
 	private String expressions = null;
 

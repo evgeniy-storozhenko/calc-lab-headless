@@ -1,5 +1,5 @@
 package com.calclab.core.variables;
 
-public interface IKey {
+public interface Key {
 	// TODO
 }

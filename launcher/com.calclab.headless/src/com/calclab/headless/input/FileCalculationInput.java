@@ -5,10 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputException;
 
-public class FileCalculationInput implements ICalculationInput {
+public class FileCalculationInput implements CalculationInput {
 
 	private final File file;
 	private String expressions = null;

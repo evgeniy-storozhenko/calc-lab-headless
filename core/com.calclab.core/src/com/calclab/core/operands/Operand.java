@@ -1,20 +1,20 @@
 package com.calclab.core.operands;
 
-import com.calclab.core.calculations.IStepsMonitor;
+import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
-import com.calclab.core.operators.IOperator;
+import com.calclab.core.operators.Operation;
 
 /**
  * Is the object of a mathematical operation, a quantity on which an
- * operation is performed.
+ * operation is performed. {@link} com.calclab.core.operators#Operation
  */
-public interface IOperand {
+public interface Operand {
 
-	IOperand perform(IOperator command, IStepsMonitor monitor)
+	Operand perform(Operation command, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException;
 
-	IOperand perform(IOperator command, IOperand operand, IStepsMonitor monitor)
+	Operand perform(Operation command, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException;
 
 }

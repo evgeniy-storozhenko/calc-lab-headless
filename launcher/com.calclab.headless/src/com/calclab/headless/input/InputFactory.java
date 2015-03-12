@@ -1,12 +1,12 @@
 package com.calclab.headless.input;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 import com.calclab.headless.CalculationConfiguration;
 
 public class InputFactory {
 
-	public ICalculationInput createCalculationInput(CalculationConfiguration config) {
-		ICalculationInput input = null;
+	public CalculationInput createCalculationInput(CalculationConfiguration config) {
+		CalculationInput input = null;
 		if (config.getInputFile() != null) {
 			input = new FileCalculationInput(config.getInputFile());
 		} else if (config.getInputData() != null) {

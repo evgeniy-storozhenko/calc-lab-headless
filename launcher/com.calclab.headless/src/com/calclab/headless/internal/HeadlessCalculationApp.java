@@ -3,7 +3,7 @@ package com.calclab.headless.internal;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputException;
 import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
@@ -37,7 +37,7 @@ public class HeadlessCalculationApp implements IApplication {
 
 	private int perform(final CalculationConfiguration config) {
 		InputFactory inputFactory = new InputFactory();
-		ICalculationInput input = inputFactory.createCalculationInput(config);
+		CalculationInput input = inputFactory.createCalculationInput(config);
 		try {
 			System.out.println(input.getExpressions());
 		} catch (InputException e) {

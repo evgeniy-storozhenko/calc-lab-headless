@@ -1,8 +1,8 @@
 package com.calclab.headless.input;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 
-public class ArgumentCalculationInput implements ICalculationInput {
+public class ArgumentCalculationInput implements CalculationInput {
 
 	private final String expressions;
 

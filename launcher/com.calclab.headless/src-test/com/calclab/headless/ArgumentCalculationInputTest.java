@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.Assert;
 
-import com.calclab.core.input.ICalculationInput;
+import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputException;
 import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
@@ -41,7 +41,7 @@ public class ArgumentCalculationInputTest extends TestCase {
 			Assert.fail();
 		}
 		InputFactory inputFactory = new InputFactory();
-		ICalculationInput input = inputFactory.createCalculationInput(config);
+		CalculationInput input = inputFactory.createCalculationInput(config);
 		try {
 			Assert.assertEquals(expressions, input.getExpressions());
 		} catch (InputException e) {
