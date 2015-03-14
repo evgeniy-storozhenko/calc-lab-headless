@@ -1,4 +1,4 @@
-package com.calclab.core.operators;
+package com.calclab.core.operations;
 
 /**
  * In its simplest meaning in mathematics and logic, an operation is an
@@ -6,5 +6,7 @@ package com.calclab.core.operators;
  * values, called "operands" {@link} com.calclab.core.operands#Operand".
  */
 public interface Operation {
+
+	String getName();
 
 }
