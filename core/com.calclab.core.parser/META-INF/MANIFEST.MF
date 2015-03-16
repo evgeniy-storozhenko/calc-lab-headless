@@ -5,5 +5,7 @@ Bundle-SymbolicName: com.calclab.core.parser
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: com.calclab.core
 Import-Package: org.eclipse.core.runtime
+Export-Package: com.calclab.core.parser,
+ com.calclab.core.parser.internal
+Require-Bundle: com.calclab.core

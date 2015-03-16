@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.calclab.headless.internal.HeadlessCalculationPlugin
 Bundle-Vendor: Calculation Laboratory
 Require-Bundle: org.eclipse.core.runtime,
- com.calclab.core
+ com.calclab.core,
+ com.calclab.core.parser
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: com.calclab.headless,
