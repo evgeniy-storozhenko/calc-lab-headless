@@ -15,6 +15,8 @@
   <modules>
     <module>launcher/com.calclab.headless</module>
     <module>core/com.calclab.core</module>
+    <module>core/com.calclab.core.number</module>
+    <module>core/com.calclab.core.parser</module>
     <module>build/product</module>
   </modules>
   <repositories>
