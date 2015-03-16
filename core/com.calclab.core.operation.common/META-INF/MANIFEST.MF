@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Number
-Bundle-SymbolicName: com.calclab.core.operand.number;singleton:=true
+Bundle-Name: Common Operations
+Bundle-SymbolicName: com.calclab.core.operation.common;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

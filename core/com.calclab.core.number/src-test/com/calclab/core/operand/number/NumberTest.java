@@ -1,6 +1,8 @@
-package com.calclab.core.number;
+package com.calclab.core.operand.number;
 
 import java.math.BigDecimal;
+
+import com.calclab.core.operand.number.Number;
 
 import junit.framework.TestCase;
 

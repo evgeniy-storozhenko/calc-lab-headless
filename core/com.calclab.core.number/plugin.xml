@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="com.calclab.core.operand.number"
+         point="com.calclab.operand">
+      <client
+            class="com.calclab.core.operand.number.Number"
+            lexicalDefinition="(\\-)*[0-9\\.]+">
+      </client>
+   </extension>
+
+</plugin>
