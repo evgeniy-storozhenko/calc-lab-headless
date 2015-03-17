@@ -62,7 +62,14 @@
          <attribute name="lexicalDefinition" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Regular expression
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parsePriority" type="string" use="default" value="0">
+            <annotation>
+               <documentation>
+                  Priority in parse sequence
                </documentation>
             </annotation>
          </attribute>

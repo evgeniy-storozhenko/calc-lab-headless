@@ -3,10 +3,12 @@
 <plugin>
    <extension
          id="com.calclab.core.operation.common"
+         name="Common"
          point="com.calclab.operation">
       <client
             class="com.calclab.core.operation.common.CommonOperation"
-            lexicalDefinition="[\\+\\-\\/\\*\\^\\!]">
+            lexicalDefinition="[\\+\\-\\/\\*\\^\\!]"
+            parsePriority="1">
       </client>
    </extension>
 

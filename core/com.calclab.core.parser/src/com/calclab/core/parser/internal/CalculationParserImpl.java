@@ -16,6 +16,7 @@ public class CalculationParserImpl implements CalculationParser {
 	}
 
 	private CalculationParserImpl() {
+		CalclabExtensionManager.getInstance(); // TODO remove
 	}
 
 	@Override
