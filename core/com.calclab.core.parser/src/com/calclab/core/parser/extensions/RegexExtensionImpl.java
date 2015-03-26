@@ -1,4 +1,4 @@
-package com.calclab.core.parser.internal;
+package com.calclab.core.parser.extensions;
 
 import java.util.regex.Pattern;
 

@@ -1,4 +1,4 @@
-package com.calclab.core.parser.internal;
+package com.calclab.core.parser.extensions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,6 +63,10 @@ public class CalclabExtensionManager {
 			instance = new CalclabExtensionManager();
 		}
 		return instance;
+	}
+
+	public List<RegexExtension> getRegexExtensions() {
+		return regexExtensions;
 	}
 
 }

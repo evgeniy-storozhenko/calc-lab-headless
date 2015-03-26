@@ -2,13 +2,13 @@ package com.calclab.headless.internal;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.parser.CalculationParser;
+import com.calclab.core.parser.Parser;
 import com.calclab.core.parser.ParserFactory;
 
 public class CalculationProcess {
 
 	private final CalculationInput input;
-	private final CalculationParser parser;
+	private final Parser parser;
 
 	public CalculationProcess(CalculationInput input) {
 		this.input = input;

@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
-import com.calclab.core.parser.internal.RegexExtensionImpl;
+import com.calclab.core.parser.extensions.RegexExtensionImpl;
 
 public class RegexExtensionFactory {
 

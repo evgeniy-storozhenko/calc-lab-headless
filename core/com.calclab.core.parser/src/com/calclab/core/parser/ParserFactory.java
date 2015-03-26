@@ -1,11 +1,11 @@
 package com.calclab.core.parser;
 
-import com.calclab.core.parser.internal.CalculationParserImpl;
+import com.calclab.core.parser.extensions.CalculationParser;
 
 public class ParserFactory {
 
-	public static CalculationParser createCalculationParser() {
-		return CalculationParserImpl.getInstance();
+	public static Parser createCalculationParser() {
+		return CalculationParser.getInstance();
 	}
 
 }

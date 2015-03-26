@@ -6,7 +6,7 @@ import com.calclab.core.input.CalculationInput;
 /**
  * Converts the received data into those that can be calculated.
  */
-public interface CalculationParser {
+public interface Parser {
 
 	Calculable[] parse(CalculationInput input);
 
