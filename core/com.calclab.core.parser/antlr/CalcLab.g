@@ -1,14 +1,11 @@
 grammar CalcLab;
 
-calculation: (expression EXPRESSIONS_SEPARATOR)+ ;
-
+calculation
+	: (expression EXPRESSIONS_SEPARATOR)+
+;
 
 expression
 	: (complexCompositeUnit) (binaryOperationLow complexCompositeUnit)*
-;
-
-compositeExpression
-	: MINUS? '(' expression ')'
 ;
 
 complexCompositeUnit
@@ -20,13 +17,24 @@ compositeUnit
 ;
 
 unit
-	: (number | compositeExpression) unaryOperation?
+	: (number | compositeExpression | function) unaryOperation?
 ;
 
 number 
-	: MINUS? DIGIT (DECIMAL_SEPARATOR DIGIT)*
+	: MINUS? DIGIT+ (DECIMAL_SEPARATOR DIGIT+)*
 ;
 
+compositeExpression
+	: MINUS? OPENING_PARENTHESIS expression CLOSING_PARENTHESIS
+;
+
+function
+	: MINUS? NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS
+;
+
+arguments
+	: expression (ARGUMENTS_SEPARATOR expression)*
+;
 
 // Composite operations
 unaryOperation: FACTORIAL;
@@ -46,9 +54,12 @@ FACTORIAL : '!';
 
 // System
 DIGIT : '0'..'9'+;
-VAR : 'A'..'z';
+NAME : ('A'..'z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
+OPENING_PARENTHESIS : '(';
+CLOSING_PARENTHESIS : ')';
 NEWLINE : '\r'? '\n' {$channel=HIDDEN;};
 DECIMAL_SEPARATOR : '.';
+ARGUMENTS_SEPARATOR : ',';
 EXPRESSIONS_SEPARATOR : NEWLINE* ';' NEWLINE* ;
-WS: (' ' |'\n' |'\r' )+ {$channel=HIDDEN;}; 
+WS: (' ' |'\n' |'\r' )+ {$channel=HIDDEN;};
 
