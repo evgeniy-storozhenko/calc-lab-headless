@@ -7,4 +7,5 @@ Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.eclipse.core.runtime
 Export-Package: com.calclab.core.parser
-Require-Bundle: com.calclab.core
+Require-Bundle: com.calclab.core,
+ org.antlr.runtime

@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.input.InputException;
+import com.calclab.core.input.exceptions.InputException;
 
 public class PipeCalculationInput implements CalculationInput {
 

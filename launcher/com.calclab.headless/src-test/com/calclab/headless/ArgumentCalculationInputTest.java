@@ -8,7 +8,7 @@ import java.io.IOException;
 import org.junit.Assert;
 
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.input.InputException;
+import com.calclab.core.input.exceptions.InputException;
 import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
 

@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.input.InputException;
+import com.calclab.core.input.exceptions.InputException;
 
 public class FileCalculationInput implements CalculationInput {
 

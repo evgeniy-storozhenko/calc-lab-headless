@@ -7,7 +7,9 @@ Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: com.calclab.core.calculations,
  com.calclab.core.input,
+ com.calclab.core.input.exceptions,
  com.calclab.core.operands,
  com.calclab.core.operands.exceptions,
- com.calclab.core.operations
+ com.calclab.core.operations,
+ com.calclab.core.variables
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0"

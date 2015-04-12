@@ -4,6 +4,7 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
 import com.calclab.core.input.CalculationInput;
+import com.calclab.core.input.exceptions.InputException;
 import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
 import com.calclab.headless.utils.HeadlessCalculationHelper;
@@ -39,7 +40,12 @@ public class HeadlessCalculationApp implements IApplication {
 		CalculationInput input = inputFactory.createCalculationInput(config);
 		CalculationProcess process = new CalculationProcess(input);
 
-		process.run();
+		try {
+			process.run();
+		} catch (InputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return IApplication.EXIT_OK;
 	}

@@ -1,7 +1,34 @@
 grammar CalcLab;
 
+options {
+	k=2;
+	language=Java;
+}
+
+@header{
+	package com.calclab.core.parser.internal;
+	
+	import java.util.List;
+	import java.util.ArrayList;
+	
+	import com.calclab.core.calculations.CalculationFactory;
+	import com.calclab.core.calculations.Calculable;
+	import com.calclab.operands.number.Number;
+	import com.calclab.core.operands.Operand
+}
+
+@lexer::header {
+	package com.calclab.core.parser.internal;
+}
+
+@members{
+	private CalculationFactory factory = new CalculationFactory();
+	private List<Calculable> calculations = new ArrayList<Calculable>();
+}
+
+
 calculation
-	: (expression EXPRESSIONS_SEPARATOR)+
+	: (expression EXPRESSIONS_SEPARATOR { calculations.add(factory.createCalculation()); } )+
 ;
 
 expression
@@ -16,12 +43,14 @@ compositeUnit
 	: unit (binaryOperationHigh unit)*
 ;
 
-unit
-	: (number | compositeExpression | function) unaryOperation?
+unit returns[Operand value]
+	: (number1=number { $value=new Number(number1.text); } 
+		| compositeExpression 
+		| function) unaryOperation?
 ;
 
-number 
-	: MINUS? DIGIT+ (DECIMAL_SEPARATOR DIGIT+)*
+number
+	: MINUS? DIGIT (DECIMAL_SEPARATOR DIGIT)*
 ;
 
 compositeExpression
@@ -54,7 +83,9 @@ FACTORIAL : '!';
 
 // System
 DIGIT : '0'..'9'+;
-NAME : ('A'..'z') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* ;
+NAME : ID (ID |DIGIT)*; 
+fragment ID : ('a'..'z' | 'A'..'Z' | '_');
+fragment CHAR : 'A'..'z';
 OPENING_PARENTHESIS : '(';
 CLOSING_PARENTHESIS : ')';
 NEWLINE : '\r'? '\n' {$channel=HIDDEN;};
