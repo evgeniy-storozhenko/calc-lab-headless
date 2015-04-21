@@ -11,10 +11,13 @@ options {
 	import java.util.List;
 	import java.util.ArrayList;
 	
+	import com.calclab.operations.common.CommonOperationFactory;
+	import com.calclab.operands.common.CommonOperandFactory;
 	import com.calclab.core.calculations.CalculationFactory;
 	import com.calclab.core.calculations.Calculable;
-	import com.calclab.operands.number.Number;
-	import com.calclab.core.operands.Operand
+	import com.calclab.core.operations.Operation;
+	import com.calclab.core.operands.Operand;
+	
 }
 
 @lexer::header {
@@ -22,13 +25,15 @@ options {
 }
 
 @members{
-	private CalculationFactory factory = new CalculationFactory();
+	private CommonOperationFactory operationFactory = new CommonOperationFactory();
+	private CommonOperandFactory operandFactory = new CommonOperandFactory();
+	private CalculationFactory calcFactory = new CalculationFactory();
 	private List<Calculable> calculations = new ArrayList<Calculable>();
 }
 
 
 calculation
-	: (expression EXPRESSIONS_SEPARATOR { calculations.add(factory.createCalculation()); } )+
+	: (expression EXPRESSIONS_SEPARATOR { calculations.add(calcFactory.createCalculation()); } )+
 ;
 
 expression
@@ -44,9 +49,10 @@ compositeUnit
 ;
 
 unit returns[Operand value]
-	: (number1=number { $value=new Number(number1.text); } 
-		| compositeExpression 
-		| function) unaryOperation?
+	: (number1=number { $value=operandFactory.createNumber($number1.text); } 
+		| compositeExpression { $value=null; } 
+		| function { $value=null; }
+	) unaryOperation? 
 ;
 
 number
@@ -67,7 +73,11 @@ arguments
 
 // Composite operations
 unaryOperation: FACTORIAL;
-binaryOperationHigh : MULTIPLY | DIVISION;
+binaryOperationHigh returns[Operation value]: MULTIPLY 
+		{value = operationFactory.createCommonOperation($MULTIPLY.text);} 
+	| DIVISION 
+		{value = operationFactory.createCommonOperation($DIVISION.text);}
+;
 binaryOperationMiddle : INVOLUTION;
 binaryOperationLow : PLUS | MINUS;
 

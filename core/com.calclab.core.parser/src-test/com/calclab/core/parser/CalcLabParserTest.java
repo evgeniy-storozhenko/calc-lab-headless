@@ -10,7 +10,8 @@ import com.calclab.core.parser.internal.CalcLabParser;
 public class CalcLabParserTest extends TestCase {
 
 	public void testParse1() {
-		parse("1.3-0.3;");
+		// parse("1.3-0.3;");
+		parse("1.3*0.3;");
 	}
 
 	private void parse(String input) {

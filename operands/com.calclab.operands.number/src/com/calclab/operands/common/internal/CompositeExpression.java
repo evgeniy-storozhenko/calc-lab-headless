@@ -6,7 +6,7 @@ import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 
-public class CompositExpression implements Operand {
+public class CompositeExpression implements Operand {
 
 	@Override
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,

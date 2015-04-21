@@ -1,6 +1,7 @@
 package com.calclab.core.operands;
 
 import com.calclab.core.calculations.StepsMonitor;
+import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
@@ -12,9 +13,9 @@ import com.calclab.core.operations.Operation;
 public interface Operand {
 
 	Operand perform(Operation operation, StepsMonitor monitor)
-			throws OperatorNotFoundException, InvalidActionException;
+			throws OperatorNotFoundException, InvalidActionException, InternalExpression;
 
 	Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
-			throws OperatorNotFoundException, InvalidActionException;
+			throws OperatorNotFoundException, InvalidActionException, InternalExpression;
 
 }

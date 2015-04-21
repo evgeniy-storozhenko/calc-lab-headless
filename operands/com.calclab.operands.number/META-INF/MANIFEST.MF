@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: com.calclab.core
+Export-Package: com.calclab.operands.common
