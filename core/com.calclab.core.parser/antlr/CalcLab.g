@@ -44,12 +44,17 @@ complexCompositeUnit
 	: compositeUnit (binaryOperationMiddle compositeUnit)*
 ;
 
-compositeUnit
-	: unit (binaryOperationHigh unit)*
+compositeUnit returns[Operand value]
+	: unit1=unit { $value=$unit1.value; } 
+		(binaryOperationHigh unit2=unit 
+			{ $value = operandFactory.createCompositOperand($value, 
+				$binaryOperationHigh.value, $unit2.value); 
+			} 
+		)*
 ;
 
 unit returns[Operand value]
-	: (number1=number { $value=operandFactory.createNumber($number1.text); } 
+	: (number { $value=operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value=null; } 
 		| function { $value=null; }
 	) unaryOperation? 
@@ -72,14 +77,19 @@ arguments
 ;
 
 // Composite operations
-unaryOperation: FACTORIAL;
+unaryOperation returns[Operation value]: FACTORIAL
+		{value = operationFactory.createCommonOperation($FACTORIAL.text);};
 binaryOperationHigh returns[Operation value]: MULTIPLY 
 		{value = operationFactory.createCommonOperation($MULTIPLY.text);} 
 	| DIVISION 
 		{value = operationFactory.createCommonOperation($DIVISION.text);}
 ;
-binaryOperationMiddle : INVOLUTION;
-binaryOperationLow : PLUS | MINUS;
+binaryOperationMiddle returns[Operation value]: INVOLUTION
+		{value = operationFactory.createCommonOperation($INVOLUTION.text);};
+binaryOperationLow returns[Operation value]: PLUS 
+		{value = operationFactory.createCommonOperation($PLUS.text);}
+	| MINUS
+		{value = operationFactory.createCommonOperation($MINUS.text);};
 
 // Simple operations
 PLUS 	:	'+';

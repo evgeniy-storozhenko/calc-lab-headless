@@ -15,4 +15,9 @@ public class CommonOperation implements Operation {
 		return operation;
 	}
 
+	@Override
+	public String toString() {
+		return operation;
+	}
+
 }

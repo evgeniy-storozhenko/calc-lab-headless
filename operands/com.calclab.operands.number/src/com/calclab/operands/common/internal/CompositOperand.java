@@ -11,7 +11,7 @@ import com.calclab.core.operations.Operation;
 import com.calclab.core.variables.Variable;
 import com.calclab.operands.common.NullStepMonitor;
 
-public class CompositeUnit implements Operand, Calculable {
+public class CompositOperand implements Operand, Calculable {
 
 	private final Operand a;
 	private final Operation operation;
@@ -21,7 +21,7 @@ public class CompositeUnit implements Operand, Calculable {
 
 	private Operand result = null;
 
-	public CompositeUnit(Operand a, Operation operation, Operand b) {
+	public CompositOperand(Operand a, Operation operation, Operand b) {
 		this.a = a;
 		this.b = b;
 		this.operation = operation;
