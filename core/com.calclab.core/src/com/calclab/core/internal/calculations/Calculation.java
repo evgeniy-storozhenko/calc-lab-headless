@@ -8,6 +8,12 @@ import com.calclab.core.variables.Variable;
 
 public class Calculation implements Calculable {
 
+	private Operand operand;
+
+	public Calculation(Operand operand) {
+		this.operand = operand;
+	}
+
 	@Override
 	public Operand calculate() {
 		// TODO Auto-generated method stub
@@ -30,6 +36,11 @@ public class Calculation implements Calculable {
 	public CalculationStatus getStatus() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return operand.toString();
 	}
 
 }

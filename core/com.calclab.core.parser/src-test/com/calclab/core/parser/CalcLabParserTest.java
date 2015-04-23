@@ -1,29 +1,40 @@
 package com.calclab.core.parser;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.antlr.runtime.*;
 
+import com.calclab.core.calculations.Calculable;
 import com.calclab.core.parser.internal.CalcLabLexer;
 import com.calclab.core.parser.internal.CalcLabParser;
 
 public class CalcLabParserTest extends TestCase {
 
 	public void testParse1() {
-		// parse("1.3-0.3;");
-		parse("1.3*0.3;");
+		String input = "1.3*0.3;";
+		Calculable calculation = parse(input);
+		assertEquals(input, calculation.toString() + ";");
 	}
 
-	private void parse(String input) {
+	public void testParse2() {
+		String input = "1.3-0.3;";
+		Calculable calculation = parse(input);
+		assertEquals(input, calculation.toString() + ";");
+	}
+
+	private Calculable parse(String input) {
 		CalcLabLexer lex = new CalcLabLexer(new ANTLRStringStream(input));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
-		CalcLabParser g = new CalcLabParser(tokens);
+		CalcLabParser parser = new CalcLabParser(tokens);
 		try {
-            g.calculation();
+			parser.calculation();
         } catch (RecognitionException e) {
             e.printStackTrace();
+			fail();
         }
-		System.out.println();
+		return parser.getCalculations().get(0);
 	}
 
 }

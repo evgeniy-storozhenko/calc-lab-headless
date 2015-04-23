@@ -29,19 +29,26 @@ options {
 	private CommonOperandFactory operandFactory = new CommonOperandFactory();
 	private CalculationFactory calcFactory = new CalculationFactory();
 	private List<Calculable> calculations = new ArrayList<Calculable>();
+	
+	public List<Calculable> getCalculations() {
+		return calculations;
+	}
 }
 
 
 calculation
-	: (expression EXPRESSIONS_SEPARATOR { calculations.add(calcFactory.createCalculation()); } )+
+	: (e=expression { calculations.add(calcFactory.createCalculation($e.value)); }
+		EXPRESSIONS_SEPARATOR)+
 ;
 
-expression
-	: (complexCompositeUnit) (binaryOperationLow complexCompositeUnit)*
+expression returns[Operand value]
+	: (c1=complexCompositeUnit { $value = $c1.value; }) 
+		(binaryOperationLow c2=complexCompositeUnit)*
 ;
 
-complexCompositeUnit
-	: compositeUnit (binaryOperationMiddle compositeUnit)*
+complexCompositeUnit returns[Operand value]
+	: c1=compositeUnit { $value = $c1.value; } 
+		(binaryOperationMiddle c2=compositeUnit)*
 ;
 
 compositeUnit returns[Operand value]

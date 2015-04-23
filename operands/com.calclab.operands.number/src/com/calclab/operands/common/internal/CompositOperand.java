@@ -77,4 +77,9 @@ public class CompositOperand implements Operand, Calculable {
 		return status;
 	}
 
+	@Override
+	public String toString() {
+		return a.toString() + operation.toString() + b.toString();
+	}
+
 }
