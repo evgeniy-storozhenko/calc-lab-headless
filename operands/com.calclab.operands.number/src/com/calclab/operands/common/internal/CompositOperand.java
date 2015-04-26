@@ -17,7 +17,7 @@ public class CompositOperand implements Operand, Calculable {
 	private final Operation operation;
 	private final Operand b;
 	private final CalculationStatus status = new CalculationStatus();
-	private final StepsMonitor monitor = new NullStepMonitor();
+	private final StepsMonitor monitor = NullStepMonitor.getInstance();
 
 	private Operand result = null;
 

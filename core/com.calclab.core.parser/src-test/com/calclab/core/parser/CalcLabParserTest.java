@@ -1,7 +1,5 @@
 package com.calclab.core.parser;
 
-import java.util.List;
-
 import junit.framework.TestCase;
 
 import org.antlr.runtime.*;
@@ -13,13 +11,62 @@ import com.calclab.core.parser.internal.CalcLabParser;
 public class CalcLabParserTest extends TestCase {
 
 	public void testParse1() {
-		String input = "1.3*0.3;";
-		Calculable calculation = parse(input);
-		assertEquals(input, calculation.toString() + ";");
+		isParseEquals("0;");
 	}
 
 	public void testParse2() {
-		String input = "1.3-0.3;";
+		isParseEquals("2;");
+	}
+
+	public void testParse3() {
+		isParseEquals("3;");
+	}
+
+	public void testParse4() {
+		isParseEquals("13;");
+	}
+
+	public void testParse5() {
+		isParseEquals("1.6;");
+	}
+
+	public void testParse6() {
+		isParseEquals("38.77;");
+	}
+
+	public void testParse7() {
+		isParseEquals("-3;");
+	}
+
+	public void testParse8() {
+		isParseEquals("-12.9;");
+	}
+
+	public void testParse9() {
+		isParseEquals("6!;");
+	}
+
+	public void testParse10() {
+		isParseEquals("8.3!;");
+	}
+
+	public void testParse11() {
+		isParseEquals("-3!;");
+	}
+
+	public void testParse12() {
+		isParseEquals("2+2;");
+	}
+
+	public void testParse13() {
+		isParseEquals("1.3*0.3;");
+	}
+
+	public void testParse14() {
+		isParseEquals("1.3-0.3;");
+	}
+
+	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString() + ";");
 	}
@@ -39,17 +86,7 @@ public class CalcLabParserTest extends TestCase {
 
 }
 
-// 0;
-// 2;
-// 13;
-// 1.6;
-// 38.77;
-// -3;
-// -12.9;
-// 6!;
-// 8.3!;
-// -3!;
-// 2+2;
+
 // 3.5+2.9;
 // 1.3-0.3;
 // -5-10;

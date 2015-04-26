@@ -43,19 +43,23 @@ calculation
 
 expression returns[Operand value]
 	: (c1=complexCompositeUnit { $value = $c1.value; }) 
-		(binaryOperationLow c2=complexCompositeUnit)*
+		(o=binaryOperationLow c2=complexCompositeUnit
+			{ $value = operandFactory.createCompositOperand($value, $o.value, $c2.value); }
+		)*
 ;
 
 complexCompositeUnit returns[Operand value]
 	: c1=compositeUnit { $value = $c1.value; } 
-		(binaryOperationMiddle c2=compositeUnit)*
+		(o=binaryOperationMiddle c2=compositeUnit
+			{ $value = operandFactory.createCompositOperand($value, $o.value, $c2.value); }
+		)*
 ;
 
 compositeUnit returns[Operand value]
 	: unit1=unit { $value=$unit1.value; } 
 		(binaryOperationHigh unit2=unit 
 			{ $value = operandFactory.createCompositOperand($value, 
-				$binaryOperationHigh.value, $unit2.value); 
+				$binaryOperationHigh.value, $unit2.value);
 			} 
 		)*
 ;
