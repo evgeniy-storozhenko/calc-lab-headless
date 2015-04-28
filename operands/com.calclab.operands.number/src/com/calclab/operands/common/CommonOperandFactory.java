@@ -5,6 +5,7 @@ import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.CompositeExpression;
 import com.calclab.operands.common.internal.CompositOperand;
 import com.calclab.operands.common.internal.Number;
+import com.calclab.operands.common.internal.UnaryOperand;
 
 public class CommonOperandFactory {
 	
@@ -18,6 +19,18 @@ public class CommonOperandFactory {
 
 	public Operand createCompositOperand(Operand a, Operation operation, Operand b) {
 		return new CompositOperand(a, operation, b);
+	}
+
+	public Operand createUnaryOperand(Operand operand, Operation operation) {
+		return new UnaryOperand(operand, operation);
+	}
+
+	public Operand createUnaryOperand(Operation operation, Operand operand) {
+		return new UnaryOperand(operation, operand);
+	}
+
+	public Operand createUnaryOperand(Operand operand, Operation operation, boolean after) {
+		return new UnaryOperand(operand, operation, after);
 	}
 
 }

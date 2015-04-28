@@ -66,6 +66,46 @@ public class CalcLabParserTest extends TestCase {
 		isParseEquals("1.3-0.3;");
 	}
 
+	public void testParse15() {
+		isParseEquals("3.5+2.9;");
+	}
+
+	public void testParse16() {
+		isParseEquals("1.3-0.3;");
+	}
+
+	public void testParse17() {
+		isParseEquals("-5-10;");
+	}
+
+	public void testParse18() {
+		isParseEquals("2^4;");
+	}
+
+	public void testParse19() {
+		isParseEquals("-2^3;");
+	}
+
+	public void testParse20() {
+		isParseEquals("2+3+6*2;");
+	}
+
+	public void testParse21() {
+		isParseEquals("9-4/2+11^2+72;");
+	}
+
+	public void testParse22() {
+		isParseEquals("3*(2+2);");
+	}
+
+	public void testParse23() {
+		isParseEquals("2^(2+4*2);");
+	}
+
+	public void testParse24() {
+		isParseEquals("-2^(2+4*2);");
+	}
+
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString() + ";");
@@ -86,18 +126,6 @@ public class CalcLabParserTest extends TestCase {
 
 }
 
-
-// 3.5+2.9;
-// 1.3-0.3;
-// -5-10;
-// 2^4;
-// 2^(4);
-// -2^3;
-// 2+3+6*2;
-// 9-4/2+11^2+72;
-// 3*(2+2);
-// 2^(2+4*2);
-// -2^(2+4*2);
 // 4^(-2);
 // -(-2);
 // -2*(-2);

@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-04-26 12:55:13
+// $ANTLR 3.5.2 CalcLab.g 2015-04-28 17:40:00
 
 	package com.calclab.core.parser.internal;
 	
@@ -334,16 +334,17 @@ public class CalcLabParser extends Parser {
 
 
 	// $ANTLR start "unit"
-	// CalcLab.g:67:1: unit returns [Operand value] : ( number | compositeExpression | function ) ( unaryOperation )? ;
+	// CalcLab.g:67:1: unit returns [Operand value] : ( number | compositeExpression | function ) (u= unaryOperation )? ;
 	public final Operand unit() throws RecognitionException {
 		Operand value = null;
 
 
+		Operation u =null;
 		ParserRuleReturnScope number2 =null;
 
 		try {
-			// CalcLab.g:68:2: ( ( number | compositeExpression | function ) ( unaryOperation )? )
-			// CalcLab.g:68:4: ( number | compositeExpression | function ) ( unaryOperation )?
+			// CalcLab.g:68:2: ( ( number | compositeExpression | function ) (u= unaryOperation )? )
+			// CalcLab.g:68:4: ( number | compositeExpression | function ) (u= unaryOperation )?
 			{
 			// CalcLab.g:68:4: ( number | compositeExpression | function )
 			int alt5=3;
@@ -407,7 +408,7 @@ public class CalcLabParser extends Parser {
 					number2=number();
 					state._fsp--;
 
-					 value =operandFactory.createNumber((number2!=null?input.toString(number2.start,number2.stop):null)); 
+					 value = operandFactory.createNumber((number2!=null?input.toString(number2.start,number2.stop):null)); 
 					}
 					break;
 				case 2 :
@@ -433,7 +434,7 @@ public class CalcLabParser extends Parser {
 
 			}
 
-			// CalcLab.g:71:4: ( unaryOperation )?
+			// CalcLab.g:71:4: (u= unaryOperation )?
 			int alt6=2;
 			int LA6_0 = input.LA(1);
 			if ( (LA6_0==FACTORIAL) ) {
@@ -441,12 +442,13 @@ public class CalcLabParser extends Parser {
 			}
 			switch (alt6) {
 				case 1 :
-					// CalcLab.g:71:4: unaryOperation
+					// CalcLab.g:71:5: u= unaryOperation
 					{
-					pushFollow(FOLLOW_unaryOperation_in_unit217);
-					unaryOperation();
+					pushFollow(FOLLOW_unaryOperation_in_unit220);
+					u=unaryOperation();
 					state._fsp--;
 
+					 value = operandFactory.createUnaryOperand(value, u); 
 					}
 					break;
 
@@ -491,13 +493,13 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:75:4: MINUS
 					{
-					match(input,MINUS,FOLLOW_MINUS_in_number229); 
+					match(input,MINUS,FOLLOW_MINUS_in_number236); 
 					}
 					break;
 
 			}
 
-			match(input,DIGIT,FOLLOW_DIGIT_in_number232); 
+			match(input,DIGIT,FOLLOW_DIGIT_in_number239); 
 			// CalcLab.g:75:17: ( DECIMAL_SEPARATOR DIGIT )*
 			loop8:
 			while (true) {
@@ -511,8 +513,8 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:75:18: DECIMAL_SEPARATOR DIGIT
 					{
-					match(input,DECIMAL_SEPARATOR,FOLLOW_DECIMAL_SEPARATOR_in_number235); 
-					match(input,DIGIT,FOLLOW_DIGIT_in_number237); 
+					match(input,DECIMAL_SEPARATOR,FOLLOW_DECIMAL_SEPARATOR_in_number242); 
+					match(input,DIGIT,FOLLOW_DIGIT_in_number244); 
 					}
 					break;
 
@@ -556,18 +558,18 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:79:4: MINUS
 					{
-					match(input,MINUS,FOLLOW_MINUS_in_compositeExpression249); 
+					match(input,MINUS,FOLLOW_MINUS_in_compositeExpression256); 
 					}
 					break;
 
 			}
 
-			match(input,OPENING_PARENTHESIS,FOLLOW_OPENING_PARENTHESIS_in_compositeExpression252); 
-			pushFollow(FOLLOW_expression_in_compositeExpression254);
+			match(input,OPENING_PARENTHESIS,FOLLOW_OPENING_PARENTHESIS_in_compositeExpression259); 
+			pushFollow(FOLLOW_expression_in_compositeExpression261);
 			expression();
 			state._fsp--;
 
-			match(input,CLOSING_PARENTHESIS,FOLLOW_CLOSING_PARENTHESIS_in_compositeExpression256); 
+			match(input,CLOSING_PARENTHESIS,FOLLOW_CLOSING_PARENTHESIS_in_compositeExpression263); 
 			}
 
 		}
@@ -600,19 +602,19 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:83:4: MINUS
 					{
-					match(input,MINUS,FOLLOW_MINUS_in_function266); 
+					match(input,MINUS,FOLLOW_MINUS_in_function273); 
 					}
 					break;
 
 			}
 
-			match(input,NAME,FOLLOW_NAME_in_function269); 
-			match(input,OPENING_PARENTHESIS,FOLLOW_OPENING_PARENTHESIS_in_function271); 
-			pushFollow(FOLLOW_arguments_in_function273);
+			match(input,NAME,FOLLOW_NAME_in_function276); 
+			match(input,OPENING_PARENTHESIS,FOLLOW_OPENING_PARENTHESIS_in_function278); 
+			pushFollow(FOLLOW_arguments_in_function280);
 			arguments();
 			state._fsp--;
 
-			match(input,CLOSING_PARENTHESIS,FOLLOW_CLOSING_PARENTHESIS_in_function275); 
+			match(input,CLOSING_PARENTHESIS,FOLLOW_CLOSING_PARENTHESIS_in_function282); 
 			}
 
 		}
@@ -635,7 +637,7 @@ public class CalcLabParser extends Parser {
 			// CalcLab.g:87:2: ( expression ( ARGUMENTS_SEPARATOR expression )* )
 			// CalcLab.g:87:4: expression ( ARGUMENTS_SEPARATOR expression )*
 			{
-			pushFollow(FOLLOW_expression_in_arguments285);
+			pushFollow(FOLLOW_expression_in_arguments292);
 			expression();
 			state._fsp--;
 
@@ -652,8 +654,8 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:87:16: ARGUMENTS_SEPARATOR expression
 					{
-					match(input,ARGUMENTS_SEPARATOR,FOLLOW_ARGUMENTS_SEPARATOR_in_arguments288); 
-					pushFollow(FOLLOW_expression_in_arguments290);
+					match(input,ARGUMENTS_SEPARATOR,FOLLOW_ARGUMENTS_SEPARATOR_in_arguments295); 
+					pushFollow(FOLLOW_expression_in_arguments297);
 					expression();
 					state._fsp--;
 
@@ -692,7 +694,7 @@ public class CalcLabParser extends Parser {
 			// CalcLab.g:91:40: ( FACTORIAL )
 			// CalcLab.g:91:42: FACTORIAL
 			{
-			FACTORIAL3=(Token)match(input,FACTORIAL,FOLLOW_FACTORIAL_in_unaryOperation304); 
+			FACTORIAL3=(Token)match(input,FACTORIAL,FOLLOW_FACTORIAL_in_unaryOperation311); 
 			value = operationFactory.createCommonOperation((FACTORIAL3!=null?FACTORIAL3.getText():null));
 			}
 
@@ -740,14 +742,14 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:93:47: MULTIPLY
 					{
-					MULTIPLY4=(Token)match(input,MULTIPLY,FOLLOW_MULTIPLY_in_binaryOperationHigh317); 
+					MULTIPLY4=(Token)match(input,MULTIPLY,FOLLOW_MULTIPLY_in_binaryOperationHigh324); 
 					value = operationFactory.createCommonOperation((MULTIPLY4!=null?MULTIPLY4.getText():null));
 					}
 					break;
 				case 2 :
 					// CalcLab.g:95:4: DIVISION
 					{
-					DIVISION5=(Token)match(input,DIVISION,FOLLOW_DIVISION_in_binaryOperationHigh328); 
+					DIVISION5=(Token)match(input,DIVISION,FOLLOW_DIVISION_in_binaryOperationHigh335); 
 					value = operationFactory.createCommonOperation((DIVISION5!=null?DIVISION5.getText():null));
 					}
 					break;
@@ -779,7 +781,7 @@ public class CalcLabParser extends Parser {
 			// CalcLab.g:98:47: ( INVOLUTION )
 			// CalcLab.g:98:49: INVOLUTION
 			{
-			INVOLUTION6=(Token)match(input,INVOLUTION,FOLLOW_INVOLUTION_in_binaryOperationMiddle343); 
+			INVOLUTION6=(Token)match(input,INVOLUTION,FOLLOW_INVOLUTION_in_binaryOperationMiddle350); 
 			value = operationFactory.createCommonOperation((INVOLUTION6!=null?INVOLUTION6.getText():null));
 			}
 
@@ -827,14 +829,14 @@ public class CalcLabParser extends Parser {
 				case 1 :
 					// CalcLab.g:100:46: PLUS
 					{
-					PLUS7=(Token)match(input,PLUS,FOLLOW_PLUS_in_binaryOperationLow356); 
+					PLUS7=(Token)match(input,PLUS,FOLLOW_PLUS_in_binaryOperationLow363); 
 					value = operationFactory.createCommonOperation((PLUS7!=null?PLUS7.getText():null));
 					}
 					break;
 				case 2 :
 					// CalcLab.g:102:4: MINUS
 					{
-					MINUS8=(Token)match(input,MINUS,FOLLOW_MINUS_in_binaryOperationLow366); 
+					MINUS8=(Token)match(input,MINUS,FOLLOW_MINUS_in_binaryOperationLow373); 
 					value = operationFactory.createCommonOperation((MINUS8!=null?MINUS8.getText():null));
 					}
 					break;
@@ -870,27 +872,27 @@ public class CalcLabParser extends Parser {
 	public static final BitSet FOLLOW_number_in_unit192 = new BitSet(new long[]{0x0000000000000802L});
 	public static final BitSet FOLLOW_compositeExpression_in_unit201 = new BitSet(new long[]{0x0000000000000802L});
 	public static final BitSet FOLLOW_function_in_unit210 = new BitSet(new long[]{0x0000000000000802L});
-	public static final BitSet FOLLOW_unaryOperation_in_unit217 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MINUS_in_number229 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_DIGIT_in_number232 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_DECIMAL_SEPARATOR_in_number235 = new BitSet(new long[]{0x0000000000000100L});
-	public static final BitSet FOLLOW_DIGIT_in_number237 = new BitSet(new long[]{0x0000000000000082L});
-	public static final BitSet FOLLOW_MINUS_in_compositeExpression249 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_compositeExpression252 = new BitSet(new long[]{0x0000000000054100L});
-	public static final BitSet FOLLOW_expression_in_compositeExpression254 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_compositeExpression256 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MINUS_in_function266 = new BitSet(new long[]{0x0000000000010000L});
-	public static final BitSet FOLLOW_NAME_in_function269 = new BitSet(new long[]{0x0000000000040000L});
-	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_function271 = new BitSet(new long[]{0x0000000000054100L});
-	public static final BitSet FOLLOW_arguments_in_function273 = new BitSet(new long[]{0x0000000000000040L});
-	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_function275 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_expression_in_arguments285 = new BitSet(new long[]{0x0000000000000012L});
-	public static final BitSet FOLLOW_ARGUMENTS_SEPARATOR_in_arguments288 = new BitSet(new long[]{0x0000000000054100L});
-	public static final BitSet FOLLOW_expression_in_arguments290 = new BitSet(new long[]{0x0000000000000012L});
-	public static final BitSet FOLLOW_FACTORIAL_in_unaryOperation304 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MULTIPLY_in_binaryOperationHigh317 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_DIVISION_in_binaryOperationHigh328 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_INVOLUTION_in_binaryOperationMiddle343 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_PLUS_in_binaryOperationLow356 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_MINUS_in_binaryOperationLow366 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_unaryOperation_in_unit220 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MINUS_in_number236 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_DIGIT_in_number239 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_DECIMAL_SEPARATOR_in_number242 = new BitSet(new long[]{0x0000000000000100L});
+	public static final BitSet FOLLOW_DIGIT_in_number244 = new BitSet(new long[]{0x0000000000000082L});
+	public static final BitSet FOLLOW_MINUS_in_compositeExpression256 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_compositeExpression259 = new BitSet(new long[]{0x0000000000054100L});
+	public static final BitSet FOLLOW_expression_in_compositeExpression261 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_compositeExpression263 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MINUS_in_function273 = new BitSet(new long[]{0x0000000000010000L});
+	public static final BitSet FOLLOW_NAME_in_function276 = new BitSet(new long[]{0x0000000000040000L});
+	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_function278 = new BitSet(new long[]{0x0000000000054100L});
+	public static final BitSet FOLLOW_arguments_in_function280 = new BitSet(new long[]{0x0000000000000040L});
+	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_function282 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_expression_in_arguments292 = new BitSet(new long[]{0x0000000000000012L});
+	public static final BitSet FOLLOW_ARGUMENTS_SEPARATOR_in_arguments295 = new BitSet(new long[]{0x0000000000054100L});
+	public static final BitSet FOLLOW_expression_in_arguments297 = new BitSet(new long[]{0x0000000000000012L});
+	public static final BitSet FOLLOW_FACTORIAL_in_unaryOperation311 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MULTIPLY_in_binaryOperationHigh324 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_DIVISION_in_binaryOperationHigh335 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_INVOLUTION_in_binaryOperationMiddle350 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_PLUS_in_binaryOperationLow363 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_MINUS_in_binaryOperationLow373 = new BitSet(new long[]{0x0000000000000002L});
 }

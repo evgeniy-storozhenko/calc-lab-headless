@@ -65,10 +65,10 @@ compositeUnit returns[Operand value]
 ;
 
 unit returns[Operand value]
-	: (number { $value=operandFactory.createNumber($number.text); } 
+	: (number { $value = operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value=null; } 
 		| function { $value=null; }
-	) unaryOperation? 
+	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
 
 number
