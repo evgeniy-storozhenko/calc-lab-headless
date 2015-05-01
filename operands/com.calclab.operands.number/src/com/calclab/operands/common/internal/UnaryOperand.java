@@ -44,7 +44,7 @@ public class UnaryOperand implements Operand, Calculable {
 		if (this.after) {
 			return operand.toString() + operation.toString();
 		}
-		return operation.toString() + operand.toString();
+		return "(" + operation.toString() + operand.toString() + ")";
 	}
 
 	@Override

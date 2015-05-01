@@ -44,21 +44,21 @@ calculation
 expression returns[Operand value]
 	: (c1=complexCompositeUnit { $value = $c1.value; }) 
 		(o=binaryOperationLow c2=complexCompositeUnit
-			{ $value = operandFactory.createCompositOperand($value, $o.value, $c2.value); }
+			{ $value = operandFactory.createCompositeOperand($value, $o.value, $c2.value); }
 		)*
 ;
 
 complexCompositeUnit returns[Operand value]
 	: c1=compositeUnit { $value = $c1.value; } 
 		(o=binaryOperationMiddle c2=compositeUnit
-			{ $value = operandFactory.createCompositOperand($value, $o.value, $c2.value); }
+			{ $value = operandFactory.createCompositeOperand($value, $o.value, $c2.value); }
 		)*
 ;
 
 compositeUnit returns[Operand value]
 	: unit1=unit { $value=$unit1.value; } 
 		(binaryOperationHigh unit2=unit 
-			{ $value = operandFactory.createCompositOperand($value, 
+			{ $value = operandFactory.createCompositeOperand($value, 
 				$binaryOperationHigh.value, $unit2.value);
 			} 
 		)*
@@ -66,7 +66,7 @@ compositeUnit returns[Operand value]
 
 unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text); } 
-		| compositeExpression { $value=null; } 
+		| compositeExpression { $value = $compositeExpression.value; } 
 		| function { $value=null; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
@@ -75,16 +75,20 @@ number
 	: MINUS? DIGIT (DECIMAL_SEPARATOR DIGIT)*
 ;
 
-compositeExpression
-	: MINUS? OPENING_PARENTHESIS expression CLOSING_PARENTHESIS
+compositeExpression returns[Operand value]
+	: { Operation operation = null; } 
+		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?  
+		OPENING_PARENTHESIS expression CLOSING_PARENTHESIS 
+		{ if (operation == null) $value = $expression.value;
+		  else $value = operandFactory.createUnaryOperand(operation, $expression.value); }
 ;
 
-function
+function 
 	: MINUS? NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS
 ;
 
 arguments
-	: expression (ARGUMENTS_SEPARATOR expression)*
+	: e1=expression (ARGUMENTS_SEPARATOR e2=expression)*
 ;
 
 // Composite operations

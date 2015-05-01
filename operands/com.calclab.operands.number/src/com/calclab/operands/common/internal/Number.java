@@ -50,7 +50,11 @@ public class Number implements Operand {
 
 	@Override
 	public String toString() {
-		return String.valueOf(numerator.divide(denominator));
+		String result = String.valueOf(numerator.divide(denominator));
+		if (isNegative()) {
+			result = "(" + result + ")";
+		}
+		return result;
 	}
 
 	public Number Multiply(Number number) {
@@ -125,6 +129,13 @@ public class Number implements Operand {
 			throws OperatorNotFoundException, InvalidActionException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public boolean isNegative() {
+		if ((numerator.signum() * denominator.signum()) == -1) {
+			return true;
+		}
+		return false;
 	}
 
 }
