@@ -6,7 +6,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Import-Package: org.eclipse.core.runtime
-Export-Package: com.calclab.core.parser
+Export-Package: com.calclab.core.parser,
+ com.calclab.core.parser.extensions
 Require-Bundle: com.calclab.core,
  org.antlr.runtime,
  com.calclab.core.operand.number,

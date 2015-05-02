@@ -1,5 +1,7 @@
 package com.calclab.core.parser.extensions;
 
+import java.util.List;
+
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -23,11 +25,10 @@ public class CalculationParser implements Parser {
 	}
 
 	private CalculationParser() {
-		CalclabExtensionManager.getInstance(); // TODO remove
 	}
 
 	@Override
-	public Calculable[] parse(CalculationInput input) throws InputException {
+	public List<Calculable> parse(CalculationInput input) throws InputException {
 		String inputExpressions = input.getExpressions();
 		CalcLabLexer lex = new CalcLabLexer(new ANTLRStringStream(inputExpressions));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
@@ -36,9 +37,9 @@ public class CalculationParser implements Parser {
 			g.calculation();
 		} catch (RecognitionException e) {
 			e.printStackTrace();
+			// TODO report
 		}
-		System.out.println();
-		return null;
+		return g.getCalculations();
 	}
 
 }

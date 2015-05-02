@@ -1,9 +1,12 @@
 package com.calclab.operands.common;
 
+import java.util.List;
+
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.CompositeExpression;
 import com.calclab.operands.common.internal.CompositeOperand;
+import com.calclab.operands.common.internal.Function;
 import com.calclab.operands.common.internal.Number;
 import com.calclab.operands.common.internal.UnaryOperand;
 
@@ -31,6 +34,10 @@ public class CommonOperandFactory {
 
 	public Operand createUnaryOperand(Operand operand, Operation operation, boolean after) {
 		return new UnaryOperand(operand, operation, after);
+	}
+
+	public Operand createFunction(String name, List<Operand> arguments) {
+		return new Function(name, arguments);
 	}
 
 }

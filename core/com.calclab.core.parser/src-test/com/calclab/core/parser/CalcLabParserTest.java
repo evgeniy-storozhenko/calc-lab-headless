@@ -10,120 +10,140 @@ import com.calclab.core.parser.internal.CalcLabParser;
 
 public class CalcLabParserTest extends TestCase {
 
-	public void testParse1() {
+	public void testParse_1() {
 		isParseEquals("0;");
 	}
 
-	public void testParse2() {
+	public void testParse_2() {
 		isParseEquals("2;");
 	}
 
-	public void testParse3() {
+	public void testParse_3() {
 		isParseEquals("3;");
 	}
 
-	public void testParse4() {
+	public void testParse_4() {
 		isParseEquals("13;");
 	}
 
-	public void testParse5() {
+	public void testParse_5() {
 		isParseEquals("1.6;");
 	}
 
-	public void testParse6() {
+	public void testParse_6() {
 		isParseEquals("38.77;");
 	}
 
-	public void testParse7() {
+	public void testParse_7() {
 		isParseEquals("-3;", "(-3)");
 	}
 
-	public void testParse8() {
+	public void testParse_8() {
 		isParseEquals("-12.9;", "(-12.9)");
 	}
 
-	public void testParse9() {
+	public void testParse_9() {
 		isParseEquals("6!;");
 	}
 
-	public void testParse10() {
+	public void testParse_10() {
 		isParseEquals("8.3!;");
 	}
 
-	public void testParse11() {
+	public void testParse_11() {
 		isParseEquals("-3!;", "(-3)!");
 	}
 
-	public void testParse12() {
+	public void testParse_12() {
 		isParseEquals("2+2;", "(2+2)");
 	}
 
-	public void testParse13() {
+	public void testParse_13() {
 		isParseEquals("1.3*0.3;", "(1.3*0.3)");
 	}
 
-	public void testParse14() {
+	public void testParse_14() {
 		isParseEquals("1.3-0.3;", "(1.3-0.3)");
 	}
 
-	public void testParse15() {
+	public void testParse_15() {
 		isParseEquals("3.5+2.9;", "(3.5+2.9)");
 	}
 
-	public void testParse16() {
+	public void testParse_16() {
 		isParseEquals("1.3-0.3;", "(1.3-0.3)");
 	}
 
-	public void testParse17() {
+	public void testParse_17() {
 		isParseEquals("-5-10;", "((-5)-10)");
 	}
 
-	public void testParse18() {
+	public void testParse_18() {
 		isParseEquals("2^4;", "(2^4)");
 	}
 
-	public void testParse19() {
+	public void testParse_19() {
 		isParseEquals("-2^3;", "((-2)^3)");
 	}
 
-	public void testParse20() {
+	public void testParse_20() {
 		isParseEquals("2+3+6*2;", "((2+3)+(6*2))");
 	}
 
-	public void testParse21() {
+	public void testParse_21() {
 		isParseEquals("9-4/2+11^2+72;", "(((9-(4/2))+(11^2))+72)");
 	}
 
-	public void testParse22() {
+	public void testParse_22() {
 		isParseEquals("3*(2+2);", "(3*(2+2))");
 	}
 
-	public void testParse23() {
+	public void testParse_23() {
 		isParseEquals("2^(2+4*2);", "(2^(2+(4*2)))");
 	}
 
-	public void testParse24() {
+	public void testParse_24() {
 		isParseEquals("-2^(2+4*2);", "((-2)^(2+(4*2)))");
 	}
 
-	public void testParse25() {
+	public void testParse_25() {
 		isParseEquals("4^(-2);", "(4^(-2))");
 	}
 
-	public void testParse26() {
+	public void testParse_26() {
 		isParseEquals("-(-2);", "(-(-2))");
 	}
 
-	public void testParse27() {
+	public void testParse_27() {
 		isParseEquals("-2*(-2);", "((-2)*(-2))");
 	}
 
-	public void testParse28() {
+	public void testParse_28() {
 		isParseEquals("-(2+2);", "(-(2+2))");
 	}
 
-	public void testParse29() {
+	public void testParse_29() {
 		isParseEquals("-(4+2)-42-(5+5);", "(((-(4+2))-42)-(5+5))");
+	}
+
+	public void testParse_30() {
+		isParseEquals("-(-(-(-(-(-2)))));", "(-(-(-(-(-(-2))))))");
+	}
+
+	public void testParse_31() {
+		isParseEquals("sin(3.14);", "sin(3.14)");
+	}
+
+	public void testParse_32() {
+		isParseEquals("log(8,2);", "log(8,2)");
+	}
+
+	public void testParse_33() {
+		isParseEquals("myFunction4calc1(313);", "myFunction4calc1(313)");
+	}
+
+	public void testParse_34() {
+		isParseEquals("sin(log(8,2));", "sin(log(8,2))");
 	}
 
 	private void isParseEquals(String input) {
@@ -150,9 +170,3 @@ public class CalcLabParserTest extends TestCase {
 	}
 
 }
-
-
-// sin(3.14);
-// log(8,2);
-// myFunction4calc1(313);
-// sin(log(8,2));

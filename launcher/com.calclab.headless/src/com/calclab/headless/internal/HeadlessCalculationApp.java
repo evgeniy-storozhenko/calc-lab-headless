@@ -3,8 +3,12 @@ package com.calclab.headless.internal;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
+import com.calclab.core.calculator.CalcaulationProcessFactory;
+import com.calclab.core.calculator.CalculationProcess;
+import com.calclab.core.calculator.CalculationView;
+import com.calclab.core.calculator.view.HtmlView;
+import com.calclab.core.calculator.view.RowView;
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.input.exceptions.InputException;
 import com.calclab.headless.CalculationConfiguration;
 import com.calclab.headless.input.InputFactory;
 import com.calclab.headless.utils.HeadlessCalculationHelper;
@@ -36,18 +40,40 @@ public class HeadlessCalculationApp implements IApplication {
 	}
 
 	private int perform(final CalculationConfiguration config) {
-		InputFactory inputFactory = new InputFactory();
-		CalculationInput input = inputFactory.createCalculationInput(config);
-		CalculationProcess process = new CalculationProcess(input);
 
-		try {
-			process.run();
-		} catch (InputException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		InputFactory inputFactory = new InputFactory();
+		CalcaulationProcessFactory calcProcessFactory = new CalcaulationProcessFactory();
+
+		CalculationInput input = inputFactory.createCalculationInput(config);
+		CalculationProcess process = calcProcessFactory.createCalculationProcess(input);
+
+		process.run();
+		output(process, config);
 
 		return IApplication.EXIT_OK;
 	}
 
+	private void output(final CalculationProcess process, final CalculationConfiguration config) {
+		CalculationView rowView;
+		String output = "";
+		if (config.getHtmlFileOutput() != null) {
+			CalculationView htmlView = new HtmlView();
+			htmlView.setCalculationProcess(process);
+			htmlView.output();
+		}
+		if (config.getRowFileOutput() != null) {
+			rowView = new RowView();
+			rowView.setCalculationProcess(process);
+			output = rowView.output();
+		}
+
+		if (config.getHtmlFileOutput() == null && config.getRowFileOutput() == null) {
+			if (output.isEmpty()) {
+				rowView = new RowView();
+				rowView.setCalculationProcess(process);
+				output = rowView.toString();
+			}
+			System.out.println(output);
+		}
+	}
 }

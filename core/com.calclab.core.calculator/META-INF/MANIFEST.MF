@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Calculator
+Bundle-SymbolicName: com.calclab.core.calculator
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Calculation Laboratory
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: com.calclab.core,
+ com.calclab.core.parser
+Export-Package: com.calclab.core.calculator,
+ com.calclab.core.calculator.view

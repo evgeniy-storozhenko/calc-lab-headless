@@ -9,6 +9,7 @@ import com.calclab.core.variables.Variable;
 public class Calculation implements Calculable {
 
 	private Operand operand;
+	private Operand result;
 
 	public Calculation(Operand operand) {
 		this.operand = operand;
@@ -16,8 +17,11 @@ public class Calculation implements Calculable {
 
 	@Override
 	public Operand calculate() {
-		// TODO Auto-generated method stub
-		return null;
+		result = operand;
+		if (operand instanceof Calculable) {
+			result = ((Calculable) operand).calculate();
+		}
+		return result;
 	}
 
 	@Override

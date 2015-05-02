@@ -11,6 +11,7 @@ options {
 	import java.util.List;
 	import java.util.ArrayList;
 	
+	import com.calclab.core.parser.extensions.SyntaxErrorException;
 	import com.calclab.operations.common.CommonOperationFactory;
 	import com.calclab.operands.common.CommonOperandFactory;
 	import com.calclab.core.calculations.CalculationFactory;
@@ -33,6 +34,16 @@ options {
 	public List<Calculable> getCalculations() {
 		return calculations;
 	}
+	
+	public void displayRecognitionError(String[] tokenNames,
+        RecognitionException e) {
+              if (e.token.getType() == Token.EOF) {
+                Token prev = getTokenStream().get(e.index - 1);
+                throw new SyntaxErrorException(prev.getLine(),
+                    prev.getCharPositionInLine());
+              }
+        throw new SyntaxErrorException(e.line, e.charPositionInLine);
+    }
 }
 
 
@@ -67,7 +78,7 @@ compositeUnit returns[Operand value]
 unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value = $compositeExpression.value; } 
-		| function { $value=null; }
+		| function { $value = $function.value; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
 
@@ -75,7 +86,7 @@ number
 	: MINUS? DIGIT (DECIMAL_SEPARATOR DIGIT)*
 ;
 
-compositeExpression returns[Operand value]
+compositeExpression returns[Operand value] 
 	: { Operation operation = null; } 
 		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?  
 		OPENING_PARENTHESIS expression CLOSING_PARENTHESIS 
@@ -83,12 +94,19 @@ compositeExpression returns[Operand value]
 		  else $value = operandFactory.createUnaryOperand(operation, $expression.value); }
 ;
 
-function 
-	: MINUS? NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS
+function returns[Operand value] 
+	: { Operation operation = null; }  
+		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
+		NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS 
+		{ $value = operandFactory.createFunction($NAME.text, $arguments.value);
+			if (operation != null) 
+				$value = operandFactory.createUnaryOperand(operation, $value); }
 ;
 
-arguments
-	: e1=expression (ARGUMENTS_SEPARATOR e2=expression)*
+arguments returns[ArrayList<Operand> value]
+	: { $value = new ArrayList<Operand>(); }
+		e1=expression { $value.add($e1.value); } 
+			(ARGUMENTS_SEPARATOR e2=expression { $value.add($e2.value); })*
 ;
 
 // Composite operations

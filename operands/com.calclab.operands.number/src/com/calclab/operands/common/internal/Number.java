@@ -127,8 +127,19 @@ public class Number implements Operand {
 	@Override
 	public Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException {
-		// TODO Auto-generated method stub
-		return null;
+
+		if (operation.getName().equals("+") && operand instanceof Number) {
+			return Add((Number) operand);
+		} else if (operation.getName().equals("-") && operand instanceof Number) {
+			return Subtract((Number) operand);
+		} else if (operation.getName().equals("*") && operand instanceof Number) {
+			return Multiply((Number) operand);
+		} else if (operation.getName().equals("/") && operand instanceof Number) {
+			return Divide((Number) operand);
+		} else {
+			throw new OperatorNotFoundException("Operation '" + operation.getName()
+					+ "' is not faound.", new Throwable());
+		}
 	}
 
 	public boolean isNegative() {

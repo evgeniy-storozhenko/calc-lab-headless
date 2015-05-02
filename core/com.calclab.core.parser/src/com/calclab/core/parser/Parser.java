@@ -1,5 +1,7 @@
 package com.calclab.core.parser;
 
+import java.util.List;
+
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.exceptions.InputException;
@@ -9,6 +11,6 @@ import com.calclab.core.input.exceptions.InputException;
  */
 public interface Parser {
 
-	Calculable[] parse(CalculationInput input) throws InputException;
+	List<Calculable> parse(CalculationInput input) throws InputException;
 
 }
