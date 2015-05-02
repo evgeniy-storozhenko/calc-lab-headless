@@ -68,6 +68,7 @@ public class Number implements Operand {
 	}
 
 	public Number Divide(Number number) {
+		number = number.clone();
 		Number result = clone();
 		result.setNumerator(result.getNumerator().multiply(number.getDenominator()));
 		result.setDenominator(result.getDenominator().multiply(number.getNumerator()));
