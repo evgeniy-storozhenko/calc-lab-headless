@@ -2,6 +2,7 @@ package com.calclab.core.calculator.view;
 
 import java.io.File;
 
+import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculator.CalculationProcess;
 import com.calclab.core.calculator.CalculationView;
@@ -27,7 +28,9 @@ public class RowView implements CalculationView {
 			return result.toString();
 		}
 		if (calculationProcess.getStatus().getStage().equals(CalculationStatus.Stage.DONE)) {
-			result.append("OK");
+			for (Calculable expression : calculationProcess.getExpressions()) {
+				result.append(expression.toString() + System.lineSeparator());
+			}
 		} else {
 			result.append(calculationProcess.getStatus().getMessage());
 		}

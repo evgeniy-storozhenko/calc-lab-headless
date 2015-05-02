@@ -52,7 +52,9 @@ public class CompositeOperand implements Operand, Calculable {
 		if (status.getStage().equals(CalculationStatus.Stage.WAITING)) {
 			try {
 				status.setStage(CalculationStatus.Stage.INPROCESS);
-				result = a.perform(operation, b, monitor);
+				Operand o1 = (a instanceof Calculable) ? ((Calculable) a).calculate() : a;
+				Operand o2 = (b instanceof Calculable) ? ((Calculable) b).calculate() : b;
+				result = o1.perform(operation, o2, monitor);
 				status.setStage(CalculationStatus.Stage.DONE);
 			} catch (OperatorNotFoundException | InvalidActionException | InternalExpression e) {
 				status.setStage(CalculationStatus.Stage.ERROR);
@@ -78,8 +80,13 @@ public class CompositeOperand implements Operand, Calculable {
 	}
 
 	@Override
+	public Operand getResult() {
+		return result;
+	}
+
+	@Override
 	public String toString() {
-		return "(" + a.toString() + operation.toString() + b.toString() + ")";
+		return "(" + a + operation + b + ")";
 	}
 
 }

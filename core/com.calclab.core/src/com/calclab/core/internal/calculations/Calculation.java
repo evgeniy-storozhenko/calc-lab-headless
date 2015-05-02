@@ -43,8 +43,17 @@ public class Calculation implements Calculable {
 	}
 
 	@Override
+	public Operand getResult() {
+		return result;
+	}
+
+	@Override
 	public String toString() {
-		return operand.toString();
+		String string = operand.toString();
+		if (result != null) {
+			string += "=" + result;
+		}
+		return string;
 	}
 
 }

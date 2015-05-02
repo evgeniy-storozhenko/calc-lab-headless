@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.internal.CompositeExpression;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.Function;
 import com.calclab.operands.common.internal.Number;
@@ -16,10 +15,6 @@ public class CommonOperandFactory {
 		return new Number(input);
 	}
 	
-	public CompositeExpression createCompositeExpression() {
-		return null;
-	}
-
 	public Operand createCompositeOperand(Operand a, Operation operation, Operand b) {
 		return new CompositeOperand(a, operation, b);
 	}

@@ -96,7 +96,7 @@ public class NumberTest extends TestCase {
 	public void testToString_5() {
 		String str = "-12894712987301453525555555555556";
 		Number num = new Number(str);
-		String expResult = str;
+		String expResult = "(" + str + ")";
 		String result = num.toString();
 		assertEquals(expResult, result);
 	}
@@ -113,6 +113,19 @@ public class NumberTest extends TestCase {
 		String expResult = str;
 		String result = num.toString();
 		assertEquals(expResult, result);
+	}
+
+	public void testObjectLinks() {
+		Number a = new Number("1");
+		Number b = new Number("2");
+		Number c = new Number("2");
+
+		Number d = a.Divide(b).Add(c);
+
+		assertEquals(a.toString(), "1");
+		assertEquals(b.toString(), "2");
+		assertEquals(c.toString(), "2");
+		assertEquals(d.toString(), "2.5");
 	}
 
 }

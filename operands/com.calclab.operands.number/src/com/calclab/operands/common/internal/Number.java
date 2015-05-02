@@ -50,42 +50,52 @@ public class Number implements Operand {
 
 	@Override
 	public String toString() {
-		String result = String.valueOf(numerator.divide(denominator));
+		BigDecimal result = numerator.divide(denominator);
+		result = result.stripTrailingZeros();
+		String string = String.valueOf(result);
 		if (isNegative()) {
-			result = "(" + result + ")";
+			string = "(" + string + ")";
 		}
-		return result;
+		return string;
 	}
 
 	public Number Multiply(Number number) {
-		numerator = numerator.multiply(number.getNumerator());
-		denominator = denominator.multiply(number.getDenominator());
-		return new Number(numerator, denominator);
+		number = number.clone();
+		Number result = clone();
+		result.setNumerator(result.getNumerator().multiply(number.getNumerator()));
+		result.setDenominator(result.getDenominator().multiply(number.getDenominator()));
+		return result;
 	}
 
 	public Number Divide(Number number) {
-		numerator = numerator.multiply(number.getDenominator());
-		denominator = denominator.multiply(number.getNumerator());
-		return new Number(numerator, denominator);
+		Number result = clone();
+		result.setNumerator(result.getNumerator().multiply(number.getDenominator()));
+		result.setDenominator(result.getDenominator().multiply(number.getNumerator()));
+		return result;
 	}
 
 	public Number Add(Number number) {
-		numerator = numerator.multiply(number.getDenominator());
+		number = number.clone();
+		Number result = clone();
+		result.setNumerator(result.getNumerator().multiply(number.getDenominator()));
 		number.setNumerator(number.getNumerator().multiply(denominator));
-		numerator = numerator.add(number.getNumerator());
-		denominator = denominator.multiply(number.getDenominator());
-		return new Number(numerator, denominator);
+		result.setNumerator(result.getNumerator().add(number.getNumerator()));
+		result.setDenominator(result.getDenominator().multiply(number.getDenominator()));
+		return result;
 	}
 
 	public Number Subtract(Number number) {
-		numerator = numerator.multiply(number.getDenominator());
+		number = number.clone();
+		Number result = clone();
+		result.setNumerator(result.getNumerator().multiply(number.getDenominator()));
 		number.setNumerator(number.getNumerator().multiply(denominator));
-		numerator = numerator.subtract(number.getNumerator());
-		denominator = denominator.multiply(number.getDenominator());
-		return new Number(numerator, denominator);
+		result.setNumerator(result.getNumerator().subtract(number.getNumerator()));
+		result.setDenominator(result.getDenominator().multiply(number.getDenominator()));
+		return result;
 	}
 
 	public Number Pow() {
+		// TODO
 		return new Number(numerator, denominator);
 	}
 
@@ -138,7 +148,7 @@ public class Number implements Operand {
 			return Divide((Number) operand);
 		} else {
 			throw new OperatorNotFoundException("Operation '" + operation.getName()
-					+ "' is not faound.", new Throwable());
+					+ "' is not found.", new Throwable());
 		}
 	}
 
@@ -147,6 +157,11 @@ public class Number implements Operand {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Number clone() {
+		return new Number(numerator, denominator);
 	}
 
 }

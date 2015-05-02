@@ -41,10 +41,11 @@ public class UnaryOperand implements Operand, Calculable {
 
 	@Override
 	public String toString() {
+		String string = "(" + operation + operand + ")";
 		if (this.after) {
-			return operand.toString() + operation.toString();
+			string = "" + operand + operation;
 		}
-		return "(" + operation.toString() + operand.toString() + ")";
+		return string;
 	}
 
 	@Override
@@ -90,6 +91,11 @@ public class UnaryOperand implements Operand, Calculable {
 	@Override
 	public StepsMonitor getStepMonitor() {
 		return monitor;
+	}
+
+	@Override
+	public Operand getResult() {
+		return result;
 	}
 
 	@Override
