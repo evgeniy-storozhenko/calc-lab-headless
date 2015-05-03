@@ -12,16 +12,9 @@ public class NumberTest extends TestCase {
 		super(testName);
 	}
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
-
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
+	/**
+	 * Test of getNumerator method, of class Number.
+	 */
 	public void testGetNumerator_1() {
 		String str = "823764876239840.12894712987301";
 		Number num = new Number(str);
@@ -34,7 +27,8 @@ public class NumberTest extends TestCase {
 	public void testGetNumerator_2() {
 		String str = "82376487623984012894712987301234234224124";
 		Number num = new Number(str);
-		BigDecimal expResult = new BigDecimal("82376487623984012894712987301234234224124");
+		BigDecimal expResult = new BigDecimal(
+				"82376487623984012894712987301234234224124");
 		BigDecimal result = num.getNumerator();
 		assertEquals(expResult, result);
 
@@ -43,7 +37,8 @@ public class NumberTest extends TestCase {
 	public void testGetNumerator_3() {
 		String str = "0.823764876239840128947129873012342342241241232132131232";
 		Number num = new Number(str);
-		BigDecimal expResult = new BigDecimal("823764876239840128947129873012342342241241232132131232");
+		BigDecimal expResult = new BigDecimal(
+				"823764876239840128947129873012342342241241232132131232");
 		BigDecimal result = num.getNumerator();
 		assertEquals(expResult, result);
 
@@ -102,17 +97,171 @@ public class NumberTest extends TestCase {
 	}
 
 	public void testToString_6() {
-		String str = "0.10000000344444444444444444444444444444444444444444444444444444444"
-				+ "4444444444444444444444444444444444444444444444444444444444444444444444"
-				+ "4444444444444444444444444444444444444444444444444444444444444444444444"
-				+ "4444444444444444444444444444444444444444444444444444444444444444444444"
-				+ "4444444444444444444444444444444444444444444444444444444444444444444444"
-				+ "4444444444444444444444444444444444444444444444449999999999999999999999"
-				+ "9999999999999999999999999999999999999999999999999999999999999999999";
+		String str = "0.10000000344444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444499999999999999999999999999999999999999999999999999999999999999999999999999999999999999999";
 		Number num = new Number(str);
 		String expResult = str;
 		String result = num.toString();
 		assertEquals(expResult, result);
+	}
+
+	public void testAdd_1() {
+		Number num_1 = new Number("-111.111");
+		Number num_2 = new Number("111.111");
+		num_1 = num_1.Add(num_2);
+		Number expResult = new Number("0");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testAdd_2() {
+		Number num_1 = new Number("111.111");
+		Number num_2 = new Number("111.111");
+		num_1 = num_1.Add(num_2);
+		Number expResult = new Number("222.222");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testAdd_3() {
+		Number num_1 = new Number("111.111");
+		Number num_2 = new Number("-94554.445");
+		num_1 = num_1.Add(num_2);
+		Number expResult = new Number("-94443.334");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testAdd_4() {
+		Number num_1 = new Number("100000000");
+		Number num_2 = new Number("54577788");
+		num_1 = num_1.Add(num_2);
+		Number expResult = new Number("154577788");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testSubtract_1() {
+		Number num_1 = new Number("10000000");
+		Number num_2 = new Number("-10000000");
+		num_1 = num_1.Subtract(num_2);
+		Number expResult = new Number("20000000");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testSubtract_2() {
+		Number num_1 = new Number("-10000000");
+		Number num_2 = new Number("-10000000");
+		num_1 = num_1.Subtract(num_2);
+		Number expResult = new Number("0");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testSubtract_3() {
+		Number num_1 = new Number("-10000000.111");
+		Number num_2 = new Number("10000000");
+		num_1 = num_1.Subtract(num_2);
+		Number expResult = new Number("-20000000.111");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testSubtract_4() {
+		Number num_1 = new Number("999.999");
+		Number num_2 = new Number("999.888");
+		num_1 = num_1.Subtract(num_2);
+		Number expResult = new Number("0.111");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testMultiply_1() {
+		Number num_1 = new Number("0");
+		Number num_2 = new Number("999.888");
+		num_1 = num_1.Multiply(num_2);
+		Number expResult = new Number("0");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testMultiply_2() {
+		Number num_1 = new Number("-10");
+		Number num_2 = new Number("999.888");
+		num_1 = num_1.Multiply(num_2);
+		Number expResult = new Number("-9998.88");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testMultiply_3() {
+		Number num_1 = new Number("-1000");
+		Number num_2 = new Number("-999.888");
+		num_1 = num_1.Multiply(num_2);
+		Number expResult = new Number("999888");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testMultiply_4() {
+		Number num_1 = new Number("8982452");
+		Number num_2 = new Number("45.120214534");
+		num_1 = num_1.Multiply(num_2);
+		Number expResult = new Number("405290161.281357368");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testDivide_1() {
+		Number num_1 = new Number("0");
+		Number num_2 = new Number("45.120214534");
+		num_1 = num_1.Divide(num_2);
+		Number expResult = new Number("0");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testDivide_2() {
+		Number num_1 = new Number("100.456");
+		Number num_2 = new Number("45.120214534");
+		num_1 = num_1.Divide(num_2);
+		Number expResult = new Number("2.22627487562823");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testDivide_3() {
+		Number num_1 = new Number("10");
+		Number num_2 = new Number("-45.12021");
+		num_1 = num_1.Divide(num_2);
+		Number expResult = new Number("-0.221630174150342");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testDivide_4() {
+		Number num_1 = new Number("-100");
+		Number num_2 = new Number("-100");
+		num_1 = num_1.Divide(num_2);
+		Number expResult = new Number("1");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testDivide_5() {
+		Number num_1 = new Number("-100");
+		Number num_2 = new Number("1");
+		num_1 = num_1.Divide(num_2);
+		Number expResult = new Number("-100");
+		assertEquals(expResult, num_1);
+	}
+
+	public void testEquals_1() {
+		Number num_1 = new Number("-100");
+		Number num_2 = new Number("-100");
+		assertEquals(true, num_1.equals(num_2));
+	}
+
+	public void testEquals_2() {
+		Number num_1 = new Number("-100");
+		Number num_2 = new Number("0");
+		assertEquals(false, num_1.equals(num_2));
+	}
+
+	public void test_3() {
+		Number a1 = new Number("4");
+		Number a2 = new Number("2");
+		Number a3 = a1.Divide(a2);
+
+		Number b1 = new Number("10");
+		Number b2 = new Number("5");
+		Number b3 = b1.Divide(b2);
+
+		assertTrue(a3.equals(b3));
 	}
 
 	public void testObjectLinks() {
