@@ -14,14 +14,15 @@ public class Number implements Operand {
 
 	private BigDecimal numerator;
 	private BigDecimal denominator;
+	private boolean exact = true;
 
 	public Number(String str) {
 		numerator = new BigDecimal(str);
 		String[] split = str.split("\\.");
 		if (split.length == 1) {
-			denominator = new BigDecimal(1);
+			denominator = BigDecimal.ONE;
 		} else {
-			denominator = new BigDecimal(10);
+			denominator = BigDecimal.TEN;
 			denominator = denominator.pow(split[1].length());
 			numerator = numerator.multiply(denominator);
 		}
@@ -50,13 +51,37 @@ public class Number implements Operand {
 
 	@Override
 	public String toString() {
-		BigDecimal result = numerator.divide(denominator);
+		optimize();
+		BigDecimal result;
+		if (exact) {
+			result = numerator.divide(denominator, BigDecimal.ROUND_UNNECESSARY);
+		} else {
+			result = numerator.divide(denominator, 60, BigDecimal.ROUND_CEILING);
+		}
 		result = result.stripTrailingZeros();
 		String string = result.toPlainString();
 		if (isNegative()) {
 			string = "(" + string + ")";
 		}
 		return string;
+	}
+
+	public void optimize() {
+		try {
+			BigDecimal opimized = numerator.divide(denominator);
+			String stringValue = opimized.toPlainString();
+			if (stringValue.contains("\\.")) {
+				Number result = new Number(stringValue);
+				numerator = result.getNumerator();
+				denominator = result.getDenominator();
+			} else {
+				numerator = opimized;
+				denominator = BigDecimal.ONE;
+			}
+			exact = true;
+		} catch (ArithmeticException e) {
+			exact = false;
+		}
 	}
 
 	public Number Multiply(Number number) {
@@ -165,4 +190,7 @@ public class Number implements Operand {
 		return new Number(numerator, denominator);
 	}
 
+	public boolean isExact() {
+		return exact;
+	}
 }
