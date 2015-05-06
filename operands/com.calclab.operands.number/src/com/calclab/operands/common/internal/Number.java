@@ -52,7 +52,7 @@ public class Number implements Operand {
 	public String toString() {
 		BigDecimal result = numerator.divide(denominator);
 		result = result.stripTrailingZeros();
-		String string = String.valueOf(result);
+		String string = result.toPlainString();
 		if (isNegative()) {
 			string = "(" + string + ")";
 		}
