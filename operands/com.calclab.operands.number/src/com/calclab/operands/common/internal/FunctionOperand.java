@@ -9,12 +9,12 @@ import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 
-public class Function implements Operand {
+public class FunctionOperand implements Operand {
 
 	private final String name;
 	private final List<Operand> arguments;
 
-	public Function(String name, List<Operand> arguments) {
+	public FunctionOperand(String name, List<Operand> arguments) {
 		this.name = name;
 		this.arguments = arguments;
 	}

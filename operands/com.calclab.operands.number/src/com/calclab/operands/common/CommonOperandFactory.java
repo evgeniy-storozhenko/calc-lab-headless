@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operations.Operation;
+import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
-import com.calclab.operands.common.internal.Function;
-import com.calclab.operands.common.internal.Number;
+import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.UnaryOperand;
 
 public class CommonOperandFactory {
 	
 	public Operand createNumber(String input) {
-		return new Number(input);
+		return new BigNumber(input);
 	}
 	
 	public Operand createCompositeOperand(Operand a, Operation operation, Operand b) {
@@ -31,8 +31,8 @@ public class CommonOperandFactory {
 		return new UnaryOperand(operand, operation, after);
 	}
 
-	public Operand createFunction(String name, List<Operand> arguments) {
-		return new Function(name, arguments);
+	public Operand createFunctionOperand(String name, List<Operand> arguments) {
+		return new FunctionOperand(name, arguments);
 	}
 
 }

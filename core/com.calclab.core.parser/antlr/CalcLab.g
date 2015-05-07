@@ -98,7 +98,7 @@ function returns[Operand value]
 	: { Operation operation = null; }  
 		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
 		NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS 
-		{ $value = operandFactory.createFunction($NAME.text, $arguments.value);
+		{ $value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
 			if (operation != null) 
 				$value = operandFactory.createUnaryOperand(operation, $value); }
 ;

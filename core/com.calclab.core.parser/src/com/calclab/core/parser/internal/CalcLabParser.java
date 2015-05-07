@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-05-02 11:05:43
+// $ANTLR 3.5.2 CalcLab.g 2015-05-07 15:59:06
 
 	package com.calclab.core.parser.internal;
 	
@@ -75,15 +75,14 @@ public class CalcLabParser extends Parser {
 			return calculations;
 		}
 		
-		@Override
 		public void displayRecognitionError(String[] tokenNames,
 	        RecognitionException e) {
 	              if (e.token.getType() == Token.EOF) {
 	                Token prev = getTokenStream().get(e.index - 1);
 	                throw new SyntaxErrorException(prev.getLine(),
-					prev.getCharPositionInLine(), e.toString());
+	                    prev.getCharPositionInLine());
 	              }
-		throw new SyntaxErrorException(e.line, e.charPositionInLine, e.toString());
+	        throw new SyntaxErrorException(e.line, e.charPositionInLine);
 	    }
 
 
@@ -649,7 +648,7 @@ public class CalcLabParser extends Parser {
 			state._fsp--;
 
 			match(input,CLOSING_PARENTHESIS,FOLLOW_CLOSING_PARENTHESIS_in_function320); 
-			 value = operandFactory.createFunction((NAME8!=null?NAME8.getText():null), arguments9);
+			 value = operandFactory.createFunctionOperand((NAME8!=null?NAME8.getText():null), arguments9);
 						if (operation != null) 
 							value = operandFactory.createUnaryOperand(operation, value); 
 			}
