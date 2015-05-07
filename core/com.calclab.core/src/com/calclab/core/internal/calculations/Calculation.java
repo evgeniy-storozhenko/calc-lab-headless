@@ -51,9 +51,14 @@ public class Calculation implements Calculable {
 	public String toString() {
 		String string = operand.toString();
 		if (result != null) {
-			string += "=" + result;
+			if (result.isExact()) {
+				string += "=";
+			} else {
+				string += "≈";
+			}
+			string += result;
 		}
-		return string;
+		return string + ";";
 	}
 
 }

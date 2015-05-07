@@ -103,4 +103,9 @@ public class UnaryOperand implements Operand, Calculable {
 		return status;
 	}
 
+	@Override
+	public boolean isExact() {
+		return true;
+	}
+
 }

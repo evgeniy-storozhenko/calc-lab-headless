@@ -46,4 +46,9 @@ public class Function implements Operand {
 		return null;
 	}
 
+	@Override
+	public boolean isExact() {
+		return true;
+	}
+
 }

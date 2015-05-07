@@ -18,4 +18,6 @@ public interface Operand {
 	Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException, InternalExpression;
 
+	boolean isExact();
+
 }

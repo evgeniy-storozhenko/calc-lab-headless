@@ -89,4 +89,9 @@ public class CompositeOperand implements Operand, Calculable {
 		return "(" + a + operation + b + ")";
 	}
 
+	@Override
+	public boolean isExact() {
+		return true;
+	}
+
 }
