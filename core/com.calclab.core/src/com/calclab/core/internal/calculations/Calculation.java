@@ -10,16 +10,28 @@ public class Calculation implements Calculable {
 
 	private Operand operand;
 	private Operand result;
+	private final String input;
+	private CalculationStatus status = new CalculationStatus();
 
 	public Calculation(Operand operand) {
 		this.operand = operand;
+		this.input = "";
+	}
+
+	public Calculation(Operand operand, String input) {
+		this.operand = operand;
+		this.input = input;
 	}
 
 	@Override
 	public Operand calculate() {
-		result = operand;
+		if (!status.getStage().equals(CalculationStatus.Stage.WAITING)) {
+			return result;
+		}
 		if (operand instanceof Calculable) {
+			status.setStage(CalculationStatus.Stage.INPROCESS);
 			result = ((Calculable) operand).calculate();
+			status = ((Calculable) operand).getStatus();
 		}
 		return result;
 	}
@@ -38,8 +50,7 @@ public class Calculation implements Calculable {
 
 	@Override
 	public CalculationStatus getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		return status;
 	}
 
 	@Override
@@ -49,14 +60,14 @@ public class Calculation implements Calculable {
 
 	@Override
 	public String toString() {
-		String string = operand.toString();
+		String string = result.toString();
 		if (result != null) {
 			if (result.isExact()) {
-				string += "=";
+				string = "=" + string;
 			} else {
-				string += "≈";
+				string = "≈" + string;
 			}
-			string += result;
+			string = input + string;
 		}
 		return string + ";";
 	}

@@ -8,4 +8,8 @@ public class CalculationFactory {
 	public Calculation createCalculation(Operand operand) {
 		return new Calculation(operand);
 	}
+
+	public Calculation createCalculation(Operand operand, String input) {
+		return new Calculation(operand, input);
+	}
 }

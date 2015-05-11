@@ -24,10 +24,11 @@
    <plugins>
       <plugin id="com.calclab.core"/>
       <plugin id="com.calclab.core.calculator"/>
-      <plugin id="com.calclab.core.operand.number"/>
       <plugin id="com.calclab.core.operation.common"/>
       <plugin id="com.calclab.core.parser"/>
+      <plugin id="com.calclab.functions.trigonometric"/>
       <plugin id="com.calclab.headless"/>
+      <plugin id="com.calclab.operands.common"/>
       <plugin id="javax.xml"/>
       <plugin id="org.antlr.runtime"/>
       <plugin id="org.eclipse.core.contenttype"/>

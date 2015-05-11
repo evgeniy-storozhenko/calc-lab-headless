@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import com.calclab.core.calculations.StepsMonitor;
+import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.AbstractNumber;
 
 public class BigNumber extends AbstractNumber {
 

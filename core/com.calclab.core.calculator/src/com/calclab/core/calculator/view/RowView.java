@@ -27,12 +27,12 @@ public class RowView implements CalculationView {
 		if (calculationProcess == null) {
 			return result.toString();
 		}
-		if (calculationProcess.getStatus().getStage().equals(CalculationStatus.Stage.DONE)) {
-			for (Calculable expression : calculationProcess.getExpressions()) {
-				result.append(expression.toString() + System.lineSeparator());
+		for (Calculable expression : calculationProcess.getExpressions()) {
+			if (expression.getStatus().isDone()) {
+				result.append(expression.toString().intern() + System.lineSeparator());
+			} else {
+				result.append(expression.getStatus().getMessage() + System.lineSeparator());
 			}
-		} else {
-			result.append(calculationProcess.getStatus().getMessage());
 		}
 		return result.toString();
 	}

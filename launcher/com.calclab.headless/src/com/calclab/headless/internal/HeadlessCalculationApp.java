@@ -71,7 +71,7 @@ public class HeadlessCalculationApp implements IApplication {
 			if (output.isEmpty()) {
 				rowView = new RowView();
 				rowView.setCalculationProcess(process);
-				output = rowView.toString();
+				output = rowView.output();
 			}
 			System.out.println(output);
 		}

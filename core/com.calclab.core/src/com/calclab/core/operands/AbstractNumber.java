@@ -1,8 +1,6 @@
-package com.calclab.operands.common;
+package com.calclab.core.operands;
 
 import java.math.BigDecimal;
-
-import com.calclab.core.operands.Operand;
 
 public abstract class AbstractNumber extends Number
 		implements Operand, Comparable<AbstractNumber>, Cloneable {

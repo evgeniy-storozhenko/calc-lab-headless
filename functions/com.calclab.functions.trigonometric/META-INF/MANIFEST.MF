@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Number
-Bundle-SymbolicName: com.calclab.core.operand.number;singleton:=true
+Bundle-Name: Trigonometric
+Bundle-SymbolicName: com.calclab.functions.trigonometric;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Require-Bundle: com.calclab.core
-Export-Package: com.calclab.operands.common
+Require-Bundle: com.calclab.operands.common,
+ com.calclab.core

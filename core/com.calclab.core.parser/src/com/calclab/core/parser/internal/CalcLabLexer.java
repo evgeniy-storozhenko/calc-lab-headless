@@ -1,7 +1,6 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-05-07 15:59:06
+// $ANTLR 3.5.2 CalcLab.g 2015-05-11 11:31:16
 
-	package com.calclab.core.parser.internal;
-
+package com.calclab.core.parser.internal;
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -10,24 +9,24 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class CalcLabLexer extends Lexer {
-	public static final int EOF=-1;
-	public static final int ARGUMENTS_SEPARATOR=4;
-	public static final int CHAR=5;
-	public static final int CLOSING_PARENTHESIS=6;
-	public static final int DECIMAL_SEPARATOR=7;
-	public static final int DIGIT=8;
-	public static final int DIVISION=9;
-	public static final int EXPRESSIONS_SEPARATOR=10;
-	public static final int FACTORIAL=11;
-	public static final int ID=12;
-	public static final int INVOLUTION=13;
-	public static final int MINUS=14;
-	public static final int MULTIPLY=15;
-	public static final int NAME=16;
-	public static final int NEWLINE=17;
-	public static final int OPENING_PARENTHESIS=18;
-	public static final int PLUS=19;
-	public static final int WS=20;
+	public static final int EOF = -1;
+	public static final int ARGUMENTS_SEPARATOR = 4;
+	public static final int CHAR = 5;
+	public static final int CLOSING_PARENTHESIS = 6;
+	public static final int DECIMAL_SEPARATOR = 7;
+	public static final int DIGIT = 8;
+	public static final int DIVISION = 9;
+	public static final int EXPRESSIONS_SEPARATOR = 10;
+	public static final int FACTORIAL = 11;
+	public static final int ID = 12;
+	public static final int INVOLUTION = 13;
+	public static final int MINUS = 14;
+	public static final int MULTIPLY = 15;
+	public static final int NAME = 16;
+	public static final int NEWLINE = 17;
+	public static final int OPENING_PARENTHESIS = 18;
+	public static final int PLUS = 19;
+	public static final int WS = 20;
 
 	// delegates
 	// delegators
@@ -35,14 +34,21 @@ public class CalcLabLexer extends Lexer {
 		return new Lexer[] {};
 	}
 
-	public CalcLabLexer() {} 
+	public CalcLabLexer() {
+	}
+
 	public CalcLabLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
+
 	public CalcLabLexer(CharStream input, RecognizerSharedState state) {
-		super(input,state);
+		super(input, state);
 	}
-	@Override public String getGrammarFileName() { return "CalcLab.g"; }
+
+	@Override
+	public String getGrammarFileName() {
+		return "CalcLab.g";
+	}
 
 	// $ANTLR start "PLUS"
 	public final void mPLUS() throws RecognitionException {
@@ -52,16 +58,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:128:7: ( '+' )
 			// CalcLab.g:128:9: '+'
 			{
-			match('+'); 
+				match('+');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "PLUS"
 
 	// $ANTLR start "MINUS"
@@ -72,16 +78,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:129:7: ( '-' )
 			// CalcLab.g:129:9: '-'
 			{
-			match('-'); 
+				match('-');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "MINUS"
 
 	// $ANTLR start "MULTIPLY"
@@ -92,16 +98,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:130:10: ( '*' )
 			// CalcLab.g:130:12: '*'
 			{
-			match('*'); 
+				match('*');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "MULTIPLY"
 
 	// $ANTLR start "DIVISION"
@@ -112,16 +118,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:131:10: ( '/' )
 			// CalcLab.g:131:12: '/'
 			{
-			match('/'); 
+				match('/');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "DIVISION"
 
 	// $ANTLR start "INVOLUTION"
@@ -132,16 +138,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:134:12: ( '^' )
 			// CalcLab.g:134:14: '^'
 			{
-			match('^'); 
+				match('^');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "INVOLUTION"
 
 	// $ANTLR start "FACTORIAL"
@@ -152,16 +158,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:135:11: ( '!' )
 			// CalcLab.g:135:13: '!'
 			{
-			match('!'); 
+				match('!');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "FACTORIAL"
 
 	// $ANTLR start "DIGIT"
@@ -172,48 +178,48 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:138:7: ( ( '0' .. '9' )+ )
 			// CalcLab.g:138:9: ( '0' .. '9' )+
 			{
-			// CalcLab.g:138:9: ( '0' .. '9' )+
-			int cnt1=0;
-			loop1:
-			while (true) {
-				int alt1=2;
-				int LA1_0 = input.LA(1);
-				if ( ((LA1_0 >= '0' && LA1_0 <= '9')) ) {
-					alt1=1;
-				}
+				// CalcLab.g:138:9: ( '0' .. '9' )+
+				int cnt1 = 0;
+				loop1: while (true) {
+					int alt1 = 2;
+					int LA1_0 = input.LA(1);
+					if (((LA1_0 >= '0' && LA1_0 <= '9'))) {
+						alt1 = 1;
+					}
 
-				switch (alt1) {
-				case 1 :
+					switch (alt1) {
+					case 1:
 					// CalcLab.g:
 					{
-					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
-						input.consume();
+						if ((input.LA(1) >= '0' && input.LA(1) <= '9')) {
+							input.consume();
+						}
+						else {
+							MismatchedSetException mse = new MismatchedSetException(null, input);
+							recover(mse);
+							throw mse;
+						}
 					}
-					else {
-						MismatchedSetException mse = new MismatchedSetException(null,input);
-						recover(mse);
-						throw mse;
-					}
-					}
-					break;
+						break;
 
-				default :
-					if ( cnt1 >= 1 ) break loop1;
-					EarlyExitException eee = new EarlyExitException(1, input);
-					throw eee;
+					default:
+						if (cnt1 >= 1)
+							break loop1;
+						EarlyExitException eee = new EarlyExitException(1, input);
+						throw eee;
+					}
+					cnt1++;
 				}
-				cnt1++;
-			}
 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "DIGIT"
 
 	// $ANTLR start "NAME"
@@ -224,50 +230,49 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:139:6: ( ID ( ID | DIGIT )* )
 			// CalcLab.g:139:8: ID ( ID | DIGIT )*
 			{
-			mID(); 
+				mID();
 
-			// CalcLab.g:139:11: ( ID | DIGIT )*
-			loop2:
-			while (true) {
-				int alt2=3;
-				int LA2_0 = input.LA(1);
-				if ( ((LA2_0 >= 'A' && LA2_0 <= 'Z')||LA2_0=='_'||(LA2_0 >= 'a' && LA2_0 <= 'z')) ) {
-					alt2=1;
-				}
-				else if ( ((LA2_0 >= '0' && LA2_0 <= '9')) ) {
-					alt2=2;
-				}
+				// CalcLab.g:139:11: ( ID | DIGIT )*
+				loop2: while (true) {
+					int alt2 = 3;
+					int LA2_0 = input.LA(1);
+					if (((LA2_0 >= 'A' && LA2_0 <= 'Z') || LA2_0 == '_' || (LA2_0 >= 'a' && LA2_0 <= 'z'))) {
+						alt2 = 1;
+					}
+					else if (((LA2_0 >= '0' && LA2_0 <= '9'))) {
+						alt2 = 2;
+					}
 
-				switch (alt2) {
-				case 1 :
+					switch (alt2) {
+					case 1:
 					// CalcLab.g:139:12: ID
 					{
-					mID(); 
+						mID();
 
 					}
-					break;
-				case 2 :
+						break;
+					case 2:
 					// CalcLab.g:139:16: DIGIT
 					{
-					mDIGIT(); 
+						mDIGIT();
 
 					}
-					break;
+						break;
 
-				default :
-					break loop2;
+					default:
+						break loop2;
+					}
 				}
-			}
 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "NAME"
 
 	// $ANTLR start "ID"
@@ -276,21 +281,22 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:140:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
 			// CalcLab.g:
 			{
-			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
-				input.consume();
-			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				recover(mse);
-				throw mse;
-			}
+				if ((input.LA(1) >= 'A' && input.LA(1) <= 'Z') || input.LA(1) == '_'
+						|| (input.LA(1) >= 'a' && input.LA(1) <= 'z')) {
+					input.consume();
+				}
+				else {
+					MismatchedSetException mse = new MismatchedSetException(null, input);
+					recover(mse);
+					throw mse;
+				}
 			}
 
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "ID"
 
 	// $ANTLR start "CHAR"
@@ -299,21 +305,21 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:141:15: ( 'A' .. 'z' )
 			// CalcLab.g:
 			{
-			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'z') ) {
-				input.consume();
-			}
-			else {
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				recover(mse);
-				throw mse;
-			}
+				if ((input.LA(1) >= 'A' && input.LA(1) <= 'z')) {
+					input.consume();
+				}
+				else {
+					MismatchedSetException mse = new MismatchedSetException(null, input);
+					recover(mse);
+					throw mse;
+				}
 			}
 
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "CHAR"
 
 	// $ANTLR start "OPENING_PARENTHESIS"
@@ -324,16 +330,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:142:21: ( '(' )
 			// CalcLab.g:142:23: '('
 			{
-			match('('); 
+				match('(');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "OPENING_PARENTHESIS"
 
 	// $ANTLR start "CLOSING_PARENTHESIS"
@@ -344,16 +350,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:143:21: ( ')' )
 			// CalcLab.g:143:23: ')'
 			{
-			match(')'); 
+				match(')');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "CLOSING_PARENTHESIS"
 
 	// $ANTLR start "NEWLINE"
@@ -364,33 +370,33 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:144:9: ( ( '\\r' )? '\\n' )
 			// CalcLab.g:144:11: ( '\\r' )? '\\n'
 			{
-			// CalcLab.g:144:11: ( '\\r' )?
-			int alt3=2;
-			int LA3_0 = input.LA(1);
-			if ( (LA3_0=='\r') ) {
-				alt3=1;
-			}
-			switch (alt3) {
-				case 1 :
-					// CalcLab.g:144:11: '\\r'
-					{
-					match('\r'); 
-					}
+				// CalcLab.g:144:11: ( '\\r' )?
+				int alt3 = 2;
+				int LA3_0 = input.LA(1);
+				if ((LA3_0 == '\r')) {
+					alt3 = 1;
+				}
+				switch (alt3) {
+				case 1:
+				// CalcLab.g:144:11: '\\r'
+				{
+					match('\r');
+				}
 					break;
 
-			}
+				}
 
-			match('\n'); 
-			_channel=HIDDEN;
+				match('\n');
+				_channel = HIDDEN;
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "NEWLINE"
 
 	// $ANTLR start "DECIMAL_SEPARATOR"
@@ -401,16 +407,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:145:19: ( '.' )
 			// CalcLab.g:145:21: '.'
 			{
-			match('.'); 
+				match('.');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "DECIMAL_SEPARATOR"
 
 	// $ANTLR start "ARGUMENTS_SEPARATOR"
@@ -421,16 +427,16 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:146:21: ( ',' )
 			// CalcLab.g:146:23: ','
 			{
-			match(','); 
+				match(',');
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "ARGUMENTS_SEPARATOR"
 
 	// $ANTLR start "EXPRESSIONS_SEPARATOR"
@@ -441,62 +447,60 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:147:23: ( ( NEWLINE )* ';' ( NEWLINE )* )
 			// CalcLab.g:147:25: ( NEWLINE )* ';' ( NEWLINE )*
 			{
-			// CalcLab.g:147:25: ( NEWLINE )*
-			loop4:
-			while (true) {
-				int alt4=2;
-				int LA4_0 = input.LA(1);
-				if ( (LA4_0=='\n'||LA4_0=='\r') ) {
-					alt4=1;
-				}
+				// CalcLab.g:147:25: ( NEWLINE )*
+				loop4: while (true) {
+					int alt4 = 2;
+					int LA4_0 = input.LA(1);
+					if ((LA4_0 == '\n' || LA4_0 == '\r')) {
+						alt4 = 1;
+					}
 
-				switch (alt4) {
-				case 1 :
+					switch (alt4) {
+					case 1:
 					// CalcLab.g:147:25: NEWLINE
 					{
-					mNEWLINE(); 
+						mNEWLINE();
 
 					}
-					break;
+						break;
 
-				default :
-					break loop4;
-				}
-			}
-
-			match(';'); 
-			// CalcLab.g:147:38: ( NEWLINE )*
-			loop5:
-			while (true) {
-				int alt5=2;
-				int LA5_0 = input.LA(1);
-				if ( (LA5_0=='\n'||LA5_0=='\r') ) {
-					alt5=1;
+					default:
+						break loop4;
+					}
 				}
 
-				switch (alt5) {
-				case 1 :
+				match(';');
+				// CalcLab.g:147:38: ( NEWLINE )*
+				loop5: while (true) {
+					int alt5 = 2;
+					int LA5_0 = input.LA(1);
+					if ((LA5_0 == '\n' || LA5_0 == '\r')) {
+						alt5 = 1;
+					}
+
+					switch (alt5) {
+					case 1:
 					// CalcLab.g:147:38: NEWLINE
 					{
-					mNEWLINE(); 
+						mNEWLINE();
 
 					}
-					break;
+						break;
 
-				default :
-					break loop5;
+					default:
+						break loop5;
+					}
 				}
-			}
 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "EXPRESSIONS_SEPARATOR"
 
 	// $ANTLR start "WS"
@@ -507,185 +511,186 @@ public class CalcLabLexer extends Lexer {
 			// CalcLab.g:148:3: ( ( ' ' | '\\n' | '\\r' )+ )
 			// CalcLab.g:148:5: ( ' ' | '\\n' | '\\r' )+
 			{
-			// CalcLab.g:148:5: ( ' ' | '\\n' | '\\r' )+
-			int cnt6=0;
-			loop6:
-			while (true) {
-				int alt6=2;
-				int LA6_0 = input.LA(1);
-				if ( (LA6_0=='\n'||LA6_0=='\r'||LA6_0==' ') ) {
-					alt6=1;
-				}
+				// CalcLab.g:148:5: ( ' ' | '\\n' | '\\r' )+
+				int cnt6 = 0;
+				loop6: while (true) {
+					int alt6 = 2;
+					int LA6_0 = input.LA(1);
+					if ((LA6_0 == '\n' || LA6_0 == '\r' || LA6_0 == ' ')) {
+						alt6 = 1;
+					}
 
-				switch (alt6) {
-				case 1 :
+					switch (alt6) {
+					case 1:
 					// CalcLab.g:
 					{
-					if ( input.LA(1)=='\n'||input.LA(1)=='\r'||input.LA(1)==' ' ) {
-						input.consume();
+						if (input.LA(1) == '\n' || input.LA(1) == '\r' || input.LA(1) == ' ') {
+							input.consume();
+						}
+						else {
+							MismatchedSetException mse = new MismatchedSetException(null, input);
+							recover(mse);
+							throw mse;
+						}
 					}
-					else {
-						MismatchedSetException mse = new MismatchedSetException(null,input);
-						recover(mse);
-						throw mse;
-					}
-					}
-					break;
+						break;
 
-				default :
-					if ( cnt6 >= 1 ) break loop6;
-					EarlyExitException eee = new EarlyExitException(6, input);
-					throw eee;
+					default:
+						if (cnt6 >= 1)
+							break loop6;
+						EarlyExitException eee = new EarlyExitException(6, input);
+						throw eee;
+					}
+					cnt6++;
 				}
-				cnt6++;
-			}
 
-			_channel=HIDDEN;
+				_channel = HIDDEN;
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		}
-		finally {
+		} finally {
 			// do for sure before leaving
 		}
 	}
+
 	// $ANTLR end "WS"
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// CalcLab.g:1:8: ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | WS )
-		int alt7=15;
+		// CalcLab.g:1:8: ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | NAME |
+		// OPENING_PARENTHESIS | CLOSING_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR |
+		// EXPRESSIONS_SEPARATOR | WS )
+		int alt7 = 15;
 		alt7 = dfa7.predict(input);
 		switch (alt7) {
-			case 1 :
-				// CalcLab.g:1:10: PLUS
-				{
-				mPLUS(); 
+		case 1:
+		// CalcLab.g:1:10: PLUS
+		{
+			mPLUS();
 
-				}
-				break;
-			case 2 :
-				// CalcLab.g:1:15: MINUS
-				{
-				mMINUS(); 
+		}
+			break;
+		case 2:
+		// CalcLab.g:1:15: MINUS
+		{
+			mMINUS();
 
-				}
-				break;
-			case 3 :
-				// CalcLab.g:1:21: MULTIPLY
-				{
-				mMULTIPLY(); 
+		}
+			break;
+		case 3:
+		// CalcLab.g:1:21: MULTIPLY
+		{
+			mMULTIPLY();
 
-				}
-				break;
-			case 4 :
-				// CalcLab.g:1:30: DIVISION
-				{
-				mDIVISION(); 
+		}
+			break;
+		case 4:
+		// CalcLab.g:1:30: DIVISION
+		{
+			mDIVISION();
 
-				}
-				break;
-			case 5 :
-				// CalcLab.g:1:39: INVOLUTION
-				{
-				mINVOLUTION(); 
+		}
+			break;
+		case 5:
+		// CalcLab.g:1:39: INVOLUTION
+		{
+			mINVOLUTION();
 
-				}
-				break;
-			case 6 :
-				// CalcLab.g:1:50: FACTORIAL
-				{
-				mFACTORIAL(); 
+		}
+			break;
+		case 6:
+		// CalcLab.g:1:50: FACTORIAL
+		{
+			mFACTORIAL();
 
-				}
-				break;
-			case 7 :
-				// CalcLab.g:1:60: DIGIT
-				{
-				mDIGIT(); 
+		}
+			break;
+		case 7:
+		// CalcLab.g:1:60: DIGIT
+		{
+			mDIGIT();
 
-				}
-				break;
-			case 8 :
-				// CalcLab.g:1:66: NAME
-				{
-				mNAME(); 
+		}
+			break;
+		case 8:
+		// CalcLab.g:1:66: NAME
+		{
+			mNAME();
 
-				}
-				break;
-			case 9 :
-				// CalcLab.g:1:71: OPENING_PARENTHESIS
-				{
-				mOPENING_PARENTHESIS(); 
+		}
+			break;
+		case 9:
+		// CalcLab.g:1:71: OPENING_PARENTHESIS
+		{
+			mOPENING_PARENTHESIS();
 
-				}
-				break;
-			case 10 :
-				// CalcLab.g:1:91: CLOSING_PARENTHESIS
-				{
-				mCLOSING_PARENTHESIS(); 
+		}
+			break;
+		case 10:
+		// CalcLab.g:1:91: CLOSING_PARENTHESIS
+		{
+			mCLOSING_PARENTHESIS();
 
-				}
-				break;
-			case 11 :
-				// CalcLab.g:1:111: NEWLINE
-				{
-				mNEWLINE(); 
+		}
+			break;
+		case 11:
+		// CalcLab.g:1:111: NEWLINE
+		{
+			mNEWLINE();
 
-				}
-				break;
-			case 12 :
-				// CalcLab.g:1:119: DECIMAL_SEPARATOR
-				{
-				mDECIMAL_SEPARATOR(); 
+		}
+			break;
+		case 12:
+		// CalcLab.g:1:119: DECIMAL_SEPARATOR
+		{
+			mDECIMAL_SEPARATOR();
 
-				}
-				break;
-			case 13 :
-				// CalcLab.g:1:137: ARGUMENTS_SEPARATOR
-				{
-				mARGUMENTS_SEPARATOR(); 
+		}
+			break;
+		case 13:
+		// CalcLab.g:1:137: ARGUMENTS_SEPARATOR
+		{
+			mARGUMENTS_SEPARATOR();
 
-				}
-				break;
-			case 14 :
-				// CalcLab.g:1:157: EXPRESSIONS_SEPARATOR
-				{
-				mEXPRESSIONS_SEPARATOR(); 
+		}
+			break;
+		case 14:
+		// CalcLab.g:1:157: EXPRESSIONS_SEPARATOR
+		{
+			mEXPRESSIONS_SEPARATOR();
 
-				}
-				break;
-			case 15 :
-				// CalcLab.g:1:179: WS
-				{
-				mWS(); 
+		}
+			break;
+		case 15:
+		// CalcLab.g:1:179: WS
+		{
+			mWS();
 
-				}
-				break;
+		}
+			break;
 
 		}
 	}
 
-
 	protected DFA7 dfa7 = new DFA7(this);
 	static final String DFA7_eotS =
-		"\13\uffff\1\20\1\21\5\uffff\2\20";
+			"\13\uffff\1\20\1\21\5\uffff\2\20";
 	static final String DFA7_eofS =
-		"\24\uffff";
+			"\24\uffff";
 	static final String DFA7_minS =
-		"\1\12\12\uffff\2\12\5\uffff\2\12";
+			"\1\12\12\uffff\2\12\5\uffff\2\12";
 	static final String DFA7_maxS =
-		"\1\172\12\uffff\1\12\1\73\5\uffff\1\12\1\73";
+			"\1\172\12\uffff\1\12\1\73\5\uffff\1\12\1\73";
 	static final String DFA7_acceptS =
-		"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\2\uffff\1\14\1\15"+
-		"\1\16\1\17\1\13\2\uffff";
+			"\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\2\uffff\1\14\1\15" +
+					"\1\16\1\17\1\13\2\uffff";
 	static final String DFA7_specialS =
-		"\24\uffff}>";
+			"\24\uffff}>";
 	static final String[] DFA7_transitionS = {
-			"\1\14\2\uffff\1\13\22\uffff\1\20\1\6\6\uffff\1\11\1\12\1\3\1\1\1\16\1"+
-			"\2\1\15\1\4\12\7\1\uffff\1\17\5\uffff\32\10\3\uffff\1\5\1\10\1\uffff"+
-			"\32\10",
+			"\1\14\2\uffff\1\13\22\uffff\1\20\1\6\6\uffff\1\11\1\12\1\3\1\1\1\16\1" +
+					"\2\1\15\1\4\12\7\1\uffff\1\17\5\uffff\32\10\3\uffff\1\5\1\10\1\uffff" +
+					"\32\10",
 			"",
 			"",
 			"",
@@ -718,7 +723,7 @@ public class CalcLabLexer extends Lexer {
 	static {
 		int numStates = DFA7_transitionS.length;
 		DFA7_transition = new short[numStates][];
-		for (int i=0; i<numStates; i++) {
+		for (int i = 0; i < numStates; i++) {
 			DFA7_transition[i] = DFA.unpackEncodedString(DFA7_transitionS[i]);
 		}
 	}
@@ -736,6 +741,7 @@ public class CalcLabLexer extends Lexer {
 			this.special = DFA7_special;
 			this.transition = DFA7_transition;
 		}
+
 		@Override
 		public String getDescription() {
 			return "1:1: Tokens : ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | WS );";

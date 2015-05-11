@@ -48,7 +48,7 @@ options {
 
 
 calculation
-	: (e=expression { calculations.add(calcFactory.createCalculation($e.value)); }
+	: (e=expression { calculations.add(calcFactory.createCalculation($e.value, $e.text)); }
 		EXPRESSIONS_SEPARATOR)+
 ;
 

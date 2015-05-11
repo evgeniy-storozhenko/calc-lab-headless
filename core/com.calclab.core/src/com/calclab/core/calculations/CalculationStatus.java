@@ -35,4 +35,20 @@ public class CalculationStatus {
 		ERROR
 	}
 
+	public boolean isDone() {
+		return getStage().equals(Stage.DONE);
+	}
+
+	public boolean isInProcess() {
+		return getStage().equals(Stage.INPROCESS);
+	}
+
+	public boolean isWaiting() {
+		return getStage().equals(Stage.WAITING);
+	}
+
+	public boolean isError() {
+		return getStage().equals(Stage.ERROR);
+	}
+
 }

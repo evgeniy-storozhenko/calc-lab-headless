@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.calclab.function">
+      <client
+            class="com.calclab.functions.trigonometric.Log"
+            description="Logarithm of x in base y."
+            example="res = log(8,2);"
+            name="log"
+            syntax="log(x,y)">
+      </client>
+   </extension>
+
+</plugin>

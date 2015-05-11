@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Number
+Bundle-SymbolicName: com.calclab.operands.common;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Calculation Laboratory
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: com.calclab.core,
+ org.eclipse.equinox.registry
+Export-Package: com.calclab.operands.common
