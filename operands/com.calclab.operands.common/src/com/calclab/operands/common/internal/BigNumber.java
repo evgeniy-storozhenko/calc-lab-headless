@@ -121,6 +121,8 @@ public class BigNumber extends AbstractNumber {
 			return multiply((AbstractNumber) operand);
 		} else if (operation.getName().equals("/") && operand instanceof AbstractNumber) {
 			return divide((AbstractNumber) operand);
+		} else if (operation.getName().equals("^") && operand instanceof AbstractNumber) {
+			return pow((AbstractNumber) operand);
 		} else {
 			throw new OperatorNotFoundException("Operation '" + operation.getName()
 					+ "' is not found.", new Throwable());
@@ -224,9 +226,12 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public BigNumber pow() {
+	public AbstractNumber pow(AbstractNumber number) {
+		BigNumber thisNumber = this.clone();
+		BigDecimal power = number.toBigDecimal();
 		// TODO
-		return new BigNumber(numerator, denominator);
+		// BigDecimal resultNumerator = BigDecimalUtils.pow(number, power);
+		return null;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public abstract class AbstractNumber extends Number
 
 	public abstract AbstractNumber subtract(AbstractNumber number);
 
-	public abstract AbstractNumber pow();
+	public abstract AbstractNumber pow(AbstractNumber number);
 
 	public abstract boolean isNegative();
 

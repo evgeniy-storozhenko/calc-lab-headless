@@ -7,7 +7,7 @@
   	<artifactId>headless</artifactId>
   	<relativePath>../../</relativePath>
   </parent>
-  <artifactId>com.calclab.operations.common</artifactId>
+  <artifactId>com.calclab.core.calculator</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>

@@ -10,5 +10,5 @@ Export-Package: com.calclab.core.parser,
  com.calclab.core.parser.extensions
 Require-Bundle: com.calclab.core,
  org.antlr.runtime,
- com.calclab.core.operation.common,
+ com.calclab.operations.common,
  com.calclab.operands.common

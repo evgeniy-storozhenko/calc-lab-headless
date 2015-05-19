@@ -15,8 +15,11 @@
   <modules>
     <module>launcher/com.calclab.headless</module>
     <module>core/com.calclab.core</module>
-    <module>core/com.calclab.core.number</module>
+    <module>core/com.calclab.core.calculator</module>
     <module>core/com.calclab.core.parser</module>
+    <module>functions/com.calclab.functions.trigonometric</module>
+	<module>operands/com.calclab.operands.common</module>
+	<module>operations/com.calclab.operations.common</module>
     <module>build/product</module>
   </modules>
   <repositories>
@@ -32,6 +35,11 @@
 			<groupId>junit</groupId>
 			<artifactId>junit-dep</artifactId>
 			<version>4.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apfloat</groupId>
+			<artifactId>apfloat</artifactId>
+			<version>1.8.2</version>
 		</dependency>
   </dependencies>
 

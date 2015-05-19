@@ -60,15 +60,16 @@ public class Calculation implements Calculable {
 
 	@Override
 	public String toString() {
-		String string = result.toString();
+		String string = "";
 		if (result != null) {
+			string = result.toString();
 			if (result.isExact()) {
 				string = "=" + string;
 			} else {
 				string = "≈" + string;
 			}
-			string = input + string;
 		}
+		string = operand.toString() + string;
 		return string + ";";
 	}
 
