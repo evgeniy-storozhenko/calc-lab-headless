@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import junit.framework.TestCase;
 
+import com.calclab.core.operands.AbstractNumber;
 import com.calclab.operands.common.internal.BigNumber;
 
 public class BigNumberTest extends TestCase {
@@ -301,6 +302,70 @@ public class BigNumberTest extends TestCase {
 		assertEquals(b.toString(), "2");
 		assertEquals(c.toString(), "2");
 		assertEquals(d.toString(), "2.5");
+	}
+
+	public void testPow_1() {
+		BigNumber a = new BigNumber("2");
+		BigNumber b = new BigNumber("3");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "8");
+	}
+
+	public void testPow_2() {
+		BigNumber a = new BigNumber("1");
+		BigNumber b = new BigNumber("15");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "1");
+	}
+
+	public void testPow_3() {
+		BigNumber a = new BigNumber("-2");
+		BigNumber b = new BigNumber("2");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "4");
+	}
+
+	public void testPow_4() {
+		BigNumber a = new BigNumber("-1");
+		BigNumber b = new BigNumber("16");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "1");
+	}
+
+	public void testPow_5() {
+		BigNumber a = new BigNumber("-2");
+		BigNumber b = new BigNumber("3");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "8");
+	}
+
+	public void testPow_6() {
+		BigNumber a = new BigNumber("-3");
+		BigNumber b = new BigNumber("2");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "9");
+	}
+
+	public void testPow_7() {
+		BigNumber a = new BigNumber("-3");
+		BigNumber b = new BigNumber("3");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "-27");
+	}
+
+	public void testPow_8() {
+		BigNumber a = new BigNumber("4");
+		BigNumber b = new BigNumber("-2");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(c.toString(), "0.0625");
 	}
 
 }

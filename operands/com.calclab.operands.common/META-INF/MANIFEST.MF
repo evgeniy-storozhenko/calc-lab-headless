@@ -6,5 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: com.calclab.core,
- org.eclipse.equinox.registry
+ org.eclipse.equinox.registry,
+ org.nevec.rjm;bundle-version="1.0.0"
 Export-Package: com.calclab.operands.common

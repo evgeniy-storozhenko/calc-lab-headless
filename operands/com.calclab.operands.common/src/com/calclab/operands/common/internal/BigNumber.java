@@ -3,6 +3,8 @@ package com.calclab.operands.common.internal;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import org.nevec.rjm.BigDecimalMath;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
@@ -33,6 +35,10 @@ public class BigNumber extends AbstractNumber {
 	private BigNumber(BigDecimal numerator, BigDecimal denominator) {
 		this.numerator = numerator;
 		this.denominator = denominator;
+	}
+
+	public BigNumber(BigDecimal bigResult) {
+		this(bigResult.toPlainString());
 	}
 
 	@Override
@@ -105,6 +111,7 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException {
+		BigDecimal thisBigDecimal = toBigDecimal();
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -227,11 +234,21 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public AbstractNumber pow(AbstractNumber number) {
-		BigNumber thisNumber = this.clone();
-		BigDecimal power = number.toBigDecimal();
-		// TODO
-		// BigDecimal resultNumerator = BigDecimalUtils.pow(number, power);
-		return null;
+		BigDecimal bigNumber = number.toBigDecimal();
+		BigDecimal bigThis;
+		if (number.isNegative()) {
+			BigNumber viceVersa = this.clone();
+			viceVersa.setDenominator(numerator);
+			viceVersa.setNumerator(denominator);
+			bigThis = viceVersa.toBigDecimal();
+			bigNumber = bigNumber.abs();
+		} else {
+			bigThis = this.toBigDecimal();
+		}
+
+		BigDecimal bigResult = BigDecimalMath.pow(bigThis, bigNumber);
+		AbstractNumber result = new BigNumber(bigResult);
+		return result;
 	}
 
 	@Override
