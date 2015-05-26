@@ -9,4 +9,8 @@ public class CalcaulationProcessFactory {
 		return new CalculationProcessImpl(input);
 	}
 
+	public CalculationProcess createCalculationProcess(CalculationInput input, int scale) {
+		return new CalculationProcessImpl(input, scale);
+	}
+
 }

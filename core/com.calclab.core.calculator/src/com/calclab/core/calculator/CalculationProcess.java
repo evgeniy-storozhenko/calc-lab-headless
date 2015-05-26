@@ -13,4 +13,6 @@ public interface CalculationProcess {
 
 	public List<Calculable> getExpressions();
 
+	public int getScale();
+
 }

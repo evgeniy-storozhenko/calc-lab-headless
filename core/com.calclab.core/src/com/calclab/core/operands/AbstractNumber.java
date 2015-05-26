@@ -7,6 +7,8 @@ public abstract class AbstractNumber extends Number
 
 	private static final long serialVersionUID = 6728533579589019981L;
 
+	public static int scale = 20;
+
 	public abstract Number getNumerator();
 
 	public abstract Number getDenominator();
@@ -27,11 +29,14 @@ public abstract class AbstractNumber extends Number
 
 	public abstract boolean isNegative();
 
+	public abstract boolean isFractionalNumber();
+
 	public abstract void optimize();
 
 	public abstract BigDecimal toBigDecimal();
 
 	@Override
 	public abstract AbstractNumber clone();
+
 
 }

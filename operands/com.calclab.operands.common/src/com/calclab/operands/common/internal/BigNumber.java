@@ -3,8 +3,7 @@ package com.calclab.operands.common.internal;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import org.nevec.rjm.BigDecimalMath;
-
+import numbercruncher.mathutils.BigFunctions;
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
@@ -233,21 +232,30 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber pow(AbstractNumber number) {
-		BigDecimal bigNumber = number.toBigDecimal();
-		BigDecimal bigThis;
-		if (number.isNegative()) {
-			BigNumber viceVersa = this.clone();
-			viceVersa.setDenominator(numerator);
-			viceVersa.setNumerator(denominator);
-			bigThis = viceVersa.toBigDecimal();
-			bigNumber = bigNumber.abs();
-		} else {
-			bigThis = this.toBigDecimal();
+	public AbstractNumber pow(AbstractNumber b) {
+		BigNumber result = null;
+		try {
+			double doubleC = Math.pow(this.doubleValue(), b.doubleValue());
+			result = new BigNumber("" + doubleC);
+		} catch (Exception e) {
+			BigDecimal bigNumber = b.toBigDecimal();
+			BigDecimal bigThis;
+			if (b.isNegative()) {
+				BigNumber viceVersa = this.clone();
+				viceVersa.setDenominator(numerator);
+				viceVersa.setNumerator(denominator);
+				bigThis = viceVersa.toBigDecimal();
+				bigNumber = bigNumber.abs();
+			} else {
+				bigThis = this.toBigDecimal();
+			}
+
+			BigDecimal bigResult;
+			bigResult = BigFunctions.exp(BigFunctions.ln(bigThis, AbstractNumber.scale)
+					.multiply(bigNumber), AbstractNumber.scale);
+			result = new BigNumber(bigResult);
 		}
 
-		BigDecimal bigResult = BigDecimalMath.pow(bigThis, bigNumber);
-		AbstractNumber result = new BigNumber(bigResult);
 		return result;
 	}
 
@@ -288,5 +296,10 @@ public class BigNumber extends AbstractNumber {
 		BigDecimal thisBigDecimal = toBigDecimal();
 		BigDecimal otherBigDecimal = other.toBigDecimal();
 		return thisBigDecimal.compareTo(otherBigDecimal);
+	}
+
+	@Override
+	public boolean isFractionalNumber() {
+		return this.toBigDecimal().toString().contains(".");
 	}
 }

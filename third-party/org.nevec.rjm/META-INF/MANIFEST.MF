@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Rjm
-Bundle-SymbolicName: org.nevec.rjm
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Leiden Observatory, Leiden University, P.O. Box 9513, 2300 RA Leiden, The Netherlands
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.nevec.rjm

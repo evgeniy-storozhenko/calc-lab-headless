@@ -304,12 +304,21 @@ public class BigNumberTest extends TestCase {
 		assertEquals(d.toString(), "2.5");
 	}
 
+	public void testIsFractionalNumber() {
+		assertTrue(new BigNumber("1.5").isFractionalNumber());
+		assertTrue(new BigNumber("-1.5").isFractionalNumber());
+		assertTrue(new BigNumber("0.3333333").isFractionalNumber());
+		assertTrue(new BigNumber("-0.3333333").isFractionalNumber());
+		assertFalse(new BigNumber("3333333").isFractionalNumber());
+		assertFalse(new BigNumber("-3333333").isFractionalNumber());
+	}
+
 	public void testPow_1() {
 		BigNumber a = new BigNumber("2");
 		BigNumber b = new BigNumber("3");
 		AbstractNumber c = a.pow(b);
 
-		assertEquals(c.toString(), "8");
+		assertEquals("8", c.toString());
 	}
 
 	public void testPow_2() {
@@ -341,7 +350,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber b = new BigNumber("3");
 		AbstractNumber c = a.pow(b);
 
-		assertEquals(c.toString(), "8");
+		assertEquals(c.toString(), "(-8)");
 	}
 
 	public void testPow_6() {
@@ -357,7 +366,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber b = new BigNumber("3");
 		AbstractNumber c = a.pow(b);
 
-		assertEquals(c.toString(), "-27");
+		assertEquals(c.toString(), "(-27)");
 	}
 
 	public void testPow_8() {
@@ -366,6 +375,14 @@ public class BigNumberTest extends TestCase {
 		AbstractNumber c = a.pow(b);
 
 		assertEquals(c.toString(), "0.0625");
+	}
+
+	public void testPow_9() {
+		BigNumber a = new BigNumber("2");
+		BigNumber b = new BigNumber("-3");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals("0.125", c.toString());
 	}
 
 }

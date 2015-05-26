@@ -7,5 +7,5 @@ Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: com.calclab.core,
  org.eclipse.equinox.registry,
- org.nevec.rjm;bundle-version="1.0.0"
+ numbercruncher.mathutils
 Export-Package: com.calclab.operands.common

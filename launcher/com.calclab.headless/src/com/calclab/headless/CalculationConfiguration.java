@@ -14,6 +14,7 @@ public class CalculationConfiguration {
 	private File inputFile = null;
 	private File rowFileOutput = null;
 	private File htmlFileOutput = null;
+	private int scale = 60;
 
 	enum CommandArg {
 		InputData("Input expression for calculation", "input", "i"),
@@ -145,6 +146,10 @@ public class CalculationConfiguration {
 
 	public File getHtmlFileOutput() {
 		return htmlFileOutput;
+	}
+
+	public int getScale() {
+		return scale;
 	}
 
 }
