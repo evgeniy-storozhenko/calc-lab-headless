@@ -7,7 +7,9 @@ public abstract class AbstractNumber extends Number
 
 	private static final long serialVersionUID = 6728533579589019981L;
 
-	public static int scale = 20;
+	public static final String dsecimalMark = "\\.";
+
+	public static int scale = 60;
 
 	public abstract Number getNumerator();
 
@@ -29,6 +31,8 @@ public abstract class AbstractNumber extends Number
 
 	public abstract boolean isNegative();
 
+	public abstract boolean isEven();
+
 	public abstract boolean isFractionalNumber();
 
 	public abstract void optimize();
@@ -38,5 +42,6 @@ public abstract class AbstractNumber extends Number
 	@Override
 	public abstract AbstractNumber clone();
 
+	public abstract String toScientificNotation();
 
 }

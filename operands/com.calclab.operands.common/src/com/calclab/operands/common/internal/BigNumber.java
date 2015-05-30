@@ -1,9 +1,11 @@
 package com.calclab.operands.common.internal;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Objects;
 
 import numbercruncher.mathutils.BigFunctions;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
@@ -21,7 +23,7 @@ public class BigNumber extends AbstractNumber {
 
 	public BigNumber(String str) {
 		numerator = new BigDecimal(str);
-		String[] split = str.split("\\.");
+		String[] split = str.split(AbstractNumber.dsecimalMark);
 		if (split.length == 1) {
 			denominator = BigDecimal.ONE;
 		} else {
@@ -233,30 +235,60 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public AbstractNumber pow(AbstractNumber b) {
-		BigNumber result = null;
-		try {
-			double doubleC = Math.pow(this.doubleValue(), b.doubleValue());
-			result = new BigNumber("" + doubleC);
-		} catch (Exception e) {
-			BigDecimal bigNumber = b.toBigDecimal();
-			BigDecimal bigThis;
-			if (b.isNegative()) {
-				BigNumber viceVersa = this.clone();
-				viceVersa.setDenominator(numerator);
-				viceVersa.setNumerator(denominator);
-				bigThis = viceVersa.toBigDecimal();
-				bigNumber = bigNumber.abs();
-			} else {
-				bigThis = this.toBigDecimal();
+		if (!b.isFractionalNumber()) {
+			try {
+				int intB = b.toBigDecimal().intValueExact();
+				return bigDecimalPow(this.toBigDecimal(), intB);
+			} catch (ArithmeticException e) {
+				return bigDecimalPow(b);
 			}
+		} else {
+			try {
+				return simplePow(this.doubleValue(), b.doubleValue());
+			} catch (Exception e) {
+				return bigDecimalPow(b);
+			}
+		}
+	}
 
-			BigDecimal bigResult;
-			bigResult = BigFunctions.exp(BigFunctions.ln(bigThis, AbstractNumber.scale)
-					.multiply(bigNumber), AbstractNumber.scale);
-			result = new BigNumber(bigResult);
+	private BigNumber bigDecimalPow(BigDecimal a, int b) {
+		return new BigNumber(a.pow(b));
+	}
+
+	private BigNumber bigDecimalPow(AbstractNumber b) {
+		BigDecimal signum = BigDecimal.ONE;
+		BigDecimal bigNumber = b.toBigDecimal();
+		BigDecimal bigThis;
+
+		if (this.isNegative() && !b.isEven()) {
+			signum = signum.negate();
 		}
 
-		return result;
+		if (b.isNegative()) {
+			BigNumber viceVersa = this.clone();
+			viceVersa.setDenominator(numerator);
+			viceVersa.setNumerator(denominator);
+			bigThis = viceVersa.toBigDecimal().abs();
+			bigNumber = bigNumber.abs();
+		} else {
+			bigThis = this.toBigDecimal();
+		}
+
+		BigDecimal bigResult;
+		bigResult = BigFunctions.exp(BigFunctions.ln(bigThis, AbstractNumber.scale)
+				.multiply(bigNumber), AbstractNumber.scale).multiply(signum);
+		return new BigNumber(bigResult);
+	}
+
+	private BigNumber simplePow(Double a, Double b) {
+		Double signum = 1D;
+		boolean isEven = ((b.intValue() % 2) == 0);
+		if (a < 0 && !isEven) {
+			signum = -1D;
+			a = a * (-1);
+		}
+		Double doubleC = signum * Math.pow(a, b);
+		return new BigNumber(doubleC.toString());
 	}
 
 	@Override
@@ -301,5 +333,16 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public boolean isFractionalNumber() {
 		return this.toBigDecimal().toString().contains(".");
+	}
+
+	@Override
+	public String toScientificNotation() {
+		return toBigDecimal().toEngineeringString();
+	}
+
+	@Override
+	public boolean isEven() {
+		BigInteger integer = this.toBigDecimal().stripTrailingZeros().unscaledValue();
+		return !integer.testBit(0);
 	}
 }

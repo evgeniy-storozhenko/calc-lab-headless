@@ -313,6 +313,9 @@ public class BigNumberTest extends TestCase {
 		assertFalse(new BigNumber("-3333333").isFractionalNumber());
 	}
 
+	/**
+	 * 2^3
+	 */
 	public void testPow_1() {
 		BigNumber a = new BigNumber("2");
 		BigNumber b = new BigNumber("3");
@@ -321,6 +324,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals("8", c.toString());
 	}
 
+	/**
+	 * 1^15
+	 */
 	public void testPow_2() {
 		BigNumber a = new BigNumber("1");
 		BigNumber b = new BigNumber("15");
@@ -329,6 +335,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "1");
 	}
 
+	/**
+	 * (-2)^2
+	 */
 	public void testPow_3() {
 		BigNumber a = new BigNumber("-2");
 		BigNumber b = new BigNumber("2");
@@ -337,6 +346,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "4");
 	}
 
+	/**
+	 * (-1)^16
+	 */
 	public void testPow_4() {
 		BigNumber a = new BigNumber("-1");
 		BigNumber b = new BigNumber("16");
@@ -345,6 +357,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "1");
 	}
 
+	/**
+	 * (-2)^3
+	 */
 	public void testPow_5() {
 		BigNumber a = new BigNumber("-2");
 		BigNumber b = new BigNumber("3");
@@ -353,6 +368,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "(-8)");
 	}
 
+	/**
+	 * (-3)^2
+	 */
 	public void testPow_6() {
 		BigNumber a = new BigNumber("-3");
 		BigNumber b = new BigNumber("2");
@@ -361,6 +379,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "9");
 	}
 
+	/**
+	 * (-3)^3
+	 */
 	public void testPow_7() {
 		BigNumber a = new BigNumber("-3");
 		BigNumber b = new BigNumber("3");
@@ -369,6 +390,9 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "(-27)");
 	}
 
+	/**
+	 * 4^(-2)
+	 */
 	public void testPow_8() {
 		BigNumber a = new BigNumber("4");
 		BigNumber b = new BigNumber("-2");
@@ -377,12 +401,108 @@ public class BigNumberTest extends TestCase {
 		assertEquals(c.toString(), "0.0625");
 	}
 
+	/**
+	 * 2^(-3)
+	 */
 	public void testPow_9() {
 		BigNumber a = new BigNumber("2");
 		BigNumber b = new BigNumber("-3");
 		AbstractNumber c = a.pow(b);
 
 		assertEquals("0.125", c.toString());
+	}
+
+	/**
+	 * 2000^10
+	 */
+	public void testPow_10() {
+		BigNumber a = new BigNumber("2000");
+		BigNumber b = new BigNumber("10");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals("1024000000000000000000000000000000", c.toString());
+	}
+
+	/**
+	 * 2^93
+	 */
+	public void testPow_11() {
+		BigNumber a = new BigNumber("2");
+		BigNumber b = new BigNumber("93");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals("9903520314283042199192993792", c.toString());
+	}
+
+	/**
+	 * 2000^93
+	 */
+	public void testPow_12() {
+		BigNumber a = new BigNumber("2000");
+		BigNumber b = new BigNumber("93");
+		AbstractNumber c = a.pow(b);
+
+		assertEquals(
+				"9903520314283042199192993792000000000000000000000000000000"
+						+ "000000000000000000000000000000000000000000000000"
+						+ "000000000000000000000000000000000000000000000000"
+						+ "000000000000000000000000000000000000000000000000"
+						+ "000000000000000000000000000000000000000000000000"
+						+ "000000000000000000000000000000000000000000000000"
+						+ "000000000",
+				c.toString());
+	}
+
+	/**
+	 * 2000^93.5
+	 */
+	public void testPow_13() {
+		BigNumber a = new BigNumber("2000");
+		BigNumber b = new BigNumber("93.5");
+		AbstractNumber c = a.pow(b);
+		int ordersOfMagnitude = c.toString().split(AbstractNumber.dsecimalMark)[0].length();
+
+		assertTrue(c.toString().contains("442898"));
+		assertTrue(ordersOfMagnitude == 309);
+	}
+
+	/**
+	 * 2000^(-93.5)
+	 */
+	public void testPow_14() {
+		BigNumber a = new BigNumber("2000");
+		BigNumber b = new BigNumber("-93.5");
+		AbstractNumber c = a.pow(b);
+		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
+
+		assertTrue(c.toScientificNotation().contains("2.25785"));
+		assertTrue(ordersOfMagnitude.equals("-309"));
+	}
+
+	/**
+	 * 2000.5^(-93.5)
+	 */
+	public void testPow_15() {
+		BigNumber a = new BigNumber("2000.5");
+		BigNumber b = new BigNumber("-93.5");
+		AbstractNumber c = a.pow(b);
+		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
+
+		assertTrue(c.toScientificNotation().contains("2.20569"));
+		assertTrue(ordersOfMagnitude.equals("-309"));
+	}
+
+	/**
+	 * -2000.5^(-93.5)
+	 */
+	public void testPow_16() {
+		BigNumber a = new BigNumber("-2000.5");
+		BigNumber b = new BigNumber("-93.5");
+		AbstractNumber c = a.pow(b);
+		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
+
+		assertTrue(c.toScientificNotation().contains("-2.20569"));
+		assertTrue(ordersOfMagnitude.equals("-309"));
 	}
 
 }
