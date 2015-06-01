@@ -505,4 +505,44 @@ public class BigNumberTest extends TestCase {
 		assertTrue(ordersOfMagnitude.equals("-309"));
 	}
 
+	/**
+	 * 0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^41
+	 */
+	public void testPow_17() {
+		BigNumber a = new BigNumber("0.00000000000000000000000000000000000000000000000000000000"
+				+ "00000000000235378224278505652343786");
+		BigNumber b = new BigNumber("41");
+		AbstractNumber c = a.pow(b);
+		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
+
+		assertTrue(c.toScientificNotation().contains("174.75015450382927683774944704058139980028568"));
+		assertTrue(ordersOfMagnitude.equals("-2775"));
+	}
+
+	/**
+	 * -0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^41
+	 */
+	public void testPow_18() {
+		BigNumber a = new BigNumber("-0.00000000000000000000000000000000000000000000000000000000"
+				+ "00000000000235378224278505652343786");
+		BigNumber b = new BigNumber("41");
+		AbstractNumber c = a.pow(b);
+		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
+
+		assertTrue(c.toScientificNotation().contains("-174.75015450382927683774944704058139980028568"));
+		assertTrue(ordersOfMagnitude.equals("-2775"));
+	}
+
+	/**
+	 * -0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^(-41)
+	 */
+	public void testPow_19() {
+		BigNumber a = new BigNumber("-0.00000000000000000000000000000000000000000000000000000000"
+				+ "00000000000235378224278505652343786");
+		BigNumber b = new BigNumber("-41");
+		AbstractNumber c = a.pow(b);
+
+		assertTrue(c.toScientificNotation().contains("-57224555986191539150894314506323746216284179"));
+	}
+
 }
