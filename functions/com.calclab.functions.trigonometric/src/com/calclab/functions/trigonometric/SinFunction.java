@@ -1,6 +1,7 @@
 package com.calclab.functions.trigonometric;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
@@ -13,9 +14,9 @@ import com.calclab.core.operations.Operation;
 import com.calclab.core.variables.Variable;
 import com.calclab.operands.common.NullStepMonitor;
 
-public class Log implements Function {
+public class SinFunction implements Function {
 
-	private final String name = "log";
+	private final String name = "sin";
 	private List<Operand> arguments = null;
 	private CalculationStatus status = new CalculationStatus();
 	private Operand result = null;
@@ -25,7 +26,7 @@ public class Log implements Function {
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException, InternalExpression {
 		calculate();
-		if (status.getStage().equals(CalculationStatus.Stage.DONE)) {
+		if (status.isDone()) {
 			return result.perform(operation, monitor);
 		}
 		throw new InternalExpression(status);
@@ -35,7 +36,7 @@ public class Log implements Function {
 	public Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException, InternalExpression {
 		calculate();
-		if (status.getStage().equals(CalculationStatus.Stage.DONE)) {
+		if (status.isDone()) {
 			return result.perform(operation, operand, monitor);
 		}
 		throw new InternalExpression(status);
@@ -48,12 +49,12 @@ public class Log implements Function {
 
 	@Override
 	public Operand calculate() {
-		if (!status.getStage().equals(CalculationStatus.Stage.WAITING)) {
+		if (!status.isWaiting()) {
 			return result;
 		}
 		status.setStage(CalculationStatus.Stage.INPROCESS);
 
-		// TODO calculate log
+		// TODO calculate sin
 
 		return result;
 	}
@@ -91,15 +92,9 @@ public class Log implements Function {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		final int size = arguments.size();
-		for (int i = 0; i < size; i++) {
-			sb.append(arguments.get(i).toString());
-			if (i != (size - 1)) {
-				sb.append(",");
-			}
-		}
-		return this.name + "(" + sb.toString() + ")";
+		String args = arguments.stream().map(object -> object.toString())
+				.collect(Collectors.joining(","));
+		return this.name + "(" + args + ")";
 	}
 
 }

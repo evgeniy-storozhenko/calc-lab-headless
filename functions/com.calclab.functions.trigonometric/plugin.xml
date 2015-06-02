@@ -4,11 +4,14 @@
    <extension
          point="com.calclab.function">
       <client
-            class="com.calclab.functions.trigonometric.Log"
-            description="Logarithm of x in base y."
-            example="res = log(8,2);"
-            name="log"
-            syntax="log(x,y)">
+            class="com.calclab.functions.trigonometric.SinFunction"
+            name="sin">
+         <information
+               description="Sine of a number x. Argument is measured in radians. To calculate the sine an argument in degrees, use sind (x)."
+               example="y = sin(0.5);"
+               example_result="0.4794255386042"
+               syntax="sin(x)">
+         </information>
       </client>
    </extension>
 

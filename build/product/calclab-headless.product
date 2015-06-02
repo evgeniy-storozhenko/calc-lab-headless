@@ -25,6 +25,7 @@
       <plugin id="com.calclab.core"/>
       <plugin id="com.calclab.core.calculator"/>
       <plugin id="com.calclab.core.parser"/>
+      <plugin id="com.calclab.functions.common"/>
       <plugin id="com.calclab.functions.trigonometric"/>
       <plugin id="com.calclab.headless"/>
       <plugin id="com.calclab.operands.common"/>

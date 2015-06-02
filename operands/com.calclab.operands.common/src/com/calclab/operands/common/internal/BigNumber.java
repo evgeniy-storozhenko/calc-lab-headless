@@ -33,7 +33,7 @@ public class BigNumber extends AbstractNumber {
 		}
 	}
 
-	private BigNumber(BigDecimal numerator, BigDecimal denominator) {
+	public BigNumber(BigDecimal numerator, BigDecimal denominator) {
 		this.numerator = numerator;
 		this.denominator = denominator;
 	}
@@ -49,7 +49,7 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public BigDecimal getDenominator() {
-		return denominator;
+		return denominator.stripTrailingZeros();
 	}
 
 	@Override

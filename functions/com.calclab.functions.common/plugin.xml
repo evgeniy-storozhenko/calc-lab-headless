@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.calclab.function">
+      <client
+            class="com.calclab.functions.common.LogFunction"
+            name="log">
+         <information
+               description="gives the natural logarithm of z (logarithm to base ). "
+               example="r = log(1000);"
+               example_result="6.90775527898213705"
+               syntax="log(x)">
+         </information>
+         <information
+               description="gives the logarithm of y to base x."
+               example="r = log(2,8);"
+               example_result="3"
+               syntax="log(x,y)">
+         </information>
+      </client>
+   </extension>
+
+</plugin>

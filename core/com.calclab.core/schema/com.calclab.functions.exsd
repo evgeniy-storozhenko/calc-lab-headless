@@ -49,6 +49,9 @@
 
    <element name="client">
       <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="information"/>
+         </sequence>
          <attribute name="class" type="string">
             <annotation>
                <documentation>
@@ -66,6 +69,11 @@
                </documentation>
             </annotation>
          </attribute>
+      </complexType>
+   </element>
+
+   <element name="information">
+      <complexType>
          <attribute name="syntax" type="string" use="required">
             <annotation>
                <documentation>
@@ -73,7 +81,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="description" type="string">
+         <attribute name="description" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -83,7 +91,14 @@
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="example" type="string">
+         <attribute name="example" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="example_result" type="string" use="required">
             <annotation>
                <documentation>
                   

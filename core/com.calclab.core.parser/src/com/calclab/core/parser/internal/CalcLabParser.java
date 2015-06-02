@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-05-11 11:31:16
+// $ANTLR 3.5.2 CalcLab.g 2015-06-02 11:26:32
 
 package com.calclab.core.parser.internal;
 
@@ -70,8 +70,8 @@ public class CalcLabParser extends Parser {
 		return "CalcLab.g";
 	}
 
+	private CommonOperandFactory operandFactory = CommonOperandFactory.getInstance();
 	private CommonOperationFactory operationFactory = new CommonOperationFactory();
-	private CommonOperandFactory operandFactory = new CommonOperandFactory();
 	private CalculationFactory calcFactory = new CalculationFactory();
 	private List<Calculable> calculations = new ArrayList<Calculable>();
 

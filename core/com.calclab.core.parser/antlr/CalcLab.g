@@ -26,8 +26,8 @@ options {
 }
 
 @members{
+	private CommonOperandFactory operandFactory = CommonOperandFactory.getInstance();
 	private CommonOperationFactory operationFactory = new CommonOperationFactory();
-	private CommonOperandFactory operandFactory = new CommonOperandFactory();
 	private CalculationFactory calcFactory = new CalculationFactory();
 	private List<Calculable> calculations = new ArrayList<Calculable>();
 	

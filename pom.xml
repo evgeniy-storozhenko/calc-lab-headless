@@ -17,6 +17,7 @@
     <module>core/com.calclab.core</module>
     <module>core/com.calclab.core.calculator</module>
     <module>core/com.calclab.core.parser</module>
+    <module>functions/com.calclab.functions.common</module>
     <module>functions/com.calclab.functions.trigonometric</module>
 	<module>operands/com.calclab.operands.common</module>
 	<module>operations/com.calclab.operations.common</module>
