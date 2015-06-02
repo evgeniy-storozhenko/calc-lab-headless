@@ -4,7 +4,7 @@ Bundle-Name: Calculator
 Bundle-SymbolicName: com.calclab.core.calculator
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.core,
  com.calclab.core.parser
 Export-Package: com.calclab.core.calculator,

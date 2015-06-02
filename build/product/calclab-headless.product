@@ -30,6 +30,7 @@
       <plugin id="com.calclab.operands.common"/>
       <plugin id="com.calclab.operations.common"/>
       <plugin id="javax.xml"/>
+      <plugin id="numbercruncher.mathutils"/>
       <plugin id="org.antlr.runtime"/>
       <plugin id="org.eclipse.core.contenttype"/>
       <plugin id="org.eclipse.core.jobs"/>
@@ -42,7 +43,6 @@
       <plugin id="org.eclipse.equinox.weaving.hook" fragment="true"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
-      <plugin id="org.nevec.rjm"/>
    </plugins>
 
    <configurations>
