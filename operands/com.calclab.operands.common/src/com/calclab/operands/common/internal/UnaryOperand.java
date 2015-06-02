@@ -108,4 +108,9 @@ public class UnaryOperand implements Operand, Calculable {
 		return true;
 	}
 
+	@Override
+	public String getInput() {
+		return null;
+	}
+
 }

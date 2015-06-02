@@ -86,7 +86,7 @@ public class FunctionOperand implements Operand, Calculable {
 			status.setMessage(e.getMessage());
 			status.setStage(CalculationStatus.Stage.ERROR);
 		}
-		return function;
+		return result;
 	}
 
 	@Override
@@ -108,6 +108,11 @@ public class FunctionOperand implements Operand, Calculable {
 	@Override
 	public Operand getResult() {
 		return result;
+	}
+
+	@Override
+	public String getInput() {
+		return null;
 	}
 
 }

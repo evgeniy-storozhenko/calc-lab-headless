@@ -67,7 +67,7 @@ public class BigNumber extends AbstractNumber {
 		try {
 			BigDecimal opimized = numerator.divide(denominator);
 			String stringValue = opimized.toPlainString();
-			if (stringValue.contains("\\.")) {
+			if (stringValue.contains(AbstractNumber.dsecimalMark)) {
 				BigNumber result = new BigNumber(stringValue);
 				numerator = result.getNumerator();
 				denominator = result.getDenominator();

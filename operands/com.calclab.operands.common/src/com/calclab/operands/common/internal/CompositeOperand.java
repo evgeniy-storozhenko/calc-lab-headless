@@ -94,4 +94,9 @@ public class CompositeOperand implements Operand, Calculable {
 		return true;
 	}
 
+	@Override
+	public String getInput() {
+		return null;
+	}
+
 }

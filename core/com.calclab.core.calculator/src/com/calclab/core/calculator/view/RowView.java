@@ -5,6 +5,7 @@ import java.io.File;
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculator.CalculationProcess;
 import com.calclab.core.calculator.CalculationView;
+import com.calclab.core.operands.Operand;
 
 public class RowView implements CalculationView {
 
@@ -28,9 +29,14 @@ public class RowView implements CalculationView {
 		}
 		for (Calculable expression : calculationProcess.getExpressions()) {
 			if (expression.getStatus().isDone()) {
-				result.append(expression.toString() + System.lineSeparator());
+				Operand res = expression.getResult();
+				result.append(expression.getInput());
+				result.append((res.isExact()) ? "=" : "≈");
+				result.append(res.toString());
+				result.append(System.lineSeparator());
 			} else {
-				result.append(expression.getStatus().getMessage() + System.lineSeparator());
+				result.append(expression.getStatus().getMessage());
+				result.append(System.lineSeparator());
 			}
 		}
 		return result.toString();

@@ -146,4 +146,9 @@ public class LogFunction implements Function {
 		return this.name + "(" + args + ")";
 	}
 
+	@Override
+	public String getInput() {
+		return null;
+	}
+
 }

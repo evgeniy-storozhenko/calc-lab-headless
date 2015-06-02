@@ -97,4 +97,9 @@ public class SinFunction implements Function {
 		return this.name + "(" + args + ")";
 	}
 
+	@Override
+	public String getInput() {
+		return null;
+	}
+
 }

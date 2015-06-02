@@ -73,4 +73,9 @@ public class Calculation implements Calculable {
 		return string + ";";
 	}
 
+	@Override
+	public String getInput() {
+		return input;
+	}
+
 }

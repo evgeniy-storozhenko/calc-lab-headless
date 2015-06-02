@@ -17,4 +17,6 @@ public interface Calculable {
 	CalculationStatus getStatus();
 
 	Operand getResult();
+
+	String getInput();
 }
