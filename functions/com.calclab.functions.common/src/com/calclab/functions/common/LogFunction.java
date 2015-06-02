@@ -21,7 +21,7 @@ import com.calclab.operands.common.NullStepMonitor;
 
 public class LogFunction implements Function {
 
-	private final String name = "sin";
+	private final String name = "log";
 	private List<Operand> arguments = null;
 	private CalculationStatus status = new CalculationStatus();
 	private Operand result = null;
