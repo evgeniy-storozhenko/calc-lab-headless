@@ -7,6 +7,7 @@ import java.util.Objects;
 import numbercruncher.mathutils.BigFunctions;
 
 import com.calclab.core.calculations.StepsMonitor;
+import com.calclab.core.constants.MathConstants;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InvalidActionException;
@@ -14,6 +15,16 @@ import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 
 public class BigNumber extends AbstractNumber {
+
+	public static final BigNumber ONE = new BigNumber("1");
+	public static final BigNumber TWO = new BigNumber("2");
+	public static final BigNumber ZERO = new BigNumber("0");
+	public static final BigNumber TEN = new BigNumber("10");
+
+	public static final BigNumber E = new BigNumber(MathConstants.E);
+	public static final BigNumber PI = new BigNumber(MathConstants.PI);
+	public static final BigNumber GAMMA = new BigNumber(MathConstants.GAMMA);
+	public static final BigNumber LOG2 = new BigNumber(MathConstants.LOG2);
 
 	private static final long serialVersionUID = -3375323002828277958L;
 
@@ -112,9 +123,13 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException {
-		BigDecimal thisBigDecimal = toBigDecimal();
-		// TODO Auto-generated method stub
-		return null;
+
+		if (operation.getName().equals("!")) {
+			return factorial();
+		}
+
+		throw new OperatorNotFoundException("Operation '" + operation.getName()
+				+ "' is not found.", new Throwable());
 	}
 
 	@Override
@@ -131,10 +146,10 @@ public class BigNumber extends AbstractNumber {
 			return divide((AbstractNumber) operand);
 		} else if (operation.getName().equals("^") && operand instanceof AbstractNumber) {
 			return pow((AbstractNumber) operand);
-		} else {
-			throw new OperatorNotFoundException("Operation '" + operation.getName()
-					+ "' is not found.", new Throwable());
 		}
+
+		throw new OperatorNotFoundException("Operation '" + operation.getName()
+				+ "' is not found.", new Throwable());
 	}
 
 	@Override
@@ -174,7 +189,7 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber multiply(AbstractNumber number) {
+	public BigNumber multiply(AbstractNumber number) {
 		BigNumber result = clone();
 		BigNumber bigNumber;
 		if (number instanceof BigNumber) {
@@ -188,7 +203,7 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber divide(AbstractNumber number) {
+	public BigNumber divide(AbstractNumber number) {
 		BigNumber result = clone();
 		BigNumber bigNumber;
 		if (number instanceof BigNumber) {
@@ -202,7 +217,7 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber add(AbstractNumber number) {
+	public BigNumber add(AbstractNumber number) {
 		BigNumber result = clone();
 		BigNumber bigNumber;
 		if (number instanceof BigNumber) {
@@ -218,7 +233,7 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber subtract(AbstractNumber number) {
+	public BigNumber subtract(AbstractNumber number) {
 		BigNumber result = clone();
 		BigNumber bigNumber;
 		if (number instanceof BigNumber) {
@@ -234,7 +249,7 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public AbstractNumber pow(AbstractNumber b) {
+	public BigNumber pow(AbstractNumber b) {
 		if (!b.isFractionalNumber()) {
 			try {
 				int intB = b.toBigDecimal().intValueExact();
@@ -249,6 +264,31 @@ public class BigNumber extends AbstractNumber {
 				return bigDecimalPow(b);
 			}
 		}
+	}
+
+	public BigNumber sqrt() {
+		return pow(new BigNumber("0.5"));
+	}
+
+	public BigNumber factorial() throws InvalidActionException {
+		if (this.isNegative()) {
+			String msg = "n! is a sequence with integer value for nonnegative n.";
+			throw new InvalidActionException(msg, new Throwable());
+		}
+		return approximationStirlingMoivre(this);
+	}
+
+	/**
+	 * Stirling - Moivre approximation
+	 * sqrt(2πn) * (n/e) ^ n
+	 */
+	private BigNumber approximationStirlingMoivre(BigNumber n) {
+
+		BigNumber first = TWO.multiply(PI).multiply(n).sqrt();
+		BigNumber second = n.divide(E).pow(n);
+		BigNumber approximation = ONE; // TODO
+
+		return first.multiply(second).multiply(approximation);
 	}
 
 	private BigNumber bigDecimalPow(BigDecimal a, int b) {

@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Calculation Laboratory
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.calclab.core.calculations,
+ com.calclab.core.constants,
  com.calclab.core.functions,
  com.calclab.core.input,
  com.calclab.core.input.exceptions,

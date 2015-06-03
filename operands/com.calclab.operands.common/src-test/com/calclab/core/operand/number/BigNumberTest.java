@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import junit.framework.TestCase;
 
 import com.calclab.core.operands.AbstractNumber;
+import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.operands.common.internal.BigNumber;
 
 public class BigNumberTest extends TestCase {
@@ -116,7 +117,7 @@ public class BigNumberTest extends TestCase {
 	public void testAdd_1() {
 		BigNumber num_1 = new BigNumber("-111.111");
 		BigNumber num_2 = new BigNumber("111.111");
-		num_1 = (BigNumber) num_1.add(num_2);
+		num_1 = num_1.add(num_2);
 		BigNumber expResult = new BigNumber("0");
 		assertEquals(expResult, num_1);
 	}
@@ -124,7 +125,7 @@ public class BigNumberTest extends TestCase {
 	public void testAdd_2() {
 		BigNumber num_1 = new BigNumber("111.111");
 		BigNumber num_2 = new BigNumber("111.111");
-		num_1 = (BigNumber) num_1.add(num_2);
+		num_1 = num_1.add(num_2);
 		BigNumber expResult = new BigNumber("222.222");
 		assertEquals(expResult, num_1);
 	}
@@ -132,7 +133,7 @@ public class BigNumberTest extends TestCase {
 	public void testAdd_3() {
 		BigNumber num_1 = new BigNumber("111.111");
 		BigNumber num_2 = new BigNumber("-94554.445");
-		num_1 = (BigNumber) num_1.add(num_2);
+		num_1 = num_1.add(num_2);
 		BigNumber expResult = new BigNumber("-94443.334");
 		assertEquals(expResult, num_1);
 	}
@@ -140,7 +141,7 @@ public class BigNumberTest extends TestCase {
 	public void testAdd_4() {
 		BigNumber num_1 = new BigNumber("100000000");
 		BigNumber num_2 = new BigNumber("54577788");
-		num_1 = (BigNumber) num_1.add(num_2);
+		num_1 = num_1.add(num_2);
 		BigNumber expResult = new BigNumber("154577788");
 		assertEquals(expResult, num_1);
 	}
@@ -148,7 +149,7 @@ public class BigNumberTest extends TestCase {
 	public void testSubtract_1() {
 		BigNumber num_1 = new BigNumber("10000000");
 		BigNumber num_2 = new BigNumber("-10000000");
-		num_1 = (BigNumber) num_1.subtract(num_2);
+		num_1 = num_1.subtract(num_2);
 		BigNumber expResult = new BigNumber("20000000");
 		assertEquals(expResult, num_1);
 	}
@@ -156,7 +157,7 @@ public class BigNumberTest extends TestCase {
 	public void testSubtract_2() {
 		BigNumber num_1 = new BigNumber("-10000000");
 		BigNumber num_2 = new BigNumber("-10000000");
-		num_1 = (BigNumber) num_1.subtract(num_2);
+		num_1 = num_1.subtract(num_2);
 		BigNumber expResult = new BigNumber("0");
 		assertEquals(expResult, num_1);
 	}
@@ -164,7 +165,7 @@ public class BigNumberTest extends TestCase {
 	public void testSubtract_3() {
 		BigNumber num_1 = new BigNumber("-10000000.111");
 		BigNumber num_2 = new BigNumber("10000000");
-		num_1 = (BigNumber) num_1.subtract(num_2);
+		num_1 = num_1.subtract(num_2);
 		BigNumber expResult = new BigNumber("-20000000.111");
 		assertEquals(expResult, num_1);
 	}
@@ -172,7 +173,7 @@ public class BigNumberTest extends TestCase {
 	public void testSubtract_4() {
 		BigNumber num_1 = new BigNumber("999.999");
 		BigNumber num_2 = new BigNumber("999.888");
-		num_1 = (BigNumber) num_1.subtract(num_2);
+		num_1 = num_1.subtract(num_2);
 		BigNumber expResult = new BigNumber("0.111");
 		assertEquals(expResult, num_1);
 	}
@@ -180,7 +181,7 @@ public class BigNumberTest extends TestCase {
 	public void testMultiply_1() {
 		BigNumber num_1 = new BigNumber("0");
 		BigNumber num_2 = new BigNumber("999.888");
-		num_1 = (BigNumber) num_1.multiply(num_2);
+		num_1 = num_1.multiply(num_2);
 		BigNumber expResult = new BigNumber("0");
 		assertEquals(expResult, num_1);
 	}
@@ -188,7 +189,7 @@ public class BigNumberTest extends TestCase {
 	public void testMultiply_2() {
 		BigNumber num_1 = new BigNumber("-10");
 		BigNumber num_2 = new BigNumber("999.888");
-		num_1 = (BigNumber) num_1.multiply(num_2);
+		num_1 = num_1.multiply(num_2);
 		BigNumber expResult = new BigNumber("-9998.88");
 		assertEquals(expResult, num_1);
 	}
@@ -196,7 +197,7 @@ public class BigNumberTest extends TestCase {
 	public void testMultiply_3() {
 		BigNumber num_1 = new BigNumber("-1000");
 		BigNumber num_2 = new BigNumber("-999.888");
-		num_1 = (BigNumber) num_1.multiply(num_2);
+		num_1 = num_1.multiply(num_2);
 		BigNumber expResult = new BigNumber("999888");
 		assertEquals(expResult, num_1);
 	}
@@ -204,7 +205,7 @@ public class BigNumberTest extends TestCase {
 	public void testMultiply_4() {
 		BigNumber num_1 = new BigNumber("8982452");
 		BigNumber num_2 = new BigNumber("45.120214534");
-		num_1 = (BigNumber) num_1.multiply(num_2);
+		num_1 = num_1.multiply(num_2);
 		BigNumber expResult = new BigNumber("405290161.281357368");
 		assertEquals(expResult, num_1);
 	}
@@ -212,7 +213,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_1() {
 		BigNumber num_1 = new BigNumber("0");
 		BigNumber num_2 = new BigNumber("45.120214534");
-		num_1 = (BigNumber) num_1.divide(num_2);
+		num_1 = num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("0");
 		assertEquals(expResult, num_1);
 	}
@@ -220,7 +221,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_2() {
 		BigNumber num_1 = new BigNumber("100.456");
 		BigNumber num_2 = new BigNumber("45.120214534");
-		num_1 = (BigNumber) num_1.divide(num_2);
+		num_1 = num_1.divide(num_2);
 		assertTrue(num_1.toString()
 				.contains("2.2264078537193597112341247805468601542531841189582"
 						+ "9395836356"));
@@ -229,7 +230,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_3() {
 		BigNumber num_1 = new BigNumber("10");
 		BigNumber num_2 = new BigNumber("-45.12021");
-		num_1 = (BigNumber) num_1.divide(num_2);
+		num_1 = num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("-0.2216301741503419421141878550653"
 				+ "90874732187638311080555697768");
 		assertEquals(expResult, num_1);
@@ -238,7 +239,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_4() {
 		BigNumber num_1 = new BigNumber("-100");
 		BigNumber num_2 = new BigNumber("-100");
-		num_1 = (BigNumber) num_1.divide(num_2);
+		num_1 = num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("1");
 		assertEquals(expResult, num_1);
 	}
@@ -246,7 +247,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_5() {
 		BigNumber num_1 = new BigNumber("-100");
 		BigNumber num_2 = new BigNumber("1");
-		num_1 = (BigNumber) num_1.divide(num_2);
+		num_1 = num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("-100");
 		assertEquals(expResult, num_1);
 	}
@@ -254,7 +255,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_6() {
 		BigNumber num_1 = new BigNumber("4");
 		BigNumber num_2 = new BigNumber("3");
-		BigNumber num_3 = (BigNumber) num_1.divide(num_2);
+		BigNumber num_3 = num_1.divide(num_2);
 		assertEquals("1.333333333333333333333333333333333333333333333333333333333334",
 				num_3.toString());
 	}
@@ -263,7 +264,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber num_1 = new BigNumber("4");
 		BigNumber num_2 = new BigNumber("3");
 		BigNumber num_3 = new BigNumber("6");
-		BigNumber num_4 = (BigNumber) num_1.divide(num_2).multiply(num_3);
+		BigNumber num_4 = num_1.divide(num_2).multiply(num_3);
 		assertEquals("8", num_4.toString());
 	}
 
@@ -282,11 +283,11 @@ public class BigNumberTest extends TestCase {
 	public void test_3() {
 		BigNumber a1 = new BigNumber("4");
 		BigNumber a2 = new BigNumber("2");
-		BigNumber a3 = (BigNumber) a1.divide(a2);
+		BigNumber a3 = a1.divide(a2);
 
 		BigNumber b1 = new BigNumber("10");
 		BigNumber b2 = new BigNumber("5");
-		BigNumber b3 = (BigNumber) b1.divide(b2);
+		BigNumber b3 = b1.divide(b2);
 
 		assertTrue(a3.equals(b3));
 	}
@@ -296,7 +297,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber b = new BigNumber("2");
 		BigNumber c = new BigNumber("2");
 
-		BigNumber d = (BigNumber) a.divide(b).add(c);
+		BigNumber d = a.divide(b).add(c);
 
 		assertEquals(a.toString(), "1");
 		assertEquals(b.toString(), "2");
@@ -543,6 +544,19 @@ public class BigNumberTest extends TestCase {
 		AbstractNumber c = a.pow(b);
 
 		assertTrue(c.toScientificNotation().contains("-57224555986191539150894314506323746216284179"));
+	}
+
+	/**
+	 * 5!
+	 */
+	public void testFactorial() {
+		BigNumber a = new BigNumber("5");
+		try {
+			BigNumber c = a.factorial();
+			assertEquals("120", c.toString());
+		} catch (InvalidActionException e) {
+			assertTrue(false);
+		}
 	}
 
 }
