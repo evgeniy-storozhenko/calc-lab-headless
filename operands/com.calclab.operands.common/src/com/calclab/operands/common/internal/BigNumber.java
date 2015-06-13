@@ -2,6 +2,8 @@ package com.calclab.operands.common.internal;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 import numbercruncher.mathutils.BigFunctions;
@@ -16,9 +18,10 @@ import com.calclab.core.operations.Operation;
 
 public class BigNumber extends AbstractNumber {
 
+	public static final BigNumber ZERO = new BigNumber("0");
 	public static final BigNumber ONE = new BigNumber("1");
 	public static final BigNumber TWO = new BigNumber("2");
-	public static final BigNumber ZERO = new BigNumber("0");
+	public static final BigNumber THREE = new BigNumber("3");
 	public static final BigNumber TEN = new BigNumber("10");
 
 	public static final BigNumber E = new BigNumber(MathConstants.E);
@@ -53,6 +56,10 @@ public class BigNumber extends AbstractNumber {
 		this(bigResult.toPlainString());
 	}
 
+	public BigNumber(BigInteger bigInteger) {
+		this(bigInteger.toString());
+	}
+
 	@Override
 	public BigDecimal getNumerator() {
 		return numerator.stripTrailingZeros();
@@ -66,11 +73,11 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public String toString() {
 		BigDecimal result = this.toBigDecimal();
-		String string = result.toPlainString();
+		String plainString = result.toPlainString();
 		if (isNegative()) {
-			string = "(" + string + ")";
+			plainString = "(" + plainString + ")";
 		}
-		return string;
+		return plainString;
 	}
 
 	@Override
@@ -275,21 +282,15 @@ public class BigNumber extends AbstractNumber {
 			String msg = "n! is a sequence with integer value for nonnegative n.";
 			throw new InvalidActionException(msg, new Throwable());
 		}
-		return approximationStirlingMoivre(this);
+
+		if (this.isFractionalNumber()
+				|| this.toBigDecimal().compareTo(new BigDecimal(Integer.MAX_VALUE)) > 0) {
+			return BigNumberUtils.approximationStirlingMoivre(this);
+		} else {
+			return new BigNumber(BigNumberUtils.streamedParallel(this.intValue()));
+		}
 	}
 
-	/**
-	 * Stirling - Moivre approximation
-	 * sqrt(2πn) * (n/e) ^ n
-	 */
-	private BigNumber approximationStirlingMoivre(BigNumber n) {
-
-		BigNumber first = TWO.multiply(PI).multiply(n).sqrt();
-		BigNumber second = n.divide(E).pow(n);
-		BigNumber approximation = ONE; // TODO
-
-		return first.multiply(second).multiply(approximation);
-	}
 
 	private BigNumber bigDecimalPow(BigDecimal a, int b) {
 		return new BigNumber(a.pow(b));
@@ -385,4 +386,15 @@ public class BigNumber extends AbstractNumber {
 		BigInteger integer = this.toBigDecimal().stripTrailingZeros().unscaledValue();
 		return !integer.testBit(0);
 	}
+
+	@Override
+	public BigNumber round(MathContext mc) {
+		return new BigNumber(this.toBigDecimal().round(mc));
+	}
+
+	@Override
+	public BigNumber setScale(int newScale, RoundingMode roundingMode) {
+		return new BigNumber(this.toBigDecimal().setScale(newScale, roundingMode));
+	}
+
 }

@@ -559,4 +559,34 @@ public class BigNumberTest extends TestCase {
 		}
 	}
 
+	/**
+	 * 26!
+	 */
+	public void testFactorial_2() {
+		BigNumber a = new BigNumber("26");
+		try {
+			BigNumber c = a.factorial();
+			assertEquals("403291461126605635584000000", c.toString());
+		} catch (InvalidActionException e) {
+			assertTrue(false);
+		}
+	}
+
+	/**
+	 * 199!
+	 */
+	public void testFactorial_3() {
+		BigNumber a = new BigNumber("199");
+		try {
+			BigNumber c = a.factorial();
+			assertEquals("394328933682395251776181606966092531147567988843586631647371266622179"
+					+ "724981701671460152142005992311952088606069459819415128821395121318552530"
+					+ "963312476414965556731428635381658618698494471961222810725832120127016645"
+					+ "932065613714147426638762121203786951620160628702789784330113015952085162"
+					+ "031175850429398089461111394811851948687360000000000000000000000000000000"
+					+ "0000000000000000", c.toString());
+		} catch (InvalidActionException e) {
+			assertTrue(false);
+		}
+	}
 }

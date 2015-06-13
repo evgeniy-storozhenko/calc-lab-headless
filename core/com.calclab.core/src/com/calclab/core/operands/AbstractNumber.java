@@ -1,6 +1,8 @@
 package com.calclab.core.operands;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public abstract class AbstractNumber extends Number
 		implements Operand, Comparable<AbstractNumber>, Cloneable {
@@ -28,6 +30,10 @@ public abstract class AbstractNumber extends Number
 	public abstract AbstractNumber subtract(AbstractNumber number);
 
 	public abstract AbstractNumber pow(AbstractNumber number);
+
+	public abstract AbstractNumber round(MathContext mc);
+
+	public abstract AbstractNumber setScale(int newScale, RoundingMode roundingMode);
 
 	public abstract boolean isNegative();
 

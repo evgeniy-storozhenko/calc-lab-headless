@@ -8,7 +8,7 @@ public class SyntaxErrorException extends RuntimeException {
 	public final int col;
 
 	public SyntaxErrorException(int line, int col) {
-		this(line, col, null);
+		this(line, col, "");
 	}
 
 	public SyntaxErrorException(int line, int col, String msg) {
