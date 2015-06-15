@@ -1,6 +1,7 @@
 package com.calclab.core.operands;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
@@ -44,6 +45,8 @@ public abstract class AbstractNumber extends Number
 	public abstract void optimize();
 
 	public abstract BigDecimal toBigDecimal();
+
+	public abstract BigInteger toBigInteger();
 
 	@Override
 	public abstract AbstractNumber clone();

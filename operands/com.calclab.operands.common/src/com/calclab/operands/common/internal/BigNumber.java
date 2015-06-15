@@ -365,6 +365,11 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
+	public BigInteger toBigInteger() {
+		return toBigDecimal().toBigInteger();
+	}
+
+	@Override
 	public int compareTo(AbstractNumber other) {
 		BigDecimal thisBigDecimal = toBigDecimal();
 		BigDecimal otherBigDecimal = other.toBigDecimal();

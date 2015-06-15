@@ -89,10 +89,22 @@ public class LogFunction implements Function {
 
 			AbstractNumber res = CommonOperandFactory.getInstance().createNumber(resB)
 					.divide(CommonOperandFactory.getInstance().createNumber(resA));
-			return res;
+
+			return round(res);
 		}
 		String message = "Can't calculate '" + name + "' with this type of argument.";
 		throw new OperatorNotFoundException(message, new Throwable());
+	}
+
+	private AbstractNumber round(AbstractNumber num) {
+		AbstractNumber result = num;
+		BigDecimal bigDecNum = num.toBigDecimal();
+		BigDecimal bigIntNum = new BigDecimal(num.toBigInteger());
+		BigDecimal error = BigDecimal.ONE.divide(BigDecimal.TEN.pow(AbstractNumber.scale - 1));
+		if (!bigIntNum.equals(BigDecimal.ZERO) && bigDecNum.subtract(bigIntNum).abs().compareTo(error) < 0) {
+			result = CommonOperandFactory.getInstance().createNumber(bigIntNum);
+		}
+		return result;
 	}
 
 	private Operand log(Operand operand) throws OperatorNotFoundException {
