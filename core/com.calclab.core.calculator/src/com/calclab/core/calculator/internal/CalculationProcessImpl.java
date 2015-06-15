@@ -22,7 +22,7 @@ public class CalculationProcessImpl implements CalculationProcess {
 	private List<Calculable> expressions;
 
 	public CalculationProcessImpl(CalculationInput input) {
-		this.scale = 20;
+		this.scale = 60;
 		this.input = input;
 		this.parser = ParserFactory.createCalculationParser();
 	}
