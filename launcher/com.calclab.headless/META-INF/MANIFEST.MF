@@ -8,7 +8,8 @@ Bundle-Vendor: Calculation Laboratory
 Require-Bundle: org.eclipse.core.runtime,
  com.calclab.core,
  com.calclab.core.parser,
- com.calclab.core.calculator
+ com.calclab.core.calculator,
+ org.eclipse.equinox.launcher
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: com.calclab.headless,

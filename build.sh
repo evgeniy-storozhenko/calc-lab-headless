@@ -3,3 +3,15 @@
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
 mvn clean verify
 
+cd build/product/target/;
+product="$(find calclab-headless-*zip)";
+cp ../calclab.sh product/eclipse/calclab.sh;
+rm $product;
+rm product/eclipse/launcher;
+rm product/eclipse/launcher.exe;
+rm -rf product/eclipse/Eclipse.app;
+mv product/eclipse product/calclab-headless;
+cd product;
+zip -r $product calclab-headless > /dev/null;
+mv $product ../$product;
+
