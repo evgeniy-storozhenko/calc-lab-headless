@@ -2,7 +2,9 @@ package com.calclab.core.parser;
 
 import junit.framework.TestCase;
 
-import org.antlr.runtime.*;
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.RecognitionException;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.parser.internal.CalcLabLexer;
@@ -146,6 +148,22 @@ public class CalcLabParserTest extends TestCase {
 		isParseEquals("sin(log(8,2));", "sin(log(8,2));");
 	}
 
+	public void testParse_35() {
+		isParseEquals("a=5;", "5;");
+	}
+
+	public void testParse_36() {
+		CalcLabParser parser = parseExpressions("a=2*4;b=a*2;");
+		assertEquals("(2*4);", parser.getVariables().get("a").toString());
+		assertEquals("(a*2);", parser.getVariables().get("b").toString());
+	}
+
+	public void testParse_37() {
+		CalcLabParser parser = parseExpressions("a=2;b=-a;");
+		assertEquals("2;", parser.getVariables().get("a").toString());
+		assertEquals("(-a);", parser.getVariables().get("b").toString());
+	}
+
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString());
@@ -167,6 +185,19 @@ public class CalcLabParserTest extends TestCase {
 			fail();
         }
 		return parser.getCalculations().get(0);
+	}
+
+	private CalcLabParser parseExpressions(String input) {
+		CalcLabLexer lex = new CalcLabLexer(new ANTLRStringStream(input));
+		CommonTokenStream tokens = new CommonTokenStream(lex);
+		CalcLabParser parser = new CalcLabParser(tokens);
+		try {
+			parser.calculation();
+		} catch (RecognitionException e) {
+			e.printStackTrace();
+			fail();
+		}
+		return parser;
 	}
 
 }

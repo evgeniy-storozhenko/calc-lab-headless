@@ -1,4 +1,4 @@
-package com.calclab.core.operand.number;
+package com.calclab.operands.common;
 
 import java.math.BigDecimal;
 

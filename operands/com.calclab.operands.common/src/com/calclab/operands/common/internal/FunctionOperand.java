@@ -15,7 +15,6 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.core.variables.Variable;
 import com.calclab.operands.common.NullStepMonitor;
 
 public class FunctionOperand implements Operand, Calculable {
@@ -79,7 +78,15 @@ public class FunctionOperand implements Operand, Calculable {
 		}
 		status.setStage(CalculationStatus.Stage.INPROCESS);
 		try {
-			function = FunctionRegistry.getInstance().createFunction(name, arguments);
+			for(int i=0; i < arguments.size(); i++) {
+				Operand arg = arguments.get(i);
+				if (arg instanceof Calculable) {
+					arguments.set(i, ((Calculable) arg).calculate());
+				}
+			}
+			if (function == null) {
+				function = FunctionRegistry.getInstance().createFunction(name, arguments);
+			}
 			result = function.calculate();
 			status = function.getStatus();
 		} catch (CoreException | FunctionNotFoundException e) {
@@ -87,12 +94,6 @@ public class FunctionOperand implements Operand, Calculable {
 			status.setStage(CalculationStatus.Stage.ERROR);
 		}
 		return result;
-	}
-
-	@Override
-	public Variable getVariable() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -113,6 +114,14 @@ public class FunctionOperand implements Operand, Calculable {
 	@Override
 	public String getInput() {
 		return null;
+	}
+
+	public void setFunction(Function function) {
+		this.function = function;
+	}
+
+	public Function getFunction() {
+		return function;
 	}
 
 }

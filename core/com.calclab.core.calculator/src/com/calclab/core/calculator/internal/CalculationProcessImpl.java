@@ -1,6 +1,9 @@
 package com.calclab.core.calculator.internal;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
@@ -19,7 +22,8 @@ public class CalculationProcessImpl implements CalculationProcess {
 	private final CalculationInput input;
 	private final CalculationStatus status = new CalculationStatus();
 
-	private List<Calculable> expressions;
+	private List<Calculable> expressions = new ArrayList<>();
+	private Map<String, Calculable> variables = new HashMap<>();
 
 	public CalculationProcessImpl(CalculationInput input) {
 		this.scale = 60;
@@ -38,7 +42,9 @@ public class CalculationProcessImpl implements CalculationProcess {
 		try {
 			setScale();
 			status.setStage(CalculationStatus.Stage.INPROCESS);
-			expressions = parser.parse(input);
+			parser.parse(input);
+			variables = parser.getVariables();
+			expressions = parser.getExpressions();
 			for (Calculable expression : expressions) {
 				expression.calculate();
 			}
@@ -59,13 +65,18 @@ public class CalculationProcessImpl implements CalculationProcess {
 	}
 
 	@Override
+	public int getScale() {
+		return scale;
+	}
+
+	@Override
 	public List<Calculable> getExpressions() {
 		return expressions;
 	}
 
 	@Override
-	public int getScale() {
-		return scale;
+	public Map<String, Calculable> getVariables() {
+		return variables;
 	}
 
 }

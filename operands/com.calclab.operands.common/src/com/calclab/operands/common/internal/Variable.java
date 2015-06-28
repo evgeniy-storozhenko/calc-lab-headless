@@ -1,11 +1,8 @@
-package com.calclab.functions.common;
+package com.calclab.operands.common.internal;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
-import com.calclab.core.functions.Function;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
@@ -13,36 +10,41 @@ import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.NullStepMonitor;
 
-public abstract class AbstractFunction implements Function {
+public class Variable implements Operand, Calculable {
 
-	protected List<Operand> arguments = new ArrayList<Operand>();
-	protected CalculationStatus status = new CalculationStatus();
-	protected Operand result = null;
-	protected boolean exect = true;
+	private final String key;
+	private Calculable expression;
+
+	public Variable(String key, Calculable expression) {
+		this.key = key;
+		this.expression = expression;
+	}
 
 	@Override
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException, InternalExpression {
-		calculate();
-		if (status.isDone()) {
-			return result.perform(operation, monitor);
-		}
-		throw new InternalExpression(status);
+		return expression.getResult().perform(operation, monitor);
 	}
 
 	@Override
 	public Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException, InternalExpression {
-		calculate();
-		if (status.isDone()) {
-			return result.perform(operation, operand, monitor);
-		}
-		throw new InternalExpression(status);
+		return expression.getResult().perform(operation, operand, monitor);
 	}
 
 	@Override
 	public boolean isExact() {
-		return exect;
+		return expression.getResult().isExact();
+	}
+
+	@Override
+	public String toString() {
+		return key;
+	}
+
+	@Override
+	public Operand calculate() {
+		return expression.calculate();
 	}
 
 	@Override
@@ -52,17 +54,12 @@ public abstract class AbstractFunction implements Function {
 
 	@Override
 	public CalculationStatus getStatus() {
-		return status;
+		return expression.getStatus();
 	}
 
 	@Override
 	public Operand getResult() {
-		return result;
-	}
-
-	@Override
-	public void setArguments(List<Operand> arguments) {
-		this.arguments = arguments;
+		return expression.getResult();
 	}
 
 	@Override

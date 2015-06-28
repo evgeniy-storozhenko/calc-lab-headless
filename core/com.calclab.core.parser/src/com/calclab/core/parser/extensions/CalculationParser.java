@@ -1,6 +1,9 @@
 package com.calclab.core.parser.extensions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -16,6 +19,7 @@ import com.calclab.core.parser.internal.CalcLabParser;
 public class CalculationParser implements Parser {
 
 	private static Parser instance = null;
+	private CalcLabParser antlrParser = null;
 
 	public synchronized static Parser getInstance() {
 		if (instance == null) {
@@ -28,18 +32,33 @@ public class CalculationParser implements Parser {
 	}
 
 	@Override
-	public List<Calculable> parse(CalculationInput input) throws InputException {
+	public void parse(CalculationInput input) throws InputException {
 		String inputExpressions = input.getExpressions();
 		CalcLabLexer lex = new CalcLabLexer(new ANTLRStringStream(inputExpressions));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
-		CalcLabParser g = new CalcLabParser(tokens);
+		antlrParser = new CalcLabParser(tokens);
 		try {
-			g.calculation();
+			antlrParser.calculation();
 		} catch (RecognitionException e) {
 			e.printStackTrace();
 			// TODO report
 		}
-		return g.getCalculations();
+	}
+
+	@Override
+	public List<Calculable> getExpressions() {
+		if (antlrParser != null) {
+			return antlrParser.getCalculations();
+		}
+		return new ArrayList<Calculable>();
+	}
+
+	@Override
+	public Map<String, Calculable> getVariables() {
+		if (antlrParser != null) {
+			return antlrParser.getVariables();
+		}
+		return new HashMap<String, Calculable>();
 	}
 
 }

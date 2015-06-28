@@ -8,7 +8,6 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.core.variables.Variable;
 import com.calclab.operands.common.NullStepMonitor;
 
 public class UnaryOperand implements Operand, Calculable {
@@ -81,11 +80,6 @@ public class UnaryOperand implements Operand, Calculable {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public Variable getVariable() {
-		return null;
 	}
 
 	@Override

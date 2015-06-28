@@ -5,11 +5,11 @@ import com.calclab.core.operands.Operand;
 
 public class CalculationFactory {
 
-	public Calculation createCalculation(Operand operand) {
+	public Calculable createCalculation(Operand operand) {
 		return new Calculation(operand);
 	}
 
-	public Calculation createCalculation(Operand operand, String input) {
+	public Calculable createCalculation(Operand operand, String input) {
 		return new Calculation(operand, input);
 	}
 }

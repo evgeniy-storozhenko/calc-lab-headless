@@ -3,6 +3,7 @@ package com.calclab.operands.common;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.calclab.core.calculations.Calculable;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operations.Operation;
@@ -10,6 +11,7 @@ import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.UnaryOperand;
+import com.calclab.operands.common.internal.Variable;
 
 public class CommonOperandFactory {
 
@@ -55,6 +57,10 @@ public class CommonOperandFactory {
 
 	public Operand createFunctionOperand(String name, List<Operand> arguments) {
 		return new FunctionOperand(name, arguments);
+	}
+
+	public Operand createVariableOperand(String key, Calculable expression) {
+		return new Variable(key, expression);
 	}
 
 }

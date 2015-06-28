@@ -4,7 +4,6 @@ import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
-import com.calclab.core.variables.Variable;
 
 public class Calculation implements Calculable {
 
@@ -25,21 +24,18 @@ public class Calculation implements Calculable {
 
 	@Override
 	public Operand calculate() {
-		if (!status.getStage().equals(CalculationStatus.Stage.WAITING)) {
+		if (!status.isWaiting()) {
 			return result;
 		}
 		if (operand instanceof Calculable) {
 			status.setStage(CalculationStatus.Stage.INPROCESS);
 			result = ((Calculable) operand).calculate();
 			status = ((Calculable) operand).getStatus();
+		} else {
+			result = operand;
+			status.setStage(CalculationStatus.Stage.DONE);
 		}
 		return result;
-	}
-
-	@Override
-	public Variable getVariable() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

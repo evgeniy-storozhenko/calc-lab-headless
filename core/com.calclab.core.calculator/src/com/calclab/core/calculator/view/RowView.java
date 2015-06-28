@@ -27,6 +27,9 @@ public class RowView implements CalculationView {
 		if (calculationProcess == null) {
 			return result.toString();
 		}
+		if (calculationProcess.getStatus().isError()) {
+			return calculationProcess.getStatus().getMessage();
+		}
 		for (Calculable expression : calculationProcess.getExpressions()) {
 			if (expression.getStatus().isDone()) {
 				Operand res = expression.getResult();

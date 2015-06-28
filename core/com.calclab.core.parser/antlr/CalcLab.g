@@ -8,8 +8,11 @@ options {
 @header{
 	package com.calclab.core.parser.internal;
 	
-	import java.util.List;
+	import java.lang.StringBuilder;
 	import java.util.ArrayList;
+	import java.util.HashMap;
+	import java.util.List;
+	import java.util.Map;
 	
 	import com.calclab.core.parser.extensions.SyntaxErrorException;
 	import com.calclab.operations.common.CommonOperationFactory;
@@ -30,9 +33,14 @@ options {
 	private CommonOperationFactory operationFactory = new CommonOperationFactory();
 	private CalculationFactory calcFactory = new CalculationFactory();
 	private List<Calculable> calculations = new ArrayList<Calculable>();
+	private Map<String, Calculable> variables = new HashMap<String, Calculable>();
 	
 	public List<Calculable> getCalculations() {
 		return calculations;
+	}
+	
+	public Map<String, Calculable> getVariables() {
+		return variables;
 	}
 	
 	public void displayRecognitionError(String[] tokenNames,
@@ -48,8 +56,22 @@ options {
 
 
 calculation
-	: (e=expression { calculations.add(calcFactory.createCalculation($e.value, $e.text)); }
-		EXPRESSIONS_SEPARATOR)+
+	: ({ String variable = null; StringBuilder in = new StringBuilder();} 
+		(NAME EQUALS{ 
+				variable = $NAME.text;
+				in.append($NAME.text);
+				in.append($EQUALS.text);
+			})?
+		e=expression {
+		 	in.append($e.text);
+		 	Calculable calculable = calcFactory.createCalculation($e.value, in.toString());
+		 	calculations.add(calculable);
+		 	if (variable != null) {
+		 		variables.put(variable, calculable);
+		 	}
+		 }
+		EXPRESSIONS_SEPARATOR
+		)+
 ;
 
 expression returns[Operand value]
@@ -78,6 +100,7 @@ compositeUnit returns[Operand value]
 unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value = $compositeExpression.value; } 
+		| variable { $value = $variable.value; }
 		| function { $value = $function.value; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
@@ -95,12 +118,33 @@ compositeExpression returns[Operand value]
 ;
 
 function returns[Operand value] 
-	: { Operation operation = null; }  
+	: { Operation operation = null; }
 		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
 		NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS 
-		{ $value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
-			if (operation != null) 
-				$value = operandFactory.createUnaryOperand(operation, $value); }
+		{ 
+			$value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
+		 	if (operation != null) {
+		 		$value = operandFactory.createUnaryOperand(operation, $value);
+		 	}
+		}
+;
+
+variable returns[Operand value]
+	: { Operation operation = null; }
+		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
+		name=NAME {
+				Calculable variable = variables.get($name.text);
+				if (variable != null) {
+					$value = operandFactory.createVariableOperand($name.text, variable);
+				} else {
+					String msg = "The variable '"+ $name.text +"' is not defined.";
+					throw new SyntaxErrorException($name.line, $name.getCharPositionInLine(), msg);
+				}
+				if (operation != null) {
+					$value = operandFactory.createUnaryOperand(operation, $value);
+				}
+		}
+		
 ;
 
 arguments returns[ArrayList<Operand> value]
@@ -136,7 +180,8 @@ FACTORIAL : '!';
 
 // System
 DIGIT : '0'..'9'+;
-NAME : ID (ID |DIGIT)*; 
+EQUALS: '=';
+NAME : ID (ID |DIGIT)*;
 fragment ID : ('a'..'z' | 'A'..'Z' | '_');
 fragment CHAR : 'A'..'z';
 OPENING_PARENTHESIS : '(';

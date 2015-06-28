@@ -1,6 +1,7 @@
 package com.calclab.core.parser;
 
 import java.util.List;
+import java.util.Map;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.input.CalculationInput;
@@ -11,6 +12,10 @@ import com.calclab.core.input.exceptions.InputException;
  */
 public interface Parser {
 
-	List<Calculable> parse(CalculationInput input) throws InputException;
+	void parse(CalculationInput input) throws InputException;
+
+	List<Calculable> getExpressions();
+
+	Map<String, Calculable> getVariables();
 
 }

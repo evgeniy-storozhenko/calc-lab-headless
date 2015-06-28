@@ -8,7 +8,6 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.core.variables.Variable;
 import com.calclab.operands.common.NullStepMonitor;
 
 public class CompositeOperand implements Operand, Calculable {
@@ -31,7 +30,7 @@ public class CompositeOperand implements Operand, Calculable {
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException, InternalExpression {
 		calculate();
-		if (status.getStage().equals(CalculationStatus.Stage.DONE)) {
+		if (status.isDone()) {
 			return result.perform(operation, monitor);
 		}
 		throw new InternalExpression(status);
@@ -41,7 +40,7 @@ public class CompositeOperand implements Operand, Calculable {
 	public Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException, InternalExpression {
 		calculate();
-		if (status.getStage().equals(CalculationStatus.Stage.DONE)) {
+		if (status.isDone()) {
 			return result.perform(operation, operand, monitor);
 		}
 		throw new InternalExpression(status);
@@ -49,7 +48,7 @@ public class CompositeOperand implements Operand, Calculable {
 
 	@Override
 	public synchronized Operand calculate() {
-		if (status.getStage().equals(CalculationStatus.Stage.WAITING)) {
+		if (status.isWaiting()) {
 			try {
 				status.setStage(CalculationStatus.Stage.INPROCESS);
 				Operand o1 = (a instanceof Calculable) ? ((Calculable) a).calculate() : a;
@@ -62,11 +61,6 @@ public class CompositeOperand implements Operand, Calculable {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public Variable getVariable() {
-		return null;
 	}
 
 	@Override
