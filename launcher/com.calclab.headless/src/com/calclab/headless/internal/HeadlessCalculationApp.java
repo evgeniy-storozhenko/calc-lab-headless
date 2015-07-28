@@ -47,9 +47,11 @@ public class HeadlessCalculationApp implements IApplication {
 		CalculationInput input = inputFactory.createCalculationInput(config);
 		CalculationProcess process = calcProcessFactory.createCalculationProcess(input);
 
-		process.run();
-		output(process, config);
-
+		do {
+			process.run();
+			output(process, config);
+			input.setExpressions(null);
+		} while (input.isExpectedMoreData() && !process.getStatus().isError());
 		return IApplication.EXIT_OK;
 	}
 
@@ -62,14 +64,15 @@ public class HeadlessCalculationApp implements IApplication {
 			htmlView.output();
 		}
 		if (config.getRowFileOutput() != null) {
-			rowView = new RowView();
+			rowView = new RowView(false);
 			rowView.setCalculationProcess(process);
 			output = rowView.output();
 		}
 
 		if (config.getHtmlFileOutput() == null && config.getRowFileOutput() == null) {
 			if (output.isEmpty()) {
-				rowView = new RowView();
+				boolean isStdIn = config.getInputData() == null && config.getInputFile() == null;
+				rowView = new RowView(isStdIn);
 				rowView.setCalculationProcess(process);
 				output = rowView.output();
 			}

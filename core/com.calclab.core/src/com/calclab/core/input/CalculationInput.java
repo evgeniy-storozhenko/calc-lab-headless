@@ -9,4 +9,8 @@ public interface CalculationInput {
 
 	String getExpressions() throws InputException;
 
+	void setExpressions(String expressions);
+
+	boolean isExpectedMoreData();
+
 }

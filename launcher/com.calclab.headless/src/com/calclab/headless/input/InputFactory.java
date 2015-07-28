@@ -12,7 +12,7 @@ public class InputFactory {
 		} else if (config.getInputData() != null) {
 			input = new ArgumentCalculationInput(config.getInputData());
 		} else {
-			input = new PipeCalculationInput();
+			input = new StdCalculationInput();
 		}
 		return input;
 	}

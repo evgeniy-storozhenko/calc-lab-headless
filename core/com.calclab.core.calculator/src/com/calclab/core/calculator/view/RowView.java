@@ -9,7 +9,12 @@ import com.calclab.core.operands.Operand;
 
 public class RowView implements CalculationView {
 
+	private boolean isStdIn = false;
 	private CalculationProcess calculationProcess = null;
+
+	public RowView(boolean isStdIn) {
+		this.isStdIn = isStdIn;
+	}
 
 	@Override
 	public void setCalculationProcess(CalculationProcess calculationProcess) {
@@ -18,11 +23,6 @@ public class RowView implements CalculationView {
 
 	@Override
 	public String output() {
-		return toString();
-	}
-
-	@Override
-	public String toString() {
 		StringBuilder result = new StringBuilder();
 		if (calculationProcess == null) {
 			return result.toString();
@@ -30,11 +30,18 @@ public class RowView implements CalculationView {
 		if (calculationProcess.getStatus().isError()) {
 			return calculationProcess.getStatus().getMessage();
 		}
+		boolean single = calculationProcess.getExpressions().size() == 1;
 		for (Calculable expression : calculationProcess.getExpressions()) {
 			if (expression.getStatus().isDone()) {
 				Operand res = expression.getResult();
-				result.append(expression.getInput());
-				result.append((res.isExact()) ? "=" : "≈");
+				if (single && isStdIn) {
+					result.append("	");
+					result.append((res.isExact()) ? "=" : "≈");
+					result.append(" ");
+				} else {
+					result.append(expression.getInput());
+					result.append((res.isExact()) ? "=" : "≈");
+				}
 				result.append(res.toString());
 				result.append(System.lineSeparator());
 			} else {
@@ -43,6 +50,11 @@ public class RowView implements CalculationView {
 			}
 		}
 		return result.toString();
+	}
+
+	@Override
+	public String toString() {
+		return output();
 	}
 
 	@Override

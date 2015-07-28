@@ -5,7 +5,6 @@ mvn clean verify
 
 cd build/product/target/;
 product="$(find calclab-headless-*zip)";
-cp ../calclab.sh product/eclipse/calclab.sh;
 rm $product;
 rm product/eclipse/launcher;
 rm product/eclipse/launcher.exe;

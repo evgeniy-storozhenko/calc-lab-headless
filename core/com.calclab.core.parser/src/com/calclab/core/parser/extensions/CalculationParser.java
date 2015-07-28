@@ -36,7 +36,9 @@ public class CalculationParser implements Parser {
 		String inputExpressions = input.getExpressions();
 		CalcLabLexer lex = new CalcLabLexer(new ANTLRStringStream(inputExpressions));
 		CommonTokenStream tokens = new CommonTokenStream(lex);
+		Map<String, Calculable> variables = getVariables();
 		antlrParser = new CalcLabParser(tokens);
+		antlrParser.getVariables().putAll(variables);
 		try {
 			antlrParser.calculation();
 		} catch (RecognitionException e) {

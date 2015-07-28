@@ -44,4 +44,14 @@ public class FileCalculationInput implements CalculationInput {
 		return sb.toString();
 	}
 
+	@Override
+	public boolean isExpectedMoreData() {
+		return false;
+	}
+
+	@Override
+	public void setExpressions(String expressions) {
+		this.expressions = expressions;
+	}
+
 }

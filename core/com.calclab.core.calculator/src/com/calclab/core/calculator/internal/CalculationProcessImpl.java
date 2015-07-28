@@ -43,7 +43,7 @@ public class CalculationProcessImpl implements CalculationProcess {
 			setScale();
 			status.setStage(CalculationStatus.Stage.INPROCESS);
 			parser.parse(input);
-			variables = parser.getVariables();
+			variables.putAll(parser.getVariables());
 			expressions = parser.getExpressions();
 			for (Calculable expression : expressions) {
 				expression.calculate();
