@@ -32,6 +32,8 @@ public abstract class AbstractNumber extends Number
 
 	public abstract AbstractNumber pow(AbstractNumber number);
 
+	public abstract AbstractNumber negate();
+
 	public abstract AbstractNumber round(MathContext mc);
 
 	public abstract AbstractNumber setScale(int newScale, RoundingMode roundingMode);

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import junit.framework.TestCase;
-
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationFactory;
 import com.calclab.core.calculations.CalculationStatus;
@@ -19,6 +17,8 @@ import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.Variable;
+
+import junit.framework.TestCase;
 
 public class VariableTest extends TestCase {
 
@@ -95,6 +95,36 @@ public class VariableTest extends TestCase {
 		calculation.calculate();
 		
 		assertEquals("mock(2,8)", functionOperand.toString());
+	}
+
+	/**
+	 * a=2
+	 * -a
+	 * 
+	 * @throws InternalExpression
+	 * @throws InvalidActionException
+	 * @throws OperatorNotFoundException
+	 */
+	public void testPerform_3() throws OperatorNotFoundException, InvalidActionException, InternalExpression {
+		Variable a = createVariable("a", "2");
+		Operand b = a.perform(createOperation("-"), NullStepMonitor.getInstance());
+
+		assertEquals("(-2)", b.toString());
+	}
+
+	/**
+	 * a=-2
+	 * -a
+	 * 
+	 * @throws InternalExpression
+	 * @throws InvalidActionException
+	 * @throws OperatorNotFoundException
+	 */
+	public void testPerform_4() throws OperatorNotFoundException, InvalidActionException, InternalExpression {
+		Variable a = createVariable("a", "-2");
+		Operand b = a.perform(createOperation("-"), NullStepMonitor.getInstance());
+
+		assertEquals("2", b.toString());
 	}
 
 	private Operand createCompositeOperand(String a, String operation, String b) {

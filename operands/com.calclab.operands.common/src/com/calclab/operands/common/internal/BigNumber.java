@@ -6,8 +6,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-import numbercruncher.mathutils.BigFunctions;
-
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.constants.MathConstants;
 import com.calclab.core.operands.AbstractNumber;
@@ -16,8 +14,11 @@ import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 
+import numbercruncher.mathutils.BigFunctions;
+
 public class BigNumber extends AbstractNumber {
 
+	public static final BigNumber MINUS_ONE = new BigNumber("-1");
 	public static final BigNumber ZERO = new BigNumber("0");
 	public static final BigNumber ONE = new BigNumber("1");
 	public static final BigNumber TWO = new BigNumber("2");
@@ -133,6 +134,8 @@ public class BigNumber extends AbstractNumber {
 
 		if (operation.getName().equals("!")) {
 			return factorial();
+		} else if (operation.getName().equals("-")) {
+			return negate();
 		}
 
 		throw new OperatorNotFoundException("Operation '" + operation.getName()
@@ -400,6 +403,11 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public BigNumber setScale(int newScale, RoundingMode roundingMode) {
 		return new BigNumber(this.toBigDecimal().setScale(newScale, roundingMode));
+	}
+
+	@Override
+	public AbstractNumber negate() {
+		return this.multiply(MINUS_ONE);
 	}
 
 }

@@ -27,8 +27,7 @@ public class StdCalculationInput implements CalculationInput {
 
 	private String getLastChar() {
 		if (!expressions.isEmpty()) {
-			int length = expressions.length();
-			return expressions.substring(length - 2, length - 1);
+			return "" + expressions.charAt(expressions.length() - 1);
 		}
 		return "";
 	}
