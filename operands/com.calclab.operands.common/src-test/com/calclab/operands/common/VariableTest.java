@@ -123,7 +123,6 @@ public class VariableTest extends TestCase {
 	public void testPerform_4() throws OperatorNotFoundException, InvalidActionException, InternalExpression {
 		Variable a = createVariable("a", "-2");
 		Operand b = a.perform(createOperation("-"), NullStepMonitor.getInstance());
-
 		assertEquals("2", b.toString());
 	}
 
