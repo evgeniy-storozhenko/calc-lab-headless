@@ -1,6 +1,9 @@
 # calc-lab-headless
 The console environment for numerical computations. Eclipse based java application.
 
+[Download last build](http://calc-lab.com:8080/job/calc-lab-headless/lastStableBuild/artifact/build/product/target/calclab-headless-1.0.0-SNAPSHOT.zip)
+
+
 ```
 Calculation Laboratory Headless command line arguments:
 	-input, -i:	Input expression for calculation

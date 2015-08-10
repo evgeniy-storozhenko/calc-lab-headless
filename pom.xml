@@ -1,67 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.calclab.headless</groupId>
-  <version>1.0.0-SNAPSHOT</version>
-  <artifactId>headless</artifactId>
-  <packaging>pom</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.calclab.headless</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>headless</artifactId>
+	<packaging>pom</packaging>
 
-  <properties>
-	<tycho-version>0.21.0</tycho-version>
-	<tycho-groupid>org.eclipse.tycho</tycho-groupid>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<tycho-version>0.21.0</tycho-version>
+		<tycho-groupid>org.eclipse.tycho</tycho-groupid>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <modules>
-    <module>launcher/com.calclab.headless</module>
-    <module>core/com.calclab.core</module>
-    <module>core/com.calclab.core.calculator</module>
-    <module>core/com.calclab.core.parser</module>
-    <module>functions/com.calclab.functions.common</module>
-    <module>functions/com.calclab.functions.trigonometric</module>
-	<module>operands/com.calclab.operands.common</module>
-	<module>operations/com.calclab.operations.common</module>
-	<module>third-party/numbercruncher.mathutils</module>
-    <module>build/product</module>
-  </modules>
-  <repositories>
-        <repository>
-            <id>luna</id>
-            <url>http://download.eclipse.org/releases/luna</url>
-            <layout>p2</layout>
-        </repository>
-  </repositories>
+	<modules>
+		<module>launcher/com.calclab.headless</module>
+		<module>core/com.calclab.core</module>
+		<module>core/com.calclab.core.calculator</module>
+		<module>core/com.calclab.core.parser</module>
+		<module>functions/com.calclab.functions.common</module>
+		<module>functions/com.calclab.functions.trigonometric</module>
+		<module>operands/com.calclab.operands.common</module>
+		<module>operations/com.calclab.operations.common</module>
+		<module>third-party/numbercruncher.mathutils</module>
+		<module>build/product</module>
+	</modules>
+	<repositories>
+		<repository>
+			<id>luna</id>
+			<url>http://download.eclipse.org/releases/luna</url>
+			<layout>p2</layout>
+		</repository>
+	</repositories>
 
-  <dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit-dep</artifactId>
 			<version>4.8.2</version>
 		</dependency>
-  </dependencies>
+	</dependencies>
 
-  <build>
-  		<testSourceDirectory>${project.basedir}/src-test</testSourceDirectory>
+	<build>
+		<testSourceDirectory>${project.basedir}/src-test</testSourceDirectory>
 		<plugins>
 			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-surefire-plugin</artifactId>
-		        <version>2.12.4</version>
-		        <executions>
-		      		<execution>
-		        		<id>test</id>
-		        		<phase>test</phase>
-		        		<configuration>
-		            		<includes>
-		            			<include>**/*Test.java</include>
-		            		</includes>
-		        		</configuration>
-		        		<goals>
-		        			<goal>test</goal>
-		        		</goals>
-		        	</execution>
-		    	</executions>
-		    </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<executions>
+					<execution>
+						<id>test</id>
+						<phase>test</phase>
+						<configuration>
+							<includes>
+								<include>**/*Test.java</include>
+							</includes>
+						</configuration>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -71,14 +71,14 @@
 					<target>1.8</target>
 				</configuration>
 				<executions>
-			        <execution>
-			          <id>compiletests</id>
-			          <phase>test-compile</phase>
-			          <goals>
-			            <goal>testCompile</goal>
-			          </goals>
-			        </execution>
-			    </executions>
+					<execution>
+						<id>compiletests</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>${tycho-groupid}</groupId>
@@ -150,6 +150,11 @@
 					<skip>true</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.18.1</version>
+			</plugin>
 		</plugins>
 	</build>
- </project>
+</project>
