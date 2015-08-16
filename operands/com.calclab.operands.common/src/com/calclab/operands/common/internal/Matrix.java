@@ -13,6 +13,8 @@ public class Matrix implements Operand {
 	private final int width;
 	private final int height;
 
+	private boolean exect = true;
+
 	public Matrix(Operand[][] value) {
 		this.value = value;
 		this.height = value.length;
@@ -35,29 +37,28 @@ public class Matrix implements Operand {
 
 	@Override
 	public boolean isExact() {
-		// TODO Auto-generated method stub
-		return false;
+		return exect;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("[");
+		builder.append(System.lineSeparator());
+		builder.append("\t[");
 		builder.append(System.lineSeparator());
 		for (int i = 0; i < height; i++) {
-			builder.append("	");
+			builder.append("\t\t");
 			for (int j = 0; j < width; j++) {
 				builder.append(value[i][j].toString());
 				if (j != width - 1) {
-					builder.append(",");
+					builder.append(" ");
 				}
 			}
 			if (i != height - 1) {
 				builder.append(System.lineSeparator());
 			}
 		}
-		builder.append(System.lineSeparator());
-		builder.append("]");
+		builder.append("\t]");
 		return builder.toString();
 	}
 

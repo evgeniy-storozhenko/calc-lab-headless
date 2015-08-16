@@ -2,6 +2,7 @@ package com.calclab.functions.common;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
@@ -69,5 +70,35 @@ public abstract class AbstractFunction implements Function {
 	public String getInput() {
 		return "";
 	}
+
+	@Override
+	public Operand calculate() {
+		if (!status.isWaiting()) {
+			return result;
+		}
+		status.setStage(CalculationStatus.Stage.INPROCESS);
+		try {
+			if (arguments.size() == 1) {
+				result = runWithOneArg(arguments.get(0));
+				status.setStage(CalculationStatus.Stage.DONE);
+			} else {
+				String message = "One argument is necessary for the function '" + getName() + "'.";
+				throw new OperatorNotFoundException(message, new Throwable());
+			}
+		} catch (OperatorNotFoundException e) {
+			status.setMessage(e.getMessage());
+			status.setStage(CalculationStatus.Stage.ERROR);
+		}
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		String args = arguments.stream().map(object -> object.toString())
+				.collect(Collectors.joining(","));
+		return getName() + "(" + args + ")";
+	}
+
+	protected abstract Operand runWithOneArg(Operand operand) throws OperatorNotFoundException;
 
 }

@@ -1,15 +1,14 @@
 package com.calclab.functions.common;
 
 import java.math.BigDecimal;
-import java.util.stream.Collectors;
-
-import numbercruncher.mathutils.BigFunctions;
 
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.operands.common.CommonOperandFactory;
+
+import numbercruncher.mathutils.BigFunctions;
 
 public class LogFunction extends AbstractFunction {
 
@@ -88,10 +87,8 @@ public class LogFunction extends AbstractFunction {
 	}
 
 	@Override
-	public String toString() {
-		String args = arguments.stream().map(object -> object.toString())
-				.collect(Collectors.joining(","));
-		return getName() + "(" + args + ")";
+	protected Operand runWithOneArg(Operand operand) throws OperatorNotFoundException {
+		return null;
 	}
 
 }

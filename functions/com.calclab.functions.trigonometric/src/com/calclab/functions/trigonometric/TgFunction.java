@@ -5,11 +5,11 @@ import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.functions.common.AbstractFunction;
 
 
-public class SinFunction extends AbstractFunction {
+public class TgFunction extends AbstractFunction {
 
 	@Override
 	public String getName() {
-		return "sin";
+		return "tg";
 	}
 
 	@Override

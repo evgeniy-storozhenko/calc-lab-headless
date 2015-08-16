@@ -57,8 +57,8 @@ options {
 
 calculation
 	: ({ String variable = null; StringBuilder in = new StringBuilder();} 
-		(NAME EQUALS{ 
-				variable = $NAME.text;
+		(NAME EQUALS { 
+				variable = $NAME.text.trim();
 				in.append($NAME.text);
 				in.append($EQUALS.text);
 			})?
@@ -98,15 +98,15 @@ compositeUnit returns[Operand value]
 ;
 
 unit returns[Operand value]
-	: (number { $value = operandFactory.createNumber($number.text); } 
+	: (number { $value = operandFactory.createNumber($number.text.trim()); } 
 		| compositeExpression { $value = $compositeExpression.value; } 
 		| functionOrVariable { $value = $functionOrVariable.value; }
 		| matrix { $value = $matrix.value; }
-	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
+	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )?
 ;
 
 number
-	: MINUS? DIGIT (DECIMAL_SEPARATOR DIGIT)*
+	: MINUS? S* DIGIT (DECIMAL_SEPARATOR DIGIT)* S*
 ;
 
 compositeExpression returns[Operand value] 
@@ -123,18 +123,18 @@ functionOrVariable returns[Operand value]
 		name=NAME (OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS {isVariable = false;})?
 		{
 			if (isVariable) {
-				Calculable variable = variables.get($name.text);
+				Calculable variable = variables.get($name.text.trim());
 				if (variable != null) {
-					$value = operandFactory.createVariableOperand($name.text, variable);
+					$value = operandFactory.createVariableOperand($name.text.trim(), variable);
 				} else {
-					String msg = "The variable '"+ $name.text +"' is not defined.";
+					String msg = "The variable '"+ $name.text.trim() +"' is not defined.";
 					throw new SyntaxErrorException($name.line, $name.getCharPositionInLine(), msg);
 				}
 				if (operation != null) {
 					$value = operandFactory.createUnaryOperand(operation, $value);
 				}
 			} else {
-				$value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
+				$value = operandFactory.createFunctionOperand($NAME.text.trim(), $arguments.value);
 			 	if (operation != null) {
 			 		$value = operandFactory.createUnaryOperand(operation, $value);
 			 	}
@@ -152,16 +152,22 @@ arguments returns[ArrayList<Operand> value]
 matrix returns[Operand value]
 	: { Operation operation = null; } 
 		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?  
-		OPENING_SQ_PARENTHESIS matrixArguments CLOSING_SQ_PARENTHESIS
-		{ if (operation == null) $value = $matrixArguments.value;
-		  else $value = operandFactory.createUnaryOperand(operation, $matrixArguments.value); }
+		OPENING_SQ_PARENTHESIS matrixRows CLOSING_SQ_PARENTHESIS
+		{ if (operation == null) $value = $matrixRows.value;
+		  else $value = operandFactory.createUnaryOperand(operation, $matrixRows.value); }
 ;
 
-matrixArguments returns[Operand value]
+matrixRows returns[Operand value]
 	: { ArrayList<Operand[]> argsList = new ArrayList<Operand[]>(); }
-		a1=arguments {argsList.add(a1.toArray(new Operand[1]));} 
-			(EXPRESSIONS_SEPARATOR a2=arguments { argsList.add(a2.toArray(new Operand[1])); })*
+		a1=matrixColumns {argsList.add(a1.toArray(new Operand[1]));} 
+			(EXPRESSIONS_SEPARATOR a2=matrixColumns { argsList.add(a2.toArray(new Operand[1])); })*
 	{ $value = operandFactory.createMatrix(argsList.toArray(new Operand[1][])); }
+;
+
+matrixColumns returns[ArrayList<Operand> value]
+	: { $value = new ArrayList<Operand>(); }
+		e1=expression { $value.add($e1.value); } 
+			((' ' | ARGUMENTS_SEPARATOR) e2=expression { $value.add($e2.value); })*
 ;
 
 // Composite operations
@@ -180,28 +186,27 @@ binaryOperationLow returns[Operation value]: PLUS
 		{value = operationFactory.createCommonOperation($MINUS.text);};
 
 // Simple operations
-PLUS 	:	'+';
-MINUS	:	'-';
-MULTIPLY :	'*';
-DIVISION :	'/';
+PLUS 	:	S* '+' S*;
+MINUS	:	S* '-' S*;
+MULTIPLY :	S* '*' S*;
+DIVISION :	S* '/' S*;
+EQUALS	:	S* '=' S*;
 
 // Difficult operations
-INVOLUTION : '^';
-FACTORIAL : '!';
+INVOLUTION : S* '^' S*;
+FACTORIAL : S* '!' S*;
+
 
 // System
 DIGIT : '0'..'9'+;
-EQUALS: '=';
-NAME : ID (ID |DIGIT)*;
+NAME : S* ID (ID |DIGIT)* S*;
 fragment ID : ('a'..'z' | 'A'..'Z' | '_');
 fragment CHAR : 'A'..'z';
-OPENING_PARENTHESIS : '(';
-CLOSING_PARENTHESIS : ')';
-OPENING_SQ_PARENTHESIS : '[';
-CLOSING_SQ_PARENTHESIS : ']';
-NEWLINE : '\r'? '\n' {$channel=HIDDEN;};
+OPENING_PARENTHESIS : S* '(' S*;
+CLOSING_PARENTHESIS : S* ')' S*;
+OPENING_SQ_PARENTHESIS : S* '[' S*;
+CLOSING_SQ_PARENTHESIS : S* ']' S*;
 DECIMAL_SEPARATOR : '.';
 ARGUMENTS_SEPARATOR : ',';
-EXPRESSIONS_SEPARATOR : NEWLINE* ';' NEWLINE* ;
-WS: (' ' |'\n' |'\r' )+ {$channel=HIDDEN;};
-
+EXPRESSIONS_SEPARATOR : S* ';' S* ;
+S: (' ' | '\n' |'\r' | '\t')+ {$channel=HIDDEN;};

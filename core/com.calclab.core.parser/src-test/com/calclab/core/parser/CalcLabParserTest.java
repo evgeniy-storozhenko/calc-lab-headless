@@ -12,6 +12,8 @@ import junit.framework.TestCase;
 
 public class CalcLabParserTest extends TestCase {
 
+	public static String ls = System.lineSeparator();
+
 	public void testParse_1() {
 		isParseEquals("0;");
 	}
@@ -169,9 +171,29 @@ public class CalcLabParserTest extends TestCase {
 	}
 
 	public void testParse_39() {
-		String expect = "[" + System.lineSeparator()
-				+ "	1,2,3" + System.lineSeparator() + "];";
+		String expect = ls + "[" + ls + "1 2 3];";
 		isParseEquals("[1,2,3];", expect);
+	}
+
+	public void testParse_40() {
+		String expect = ls + "[" + ls + "1 2 3];";
+		isParseEquals("[1 2 3];", expect);
+	}
+
+	public void testParse_41() {
+		String expect = ls + "["
+				+ ls + "1"
+				+ ls + "2"
+				+ ls + "3];";
+		isParseEquals("[1;2;3];", expect);
+	}
+
+	public void testParse_42() {
+		String expect = ls + "["
+				+ ls + "1 9"
+				+ ls + "2 6"
+				+ ls + "3 7];";
+		isParseEquals("[1 9;2 6;3,7];", expect);
 	}
 
 	private void isParseEquals(String input) {
@@ -181,7 +203,7 @@ public class CalcLabParserTest extends TestCase {
 
 	private void isParseEquals(String input, String parsed) {
 		Calculable calculation = parse(input);
-		assertEquals(parsed, calculation.toString());
+		assertEquals(parsed, calculation.toString().replaceAll("\t", ""));
 	}
 
 	private Calculable parse(String input) {

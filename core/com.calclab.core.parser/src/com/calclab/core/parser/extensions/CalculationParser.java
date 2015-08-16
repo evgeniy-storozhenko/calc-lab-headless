@@ -62,4 +62,9 @@ public class CalculationParser implements Parser {
 		return new HashMap<String, Calculable>();
 	}
 
+	@Override
+	public String prepareInputHook(String input) {
+		return input;
+	}
+
 }

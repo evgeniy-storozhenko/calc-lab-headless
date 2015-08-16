@@ -12,6 +12,8 @@ import com.calclab.core.input.exceptions.InputException;
  */
 public interface Parser {
 
+	String prepareInputHook(String input);
+
 	void parse(CalculationInput input) throws InputException;
 
 	List<Calculable> getExpressions();

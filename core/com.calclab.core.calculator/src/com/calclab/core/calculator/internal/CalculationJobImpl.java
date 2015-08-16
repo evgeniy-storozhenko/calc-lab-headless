@@ -42,6 +42,7 @@ public class CalculationJobImpl implements CalculationJob {
 		try {
 			setScale();
 			status.setStage(CalculationStatus.Stage.INPROCESS);
+			input.setExpressions(parser.prepareInputHook(input.getExpressions()));
 			parser.parse(input);
 			variables.putAll(parser.getVariables());
 			expressions = parser.getExpressions();
