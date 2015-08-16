@@ -3,21 +3,21 @@ package com.calclab.core.calculator.view;
 import java.io.File;
 
 import com.calclab.core.calculations.Calculable;
-import com.calclab.core.calculator.CalculationProcess;
+import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
 import com.calclab.core.operands.Operand;
 
 public class RowView implements CalculationView {
 
 	private boolean isStdIn = false;
-	private CalculationProcess calculationProcess = null;
+	private CalculationJob calculationProcess = null;
 
 	public RowView(boolean isStdIn) {
 		this.isStdIn = isStdIn;
 	}
 
 	@Override
-	public void setCalculationProcess(CalculationProcess calculationProcess) {
+	public void setCalculationProcess(CalculationJob calculationProcess) {
 		this.calculationProcess = calculationProcess;
 	}
 

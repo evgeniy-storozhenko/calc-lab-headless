@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
-import com.calclab.core.calculator.CalculationProcess;
+import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.exceptions.InputException;
 import com.calclab.core.operands.AbstractNumber;
@@ -15,7 +15,7 @@ import com.calclab.core.parser.Parser;
 import com.calclab.core.parser.ParserFactory;
 import com.calclab.core.parser.extensions.SyntaxErrorException;
 
-public class CalculationProcessImpl implements CalculationProcess {
+public class CalculationJobImpl implements CalculationJob {
 
 	private final int scale;
 	private final Parser parser;
@@ -25,13 +25,13 @@ public class CalculationProcessImpl implements CalculationProcess {
 	private List<Calculable> expressions = new ArrayList<>();
 	private Map<String, Calculable> variables = new HashMap<>();
 
-	public CalculationProcessImpl(CalculationInput input) {
+	public CalculationJobImpl(CalculationInput input) {
 		this.scale = 60;
 		this.input = input;
 		this.parser = ParserFactory.createCalculationParser();
 	}
 
-	public CalculationProcessImpl(CalculationInput input, int scale) {
+	public CalculationJobImpl(CalculationInput input, int scale) {
 		this.scale = scale;
 		this.input = input;
 		this.parser = ParserFactory.createCalculationParser();

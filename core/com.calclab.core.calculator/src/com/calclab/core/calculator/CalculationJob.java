@@ -6,7 +6,7 @@ import java.util.Map;
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 
-public interface CalculationProcess {
+public interface CalculationJob {
 
 	public void run();
 

@@ -100,8 +100,7 @@ compositeUnit returns[Operand value]
 unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value = $compositeExpression.value; } 
-		| variable { $value = $variable.value; }
-		| function { $value = $function.value; }
+		| functionOrVariable { $value = $functionOrVariable.value; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
 
@@ -117,22 +116,12 @@ compositeExpression returns[Operand value]
 		  else $value = operandFactory.createUnaryOperand(operation, $expression.value); }
 ;
 
-function returns[Operand value] 
-	: { Operation operation = null; }
+functionOrVariable returns[Operand value]
+	: { Operation operation = null; boolean isVariable = true; }
 		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
-		NAME OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS 
-		{ 
-			$value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
-		 	if (operation != null) {
-		 		$value = operandFactory.createUnaryOperand(operation, $value);
-		 	}
-		}
-;
-
-variable returns[Operand value]
-	: { Operation operation = null; }
-		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?
-		name=NAME {
+		name=NAME (OPENING_PARENTHESIS arguments CLOSING_PARENTHESIS {isVariable = false;})?
+		{
+			if (isVariable) {
 				Calculable variable = variables.get($name.text);
 				if (variable != null) {
 					$value = operandFactory.createVariableOperand($name.text, variable);
@@ -143,8 +132,13 @@ variable returns[Operand value]
 				if (operation != null) {
 					$value = operandFactory.createUnaryOperand(operation, $value);
 				}
+			} else {
+				$value = operandFactory.createFunctionOperand($NAME.text, $arguments.value);
+			 	if (operation != null) {
+			 		$value = operandFactory.createUnaryOperand(operation, $value);
+			 	}
+			}
 		}
-		
 ;
 
 arguments returns[ArrayList<Operand> value]

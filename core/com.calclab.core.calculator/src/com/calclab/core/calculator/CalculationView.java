@@ -4,7 +4,7 @@ import java.io.File;
 
 public interface CalculationView {
 
-	void setCalculationProcess(CalculationProcess calcProcess);
+	void setCalculationProcess(CalculationJob calcProcess);
 
 	void setOutputFile(File file);
 

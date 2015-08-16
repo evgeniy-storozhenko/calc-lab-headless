@@ -1,7 +1,5 @@
 package com.calclab.core.parser;
 
-import junit.framework.TestCase;
-
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
@@ -9,6 +7,8 @@ import org.antlr.runtime.RecognitionException;
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.parser.internal.CalcLabLexer;
 import com.calclab.core.parser.internal.CalcLabParser;
+
+import junit.framework.TestCase;
 
 public class CalcLabParserTest extends TestCase {
 
@@ -164,6 +164,10 @@ public class CalcLabParserTest extends TestCase {
 		assertEquals("(-a);", parser.getVariables().get("b").toString());
 	}
 
+	public void testParse_38() {
+		isParseEquals("-sind(30);", "(-sind(30));");
+	}
+	
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString());

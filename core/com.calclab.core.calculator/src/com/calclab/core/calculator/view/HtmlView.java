@@ -3,15 +3,15 @@ package com.calclab.core.calculator.view;
 import java.io.File;
 
 import com.calclab.core.calculations.CalculationStatus;
-import com.calclab.core.calculator.CalculationProcess;
+import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
 
 public class HtmlView implements CalculationView {
 
-	private CalculationProcess calculationProcess = null;
+	private CalculationJob calculationProcess = null;
 
 	@Override
-	public void setCalculationProcess(CalculationProcess calculationProcess) {
+	public void setCalculationProcess(CalculationJob calculationProcess) {
 		this.calculationProcess = calculationProcess;
 	}
 
