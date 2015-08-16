@@ -42,8 +42,7 @@ public class CalculationParser implements Parser {
 		try {
 			antlrParser.calculation();
 		} catch (RecognitionException e) {
-			e.printStackTrace();
-			// TODO report
+			throw new SyntaxErrorException(e.line, e.charPositionInLine, e.getMessage());
 		}
 	}
 

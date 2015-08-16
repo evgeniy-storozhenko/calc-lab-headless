@@ -167,7 +167,13 @@ public class CalcLabParserTest extends TestCase {
 	public void testParse_38() {
 		isParseEquals("-sind(30);", "(-sind(30));");
 	}
-	
+
+	public void testParse_39() {
+		String expect = "[" + System.lineSeparator()
+				+ "	1,2,3" + System.lineSeparator() + "];";
+		isParseEquals("[1,2,3];", expect);
+	}
+
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString());
@@ -184,10 +190,10 @@ public class CalcLabParserTest extends TestCase {
 		CalcLabParser parser = new CalcLabParser(tokens);
 		try {
 			parser.calculation();
-        } catch (RecognitionException e) {
-            e.printStackTrace();
+		} catch (RecognitionException e) {
+			e.printStackTrace();
 			fail();
-        }
+		}
 		return parser.getCalculations().get(0);
 	}
 

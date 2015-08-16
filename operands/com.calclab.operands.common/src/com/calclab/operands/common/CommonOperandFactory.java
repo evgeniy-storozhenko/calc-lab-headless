@@ -10,6 +10,7 @@ import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.FunctionOperand;
+import com.calclab.operands.common.internal.Matrix;
 import com.calclab.operands.common.internal.UnaryOperand;
 import com.calclab.operands.common.internal.Variable;
 
@@ -61,6 +62,10 @@ public class CommonOperandFactory {
 
 	public Operand createVariableOperand(String key, Calculable expression) {
 		return new Variable(key, expression);
+	}
+
+	public Operand createMatrix(Operand[][] arguments) {
+		return new Matrix(arguments);
 	}
 
 }

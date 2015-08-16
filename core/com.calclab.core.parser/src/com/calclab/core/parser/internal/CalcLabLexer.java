@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-08-16 15:32:36
+// $ANTLR 3.5.2 CalcLab.g 2015-08-16 17:14:41
 
 package com.calclab.core.parser.internal;
 
@@ -17,21 +17,23 @@ public class CalcLabLexer extends Lexer {
 	public static final int ARGUMENTS_SEPARATOR = 4;
 	public static final int CHAR = 5;
 	public static final int CLOSING_PARENTHESIS = 6;
-	public static final int DECIMAL_SEPARATOR = 7;
-	public static final int DIGIT = 8;
-	public static final int DIVISION = 9;
-	public static final int EQUALS = 10;
-	public static final int EXPRESSIONS_SEPARATOR = 11;
-	public static final int FACTORIAL = 12;
-	public static final int ID = 13;
-	public static final int INVOLUTION = 14;
-	public static final int MINUS = 15;
-	public static final int MULTIPLY = 16;
-	public static final int NAME = 17;
-	public static final int NEWLINE = 18;
-	public static final int OPENING_PARENTHESIS = 19;
-	public static final int PLUS = 20;
-	public static final int WS = 21;
+	public static final int CLOSING_SQ_PARENTHESIS = 7;
+	public static final int DECIMAL_SEPARATOR = 8;
+	public static final int DIGIT = 9;
+	public static final int DIVISION = 10;
+	public static final int EQUALS = 11;
+	public static final int EXPRESSIONS_SEPARATOR = 12;
+	public static final int FACTORIAL = 13;
+	public static final int ID = 14;
+	public static final int INVOLUTION = 15;
+	public static final int MINUS = 16;
+	public static final int MULTIPLY = 17;
+	public static final int NAME = 18;
+	public static final int NEWLINE = 19;
+	public static final int OPENING_PARENTHESIS = 20;
+	public static final int OPENING_SQ_PARENTHESIS = 21;
+	public static final int PLUS = 22;
+	public static final int WS = 23;
 
 	// delegates
 	// delegators
@@ -60,8 +62,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = PLUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:166:7: ( '+' )
-			// CalcLab.g:166:9: '+'
+			// CalcLab.g:183:7: ( '+' )
+			// CalcLab.g:183:9: '+'
 			{
 				match('+');
 			}
@@ -79,8 +81,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = MINUS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:167:7: ( '-' )
-			// CalcLab.g:167:9: '-'
+			// CalcLab.g:184:7: ( '-' )
+			// CalcLab.g:184:9: '-'
 			{
 				match('-');
 			}
@@ -98,8 +100,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = MULTIPLY;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:168:10: ( '*' )
-			// CalcLab.g:168:12: '*'
+			// CalcLab.g:185:10: ( '*' )
+			// CalcLab.g:185:12: '*'
 			{
 				match('*');
 			}
@@ -117,8 +119,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = DIVISION;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:169:10: ( '/' )
-			// CalcLab.g:169:12: '/'
+			// CalcLab.g:186:10: ( '/' )
+			// CalcLab.g:186:12: '/'
 			{
 				match('/');
 			}
@@ -136,8 +138,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = INVOLUTION;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:172:12: ( '^' )
-			// CalcLab.g:172:14: '^'
+			// CalcLab.g:189:12: ( '^' )
+			// CalcLab.g:189:14: '^'
 			{
 				match('^');
 			}
@@ -155,8 +157,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = FACTORIAL;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:173:11: ( '!' )
-			// CalcLab.g:173:13: '!'
+			// CalcLab.g:190:11: ( '!' )
+			// CalcLab.g:190:13: '!'
 			{
 				match('!');
 			}
@@ -174,10 +176,10 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = DIGIT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:176:7: ( ( '0' .. '9' )+ )
-			// CalcLab.g:176:9: ( '0' .. '9' )+
+			// CalcLab.g:193:7: ( ( '0' .. '9' )+ )
+			// CalcLab.g:193:9: ( '0' .. '9' )+
 			{
-				// CalcLab.g:176:9: ( '0' .. '9' )+
+				// CalcLab.g:193:9: ( '0' .. '9' )+
 				int cnt1 = 0;
 				loop1: while (true) {
 					int alt1 = 2;
@@ -224,8 +226,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = EQUALS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:177:7: ( '=' )
-			// CalcLab.g:177:9: '='
+			// CalcLab.g:194:7: ( '=' )
+			// CalcLab.g:194:9: '='
 			{
 				match('=');
 			}
@@ -243,12 +245,12 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = NAME;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:178:6: ( ID ( ID | DIGIT )* )
-			// CalcLab.g:178:8: ID ( ID | DIGIT )*
+			// CalcLab.g:195:6: ( ID ( ID | DIGIT )* )
+			// CalcLab.g:195:8: ID ( ID | DIGIT )*
 			{
 				mID();
 
-				// CalcLab.g:178:11: ( ID | DIGIT )*
+				// CalcLab.g:195:11: ( ID | DIGIT )*
 				loop2: while (true) {
 					int alt2 = 3;
 					int LA2_0 = input.LA(1);
@@ -260,14 +262,14 @@ public class CalcLabLexer extends Lexer {
 
 					switch (alt2) {
 					case 1:
-					// CalcLab.g:178:12: ID
+					// CalcLab.g:195:12: ID
 					{
 						mID();
 
 					}
 						break;
 					case 2:
-					// CalcLab.g:178:16: DIGIT
+					// CalcLab.g:195:16: DIGIT
 					{
 						mDIGIT();
 
@@ -292,7 +294,7 @@ public class CalcLabLexer extends Lexer {
 	// $ANTLR start "ID"
 	public final void mID() throws RecognitionException {
 		try {
-			// CalcLab.g:179:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
+			// CalcLab.g:196:13: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) )
 			// CalcLab.g:
 			{
 				if ((input.LA(1) >= 'A' && input.LA(1) <= 'Z') || input.LA(1) == '_'
@@ -314,7 +316,7 @@ public class CalcLabLexer extends Lexer {
 	// $ANTLR start "CHAR"
 	public final void mCHAR() throws RecognitionException {
 		try {
-			// CalcLab.g:180:15: ( 'A' .. 'z' )
+			// CalcLab.g:197:15: ( 'A' .. 'z' )
 			// CalcLab.g:
 			{
 				if ((input.LA(1) >= 'A' && input.LA(1) <= 'z')) {
@@ -337,8 +339,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = OPENING_PARENTHESIS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:181:21: ( '(' )
-			// CalcLab.g:181:23: '('
+			// CalcLab.g:198:21: ( '(' )
+			// CalcLab.g:198:23: '('
 			{
 				match('(');
 			}
@@ -356,8 +358,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = CLOSING_PARENTHESIS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:182:21: ( ')' )
-			// CalcLab.g:182:23: ')'
+			// CalcLab.g:199:21: ( ')' )
+			// CalcLab.g:199:23: ')'
 			{
 				match(')');
 			}
@@ -370,15 +372,53 @@ public class CalcLabLexer extends Lexer {
 	}
 	// $ANTLR end "CLOSING_PARENTHESIS"
 
+	// $ANTLR start "OPENING_SQ_PARENTHESIS"
+	public final void mOPENING_SQ_PARENTHESIS() throws RecognitionException {
+		try {
+			int _type = OPENING_SQ_PARENTHESIS;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:200:24: ( '[' )
+			// CalcLab.g:200:26: '['
+			{
+				match('[');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "OPENING_SQ_PARENTHESIS"
+
+	// $ANTLR start "CLOSING_SQ_PARENTHESIS"
+	public final void mCLOSING_SQ_PARENTHESIS() throws RecognitionException {
+		try {
+			int _type = CLOSING_SQ_PARENTHESIS;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:201:24: ( ']' )
+			// CalcLab.g:201:26: ']'
+			{
+				match(']');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "CLOSING_SQ_PARENTHESIS"
+
 	// $ANTLR start "NEWLINE"
 	public final void mNEWLINE() throws RecognitionException {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:183:9: ( ( '\\r' )? '\\n' )
-			// CalcLab.g:183:11: ( '\\r' )? '\\n'
+			// CalcLab.g:202:9: ( ( '\\r' )? '\\n' )
+			// CalcLab.g:202:11: ( '\\r' )? '\\n'
 			{
-				// CalcLab.g:183:11: ( '\\r' )?
+				// CalcLab.g:202:11: ( '\\r' )?
 				int alt3 = 2;
 				int LA3_0 = input.LA(1);
 				if ((LA3_0 == '\r')) {
@@ -386,7 +426,7 @@ public class CalcLabLexer extends Lexer {
 				}
 				switch (alt3) {
 				case 1:
-				// CalcLab.g:183:11: '\\r'
+				// CalcLab.g:202:11: '\\r'
 				{
 					match('\r');
 				}
@@ -411,8 +451,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = DECIMAL_SEPARATOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:184:19: ( '.' )
-			// CalcLab.g:184:21: '.'
+			// CalcLab.g:203:19: ( '.' )
+			// CalcLab.g:203:21: '.'
 			{
 				match('.');
 			}
@@ -430,8 +470,8 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = ARGUMENTS_SEPARATOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:185:21: ( ',' )
-			// CalcLab.g:185:23: ','
+			// CalcLab.g:204:21: ( ',' )
+			// CalcLab.g:204:23: ','
 			{
 				match(',');
 			}
@@ -449,10 +489,10 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = EXPRESSIONS_SEPARATOR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:186:23: ( ( NEWLINE )* ';' ( NEWLINE )* )
-			// CalcLab.g:186:25: ( NEWLINE )* ';' ( NEWLINE )*
+			// CalcLab.g:205:23: ( ( NEWLINE )* ';' ( NEWLINE )* )
+			// CalcLab.g:205:25: ( NEWLINE )* ';' ( NEWLINE )*
 			{
-				// CalcLab.g:186:25: ( NEWLINE )*
+				// CalcLab.g:205:25: ( NEWLINE )*
 				loop4: while (true) {
 					int alt4 = 2;
 					int LA4_0 = input.LA(1);
@@ -462,7 +502,7 @@ public class CalcLabLexer extends Lexer {
 
 					switch (alt4) {
 					case 1:
-					// CalcLab.g:186:25: NEWLINE
+					// CalcLab.g:205:25: NEWLINE
 					{
 						mNEWLINE();
 
@@ -475,7 +515,7 @@ public class CalcLabLexer extends Lexer {
 				}
 
 				match(';');
-				// CalcLab.g:186:38: ( NEWLINE )*
+				// CalcLab.g:205:38: ( NEWLINE )*
 				loop5: while (true) {
 					int alt5 = 2;
 					int LA5_0 = input.LA(1);
@@ -485,7 +525,7 @@ public class CalcLabLexer extends Lexer {
 
 					switch (alt5) {
 					case 1:
-					// CalcLab.g:186:38: NEWLINE
+					// CalcLab.g:205:38: NEWLINE
 					{
 						mNEWLINE();
 
@@ -512,10 +552,10 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:187:3: ( ( ' ' | '\\n' | '\\r' )+ )
-			// CalcLab.g:187:5: ( ' ' | '\\n' | '\\r' )+
+			// CalcLab.g:206:3: ( ( ' ' | '\\n' | '\\r' )+ )
+			// CalcLab.g:206:5: ( ' ' | '\\n' | '\\r' )+
 			{
-				// CalcLab.g:187:5: ( ' ' | '\\n' | '\\r' )+
+				// CalcLab.g:206:5: ( ' ' | '\\n' | '\\r' )+
 				int cnt6 = 0;
 				loop6: while (true) {
 					int alt6 = 2;
@@ -561,9 +601,9 @@ public class CalcLabLexer extends Lexer {
 	@Override
 	public void mTokens() throws RecognitionException {
 		// CalcLab.g:1:8: ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | EQUALS | NAME |
-		// OPENING_PARENTHESIS | CLOSING_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR |
-		// EXPRESSIONS_SEPARATOR | WS )
-		int alt7 = 16;
+		// OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | NEWLINE |
+		// DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | WS )
+		int alt7 = 18;
 		alt7 = dfa7.predict(input);
 		switch (alt7) {
 		case 1:
@@ -644,35 +684,49 @@ public class CalcLabLexer extends Lexer {
 		}
 			break;
 		case 12:
-		// CalcLab.g:1:118: NEWLINE
+		// CalcLab.g:1:118: OPENING_SQ_PARENTHESIS
+		{
+			mOPENING_SQ_PARENTHESIS();
+
+		}
+			break;
+		case 13:
+		// CalcLab.g:1:141: CLOSING_SQ_PARENTHESIS
+		{
+			mCLOSING_SQ_PARENTHESIS();
+
+		}
+			break;
+		case 14:
+		// CalcLab.g:1:164: NEWLINE
 		{
 			mNEWLINE();
 
 		}
 			break;
-		case 13:
-		// CalcLab.g:1:126: DECIMAL_SEPARATOR
+		case 15:
+		// CalcLab.g:1:172: DECIMAL_SEPARATOR
 		{
 			mDECIMAL_SEPARATOR();
 
 		}
 			break;
-		case 14:
-		// CalcLab.g:1:144: ARGUMENTS_SEPARATOR
+		case 16:
+		// CalcLab.g:1:190: ARGUMENTS_SEPARATOR
 		{
 			mARGUMENTS_SEPARATOR();
 
 		}
 			break;
-		case 15:
-		// CalcLab.g:1:164: EXPRESSIONS_SEPARATOR
+		case 17:
+		// CalcLab.g:1:210: EXPRESSIONS_SEPARATOR
 		{
 			mEXPRESSIONS_SEPARATOR();
 
 		}
 			break;
-		case 16:
-		// CalcLab.g:1:186: WS
+		case 18:
+		// CalcLab.g:1:232: WS
 		{
 			mWS();
 
@@ -683,17 +737,17 @@ public class CalcLabLexer extends Lexer {
 	}
 
 	protected DFA7 dfa7 = new DFA7(this);
-	static final String DFA7_eotS = "\14\uffff\1\21\1\22\5\uffff\2\21";
-	static final String DFA7_eofS = "\25\uffff";
-	static final String DFA7_minS = "\1\12\13\uffff\2\12\5\uffff\2\12";
-	static final String DFA7_maxS = "\1\172\13\uffff\1\12\1\73\5\uffff\1\12\1\73";
-	static final String DFA7_acceptS = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\2\uffff\1\15" +
-			"\1\16\1\17\1\20\1\14\2\uffff";
-	static final String DFA7_specialS = "\25\uffff}>";
+	static final String DFA7_eotS = "\16\uffff\1\23\1\24\5\uffff\2\23";
+	static final String DFA7_eofS = "\27\uffff";
+	static final String DFA7_minS = "\1\12\15\uffff\2\12\5\uffff\2\12";
+	static final String DFA7_maxS = "\1\172\15\uffff\1\12\1\73\5\uffff\1\12\1\73";
+	static final String DFA7_acceptS = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\2\uffff" +
+			"\1\17\1\20\1\21\1\22\1\16\2\uffff";
+	static final String DFA7_specialS = "\27\uffff}>";
 	static final String[] DFA7_transitionS = {
-			"\1\15\2\uffff\1\14\22\uffff\1\21\1\6\6\uffff\1\12\1\13\1\3\1\1\1\17\1" +
-					"\2\1\16\1\4\12\7\1\uffff\1\20\1\uffff\1\10\3\uffff\32\11\3\uffff\1\5" +
-					"\1\11\1\uffff\32\11",
+			"\1\17\2\uffff\1\16\22\uffff\1\23\1\6\6\uffff\1\12\1\13\1\3\1\1\1\21\1" +
+					"\2\1\20\1\4\12\7\1\uffff\1\22\1\uffff\1\10\3\uffff\32\11\1\14\1\uffff" +
+					"\1\15\1\5\1\11\1\uffff\32\11",
 			"",
 			"",
 			"",
@@ -705,15 +759,17 @@ public class CalcLabLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\15",
-			"\1\24\2\uffff\1\23\22\uffff\1\21\32\uffff\1\20",
+			"",
+			"",
+			"\1\17",
+			"\1\26\2\uffff\1\25\22\uffff\1\23\32\uffff\1\22",
 			"",
 			"",
 			"",
 			"",
 			"",
-			"\1\24",
-			"\1\24\2\uffff\1\23\55\uffff\1\20"
+			"\1\26",
+			"\1\26\2\uffff\1\25\55\uffff\1\22"
 	};
 
 	static final short[] DFA7_eot = DFA.unpackEncodedString(DFA7_eotS);
@@ -748,7 +804,7 @@ public class CalcLabLexer extends Lexer {
 
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | EQUALS | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | WS );";
+			return "1:1: Tokens : ( PLUS | MINUS | MULTIPLY | DIVISION | INVOLUTION | FACTORIAL | DIGIT | EQUALS | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | NEWLINE | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | WS );";
 		}
 	}
 

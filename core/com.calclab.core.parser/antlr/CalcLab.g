@@ -101,6 +101,7 @@ unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text); } 
 		| compositeExpression { $value = $compositeExpression.value; } 
 		| functionOrVariable { $value = $functionOrVariable.value; }
+		| matrix { $value = $matrix.value; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )? 
 ;
 
@@ -147,6 +148,22 @@ arguments returns[ArrayList<Operand> value]
 			(ARGUMENTS_SEPARATOR e2=expression { $value.add($e2.value); })*
 ;
 
+
+matrix returns[Operand value]
+	: { Operation operation = null; } 
+		(MINUS { operation = operationFactory.createCommonOperation($MINUS.text); })?  
+		OPENING_SQ_PARENTHESIS matrixArguments CLOSING_SQ_PARENTHESIS
+		{ if (operation == null) $value = $matrixArguments.value;
+		  else $value = operandFactory.createUnaryOperand(operation, $matrixArguments.value); }
+;
+
+matrixArguments returns[Operand value]
+	: { ArrayList<Operand[]> argsList = new ArrayList<Operand[]>(); }
+		a1=arguments {argsList.add(a1.toArray(new Operand[1]));} 
+			(EXPRESSIONS_SEPARATOR a2=arguments { argsList.add(a2.toArray(new Operand[1])); })*
+	{ $value = operandFactory.createMatrix(argsList.toArray(new Operand[1][])); }
+;
+
 // Composite operations
 unaryOperation returns[Operation value]: FACTORIAL
 		{value = operationFactory.createCommonOperation($FACTORIAL.text);};
@@ -180,6 +197,8 @@ fragment ID : ('a'..'z' | 'A'..'Z' | '_');
 fragment CHAR : 'A'..'z';
 OPENING_PARENTHESIS : '(';
 CLOSING_PARENTHESIS : ')';
+OPENING_SQ_PARENTHESIS : '[';
+CLOSING_SQ_PARENTHESIS : ']';
 NEWLINE : '\r'? '\n' {$channel=HIDDEN;};
 DECIMAL_SEPARATOR : '.';
 ARGUMENTS_SEPARATOR : ',';
