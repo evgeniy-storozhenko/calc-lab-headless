@@ -3,7 +3,7 @@ The console environment for numerical computations. Eclipse based java applicati
 
 [Download last build](http://calc-lab.com:8080/job/calc-lab-headless/lastStableBuild/artifact/build/product/target/calclab-headless-1.0.0-SNAPSHOT.zip)
 
-[![Build Status](http://calc-lab.com:8080/buildStatus/icon?job=calc-lab-headless&build=6)](http://calc-lab.com:8080/job/calc-lab-headless/6/)
+[![Build Status](http://calc-lab.com:8080/job/calc-lab-headless/lastStableBuild/badge/icon)](http://calc-lab.com:8080/job/calc-lab-headless/lastStableBuild/)
 
 
 ## Usage
