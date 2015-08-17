@@ -3,7 +3,10 @@ The console environment for numerical computations. Eclipse based java applicati
 
 [Download last build](http://calc-lab.com:8080/job/calc-lab-headless/lastStableBuild/artifact/build/product/target/calclab-headless-1.0.0-SNAPSHOT.zip)
 
+[![Build Status](http://calc-lab.com:8080/buildStatus/icon?job=calc-lab-headless&build=6)](http://calc-lab.com:8080/job/calc-lab-headless/6/)
 
+
+## Usage
 ```
 Calculation Laboratory Headless command line arguments:
 	-input, -i:	Input expression for calculation
@@ -14,7 +17,7 @@ Calculation Laboratory Headless command line arguments:
 	-version, -v:	Current version
 ```
 
-## Examples of use
+## Examples
 ### Continuous mode
 ```
 evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh
