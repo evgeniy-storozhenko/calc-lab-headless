@@ -10,7 +10,7 @@ public class StdCalculationInput implements CalculationInput {
 	private String expressions = null;
 	private Scanner scanner = new Scanner(System.in);
 	private boolean expectedMoreData = true;
-	private final String column = ";";
+	private static final String column = ";";
 
 	@Override
 	public String getExpressions() throws InputException {
