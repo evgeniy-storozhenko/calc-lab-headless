@@ -227,6 +227,21 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
+	public AbstractNumber divideToIntegralValue(AbstractNumber number) {
+		return new BigNumber(divide(number).toBigInteger());
+	}
+
+	@Override
+	public AbstractNumber[] divideAndRemainder(AbstractNumber divisor) {
+		AbstractNumber[] result = new AbstractNumber[2];
+		BigNumber a = this.clone();
+
+		result[0] = a.divideToIntegralValue(divisor);
+		result[1] = a.subtract(result[0].multiply(divisor));
+		return result;
+	}
+
+	@Override
 	public BigNumber add(AbstractNumber number) {
 		BigNumber result = clone();
 		BigNumber bigNumber;
@@ -293,7 +308,6 @@ public class BigNumber extends AbstractNumber {
 			return new BigNumber(BigNumberUtils.streamedParallel(this.intValue()));
 		}
 	}
-
 
 	private BigNumber bigDecimalPow(BigDecimal a, int b) {
 		return new BigNumber(a.pow(b));
@@ -408,6 +422,30 @@ public class BigNumber extends AbstractNumber {
 	@Override
 	public AbstractNumber negate() {
 		return this.multiply(MINUS_ONE);
+	}
+
+	@Override
+	public AbstractNumber abs() {
+		if (isNegative()) {
+			return negate();
+		}
+		return this;
+	}
+
+	@Override
+	public boolean withinLimitsOfDouble() {
+		if (this.isNegative()) {
+			BigDecimal doubleMin = new BigDecimal(Double.MIN_VALUE);
+			if (this.toBigDecimal().compareTo(doubleMin) == -1) {
+				return false;
+			}
+		} else {
+			BigDecimal doubleMax = new BigDecimal(Double.MAX_VALUE);
+			if (this.toBigDecimal().compareTo(doubleMax) == 1) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

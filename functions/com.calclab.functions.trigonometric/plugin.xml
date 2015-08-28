@@ -9,8 +9,18 @@
          <information
                description="Sine of a number x. Argument is measured in radians. To calculate the sine an argument in degrees, use sind (x)."
                example="y = sin(0.5);"
-               example_result="0.4794255386042"
+               example_result="0.479425538604203"
                syntax="sin(x)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.trigonometric.CosFunction"
+            name="cos">
+         <information
+               description="Cosine of a number x. Argument is measured in radians. To calculate the cosine an argument in degrees, use cosd(x)."
+               example="y = cos(0.5);"
+               example_result="0.8775825618903728"
+               syntax="cos(x)">
          </information>
       </client>
    </extension>

@@ -2,7 +2,8 @@
 .metadata/
 bin/
 target/
-
+.recommenders/
+build8jvm.sh
 
 
 

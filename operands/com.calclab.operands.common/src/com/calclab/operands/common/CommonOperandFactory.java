@@ -28,6 +28,10 @@ public class CommonOperandFactory {
 		return instance;
 	}
 
+	public AbstractNumber createNumber(double input) {
+		return new BigNumber("" + input);
+	}
+
 	public AbstractNumber createNumber(String input) {
 		return new BigNumber(input);
 	}

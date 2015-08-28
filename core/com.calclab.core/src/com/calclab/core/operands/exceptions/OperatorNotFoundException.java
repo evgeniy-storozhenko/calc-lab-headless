@@ -11,4 +11,8 @@ public class OperatorNotFoundException extends Exception {
 		super(string, throwable);
 	}
 
+	public OperatorNotFoundException(String string) {
+		super(string);
+	}
+
 }
