@@ -2,11 +2,11 @@ package com.calclab.operands.common;
 
 import java.math.BigDecimal;
 
-import junit.framework.TestCase;
-
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.operands.common.internal.BigNumber;
+
+import junit.framework.TestCase;
 
 public class BigNumberTest extends TestCase {
 
@@ -588,5 +588,38 @@ public class BigNumberTest extends TestCase {
 		} catch (InvalidActionException e) {
 			assertTrue(false);
 		}
+	}
+
+	/**
+	 * 5 % 3 = 2
+	 */
+	public void divideAndRemainder() {
+		BigNumber num_1 = new BigNumber("5");
+		BigNumber num_2 = new BigNumber("3");
+		num_1 = num_1.add(num_2);
+		BigNumber expResult = new BigNumber("2");
+		assertEquals(expResult, num_1);
+	}
+
+	/**
+	 * 6.9 % 4 = 2.9
+	 */
+	public void divideAndRemainder_2() {
+		BigNumber num_1 = new BigNumber("6.9");
+		BigNumber num_2 = new BigNumber("4");
+		num_1 = num_1.add(num_2);
+		BigNumber expResult = new BigNumber("2.9");
+		assertEquals(expResult, num_1);
+	}
+
+	/**
+	 * -8.1 % 4 = -(0.1)
+	 */
+	public void divideAndRemainder_3() {
+		BigNumber num_1 = new BigNumber("-8.1");
+		BigNumber num_2 = new BigNumber("4");
+		num_1 = num_1.add(num_2);
+		BigNumber expResult = new BigNumber("-(0.1)");
+		assertEquals(expResult, num_1);
 	}
 }

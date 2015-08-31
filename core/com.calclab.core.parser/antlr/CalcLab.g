@@ -183,7 +183,9 @@ binaryOperationMiddle returns[Operation value]: INVOLUTION
 binaryOperationLow returns[Operation value]: PLUS 
 		{value = operationFactory.createCommonOperation($PLUS.text);}
 	| MINUS
-		{value = operationFactory.createCommonOperation($MINUS.text);};
+		{value = operationFactory.createCommonOperation($MINUS.text);}
+	| REMAINDER
+		{value = operationFactory.createCommonOperation($REMAINDER.text);};
 
 // Simple operations
 PLUS 	:	S* '+' S*;
@@ -191,6 +193,7 @@ MINUS	:	S* '-' S*;
 MULTIPLY :	S* '*' S*;
 DIVISION :	S* '/' S*;
 EQUALS	:	S* '=' S*;
+REMAINDER	:	S* '%' S*;
 
 // Difficult operations
 INVOLUTION : S* '^' S*;

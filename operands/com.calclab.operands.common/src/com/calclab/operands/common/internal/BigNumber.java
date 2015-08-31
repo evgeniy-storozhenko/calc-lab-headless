@@ -150,6 +150,8 @@ public class BigNumber extends AbstractNumber {
 			return add((AbstractNumber) operand);
 		} else if (operation.getName().equals("-") && operand instanceof AbstractNumber) {
 			return subtract((AbstractNumber) operand);
+		} else if (operation.getName().equals("%") && operand instanceof AbstractNumber) {
+			return divideAndRemainder((AbstractNumber) operand)[1];
 		} else if (operation.getName().equals("*") && operand instanceof AbstractNumber) {
 			return multiply((AbstractNumber) operand);
 		} else if (operation.getName().equals("/") && operand instanceof AbstractNumber) {

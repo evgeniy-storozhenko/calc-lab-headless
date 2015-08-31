@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-08-16 20:08:17
+// $ANTLR 3.5.2 CalcLab.g 2015-08-31 11:57:25
 
 package com.calclab.core.parser.internal;
 
@@ -35,10 +35,10 @@ public class CalcLabParser extends Parser {
 			"CLOSING_PARENTHESIS", "CLOSING_SQ_PARENTHESIS", "DECIMAL_SEPARATOR",
 			"DIGIT", "DIVISION", "EQUALS", "EXPRESSIONS_SEPARATOR", "FACTORIAL", "ID",
 			"INVOLUTION", "MINUS", "MULTIPLY", "NAME", "OPENING_PARENTHESIS", "OPENING_SQ_PARENTHESIS",
-			"PLUS", "S", "' '"
+			"PLUS", "REMAINDER", "S", "' '"
 	};
 	public static final int EOF = -1;
-	public static final int T__23 = 23;
+	public static final int T__24 = 24;
 	public static final int ARGUMENTS_SEPARATOR = 4;
 	public static final int CHAR = 5;
 	public static final int CLOSING_PARENTHESIS = 6;
@@ -57,7 +57,8 @@ public class CalcLabParser extends Parser {
 	public static final int OPENING_PARENTHESIS = 19;
 	public static final int OPENING_SQ_PARENTHESIS = 20;
 	public static final int PLUS = 21;
-	public static final int S = 22;
+	public static final int REMAINDER = 22;
+	public static final int S = 23;
 
 	// delegates
 	public Parser[] getDelegates() {
@@ -230,7 +231,7 @@ public class CalcLabParser extends Parser {
 				loop3: while (true) {
 					int alt3 = 2;
 					int LA3_0 = input.LA(1);
-					if ((LA3_0 == MINUS || LA3_0 == PLUS)) {
+					if ((LA3_0 == MINUS || (LA3_0 >= PLUS && LA3_0 <= REMAINDER))) {
 						alt3 = 1;
 					}
 
@@ -981,7 +982,7 @@ public class CalcLabParser extends Parser {
 				loop18: while (true) {
 					int alt18 = 2;
 					int LA18_0 = input.LA(1);
-					if ((LA18_0 == ARGUMENTS_SEPARATOR || LA18_0 == 23)) {
+					if ((LA18_0 == ARGUMENTS_SEPARATOR || LA18_0 == 24)) {
 						alt18 = 1;
 					}
 
@@ -989,7 +990,7 @@ public class CalcLabParser extends Parser {
 					case 1:
 					// CalcLab.g:170:5: ( ' ' | ARGUMENTS_SEPARATOR ) e2= expression
 					{
-						if (input.LA(1) == ARGUMENTS_SEPARATOR || input.LA(1) == 23) {
+						if (input.LA(1) == ARGUMENTS_SEPARATOR || input.LA(1) == 24) {
 							input.consume();
 							state.errorRecovery = false;
 						} else {
@@ -1122,28 +1123,34 @@ public class CalcLabParser extends Parser {
 	// $ANTLR end "binaryOperationMiddle"
 
 	// $ANTLR start "binaryOperationLow"
-	// CalcLab.g:183:1: binaryOperationLow returns [Operation value] : ( PLUS | MINUS );
+	// CalcLab.g:183:1: binaryOperationLow returns [Operation value] : ( PLUS | MINUS | REMAINDER );
 	public final Operation binaryOperationLow() throws RecognitionException {
 		Operation value = null;
 
 		Token PLUS18 = null;
 		Token MINUS19 = null;
+		Token REMAINDER20 = null;
 
 		try {
-			// CalcLab.g:183:44: ( PLUS | MINUS )
-			int alt20 = 2;
-			int LA20_0 = input.LA(1);
-			if ((LA20_0 == PLUS)) {
+			// CalcLab.g:183:44: ( PLUS | MINUS | REMAINDER )
+			int alt20 = 3;
+			switch (input.LA(1)) {
+			case PLUS: {
 				alt20 = 1;
-			} else if ((LA20_0 == MINUS)) {
+			}
+				break;
+			case MINUS: {
 				alt20 = 2;
 			}
-
-			else {
+				break;
+			case REMAINDER: {
+				alt20 = 3;
+			}
+				break;
+			default:
 				NoViableAltException nvae = new NoViableAltException("", 20, 0, input);
 				throw nvae;
 			}
-
 			switch (alt20) {
 			case 1:
 			// CalcLab.g:183:46: PLUS
@@ -1157,6 +1164,13 @@ public class CalcLabParser extends Parser {
 			{
 				MINUS19 = (Token) match(input, MINUS, FOLLOW_MINUS_in_binaryOperationLow589);
 				value = operationFactory.createCommonOperation((MINUS19 != null ? MINUS19.getText() : null));
+			}
+				break;
+			case 3:
+			// CalcLab.g:187:4: REMAINDER
+			{
+				REMAINDER20 = (Token) match(input, REMAINDER, FOLLOW_REMAINDER_in_binaryOperationLow598);
+				value = operationFactory.createCommonOperation((REMAINDER20 != null ? REMAINDER20.getText() : null));
 			}
 				break;
 
@@ -1174,40 +1188,40 @@ public class CalcLabParser extends Parser {
 	// Delegated rules
 
 	public static final BitSet FOLLOW_NAME_in_calculation55 = new BitSet(new long[] { 0x0000000000000800L });
-	public static final BitSet FOLLOW_EQUALS_in_calculation57 = new BitSet(new long[] { 0x00000000005D0200L });
+	public static final BitSet FOLLOW_EQUALS_in_calculation57 = new BitSet(new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_expression_in_calculation67 = new BitSet(new long[] { 0x0000000000001000L });
 	public static final BitSet FOLLOW_EXPRESSIONS_SEPARATOR_in_calculation73 = new BitSet(
-			new long[] { 0x00000000005D0202L });
+			new long[] { 0x00000000009D0202L });
 	public static final BitSet FOLLOW_complexCompositeUnit_in_expression94 = new BitSet(
-			new long[] { 0x0000000000210002L });
+			new long[] { 0x0000000000610002L });
 	public static final BitSet FOLLOW_binaryOperationLow_in_expression105 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_complexCompositeUnit_in_expression109 = new BitSet(
-			new long[] { 0x0000000000210002L });
+			new long[] { 0x0000000000610002L });
 	public static final BitSet FOLLOW_compositeUnit_in_complexCompositeUnit134 = new BitSet(
 			new long[] { 0x0000000000008002L });
 	public static final BitSet FOLLOW_binaryOperationMiddle_in_complexCompositeUnit144 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_compositeUnit_in_complexCompositeUnit148 = new BitSet(
 			new long[] { 0x0000000000008002L });
 	public static final BitSet FOLLOW_unit_in_compositeUnit173 = new BitSet(new long[] { 0x0000000000020402L });
 	public static final BitSet FOLLOW_binaryOperationHigh_in_compositeUnit181 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_unit_in_compositeUnit185 = new BitSet(new long[] { 0x0000000000020402L });
 	public static final BitSet FOLLOW_number_in_unit211 = new BitSet(new long[] { 0x0000000000002002L });
 	public static final BitSet FOLLOW_compositeExpression_in_unit220 = new BitSet(new long[] { 0x0000000000002002L });
 	public static final BitSet FOLLOW_functionOrVariable_in_unit229 = new BitSet(new long[] { 0x0000000000002002L });
 	public static final BitSet FOLLOW_matrix_in_unit237 = new BitSet(new long[] { 0x0000000000002002L });
 	public static final BitSet FOLLOW_unaryOperation_in_unit247 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_MINUS_in_number262 = new BitSet(new long[] { 0x0000000000400200L });
-	public static final BitSet FOLLOW_S_in_number265 = new BitSet(new long[] { 0x0000000000400200L });
-	public static final BitSet FOLLOW_DIGIT_in_number268 = new BitSet(new long[] { 0x0000000000400102L });
+	public static final BitSet FOLLOW_MINUS_in_number262 = new BitSet(new long[] { 0x0000000000800200L });
+	public static final BitSet FOLLOW_S_in_number265 = new BitSet(new long[] { 0x0000000000800200L });
+	public static final BitSet FOLLOW_DIGIT_in_number268 = new BitSet(new long[] { 0x0000000000800102L });
 	public static final BitSet FOLLOW_DECIMAL_SEPARATOR_in_number271 = new BitSet(new long[] { 0x0000000000000200L });
-	public static final BitSet FOLLOW_DIGIT_in_number273 = new BitSet(new long[] { 0x0000000000400102L });
-	public static final BitSet FOLLOW_S_in_number277 = new BitSet(new long[] { 0x0000000000400002L });
+	public static final BitSet FOLLOW_DIGIT_in_number273 = new BitSet(new long[] { 0x0000000000800102L });
+	public static final BitSet FOLLOW_S_in_number277 = new BitSet(new long[] { 0x0000000000800002L });
 	public static final BitSet FOLLOW_MINUS_in_compositeExpression298 = new BitSet(new long[] { 0x0000000000080000L });
 	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_compositeExpression308 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_expression_in_compositeExpression310 = new BitSet(
 			new long[] { 0x0000000000000040L });
 	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_compositeExpression312 = new BitSet(
@@ -1215,28 +1229,28 @@ public class CalcLabParser extends Parser {
 	public static final BitSet FOLLOW_MINUS_in_functionOrVariable335 = new BitSet(new long[] { 0x0000000000040000L });
 	public static final BitSet FOLLOW_NAME_in_functionOrVariable345 = new BitSet(new long[] { 0x0000000000080002L });
 	public static final BitSet FOLLOW_OPENING_PARENTHESIS_in_functionOrVariable348 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_arguments_in_functionOrVariable350 = new BitSet(
 			new long[] { 0x0000000000000040L });
 	public static final BitSet FOLLOW_CLOSING_PARENTHESIS_in_functionOrVariable352 = new BitSet(
 			new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_expression_in_arguments379 = new BitSet(new long[] { 0x0000000000000012L });
 	public static final BitSet FOLLOW_ARGUMENTS_SEPARATOR_in_arguments388 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_expression_in_arguments392 = new BitSet(new long[] { 0x0000000000000012L });
 	public static final BitSet FOLLOW_MINUS_in_matrix416 = new BitSet(new long[] { 0x0000000000100000L });
 	public static final BitSet FOLLOW_OPENING_SQ_PARENTHESIS_in_matrix426 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_matrixRows_in_matrix428 = new BitSet(new long[] { 0x0000000000000080L });
 	public static final BitSet FOLLOW_CLOSING_SQ_PARENTHESIS_in_matrix430 = new BitSet(
 			new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_matrixColumns_in_matrixRows453 = new BitSet(new long[] { 0x0000000000001002L });
 	public static final BitSet FOLLOW_EXPRESSIONS_SEPARATOR_in_matrixRows462 = new BitSet(
-			new long[] { 0x00000000005D0200L });
+			new long[] { 0x00000000009D0200L });
 	public static final BitSet FOLLOW_matrixColumns_in_matrixRows466 = new BitSet(new long[] { 0x0000000000001002L });
-	public static final BitSet FOLLOW_expression_in_matrixColumns492 = new BitSet(new long[] { 0x0000000000800012L });
-	public static final BitSet FOLLOW_set_in_matrixColumns501 = new BitSet(new long[] { 0x00000000005D0200L });
-	public static final BitSet FOLLOW_expression_in_matrixColumns511 = new BitSet(new long[] { 0x0000000000800012L });
+	public static final BitSet FOLLOW_expression_in_matrixColumns492 = new BitSet(new long[] { 0x0000000001000012L });
+	public static final BitSet FOLLOW_set_in_matrixColumns501 = new BitSet(new long[] { 0x00000000009D0200L });
+	public static final BitSet FOLLOW_expression_in_matrixColumns511 = new BitSet(new long[] { 0x0000000001000012L });
 	public static final BitSet FOLLOW_FACTORIAL_in_unaryOperation527 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_MULTIPLY_in_binaryOperationHigh540 = new BitSet(
 			new long[] { 0x0000000000000002L });
@@ -1246,4 +1260,6 @@ public class CalcLabParser extends Parser {
 			new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_PLUS_in_binaryOperationLow579 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_MINUS_in_binaryOperationLow589 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_REMAINDER_in_binaryOperationLow598 = new BitSet(
+			new long[] { 0x0000000000000002L });
 }

@@ -196,6 +196,10 @@ public class CalcLabParserTest extends TestCase {
 		isParseEquals("[1 9;2 6;3,7];", expect);
 	}
 
+	public void testParse_43() {
+		isParseEquals("2%2;", "(2%2);");
+	}
+
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString());
