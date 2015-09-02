@@ -6,5 +6,5 @@ for %%a in (%dirname%plugins\org.eclipse.equinox.launcher_*.jar) do (
 	set file=%%~fa
 )
 
-java -jar %file%
+java -jar %file% %*
 @echo on
