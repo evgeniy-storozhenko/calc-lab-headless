@@ -6,7 +6,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="com.calclab.headless.launcher"
-            name="Calculation Laboratory Headless">
+            name="%product.name">
          <property
                name="appName"
                value="Calculation Laboratory Headless">

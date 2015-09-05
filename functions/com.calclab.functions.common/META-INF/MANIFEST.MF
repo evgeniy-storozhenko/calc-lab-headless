@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Common
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.calclab.functions.common;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Calculation Laboratory
+Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.core,
  com.calclab.operands.common,

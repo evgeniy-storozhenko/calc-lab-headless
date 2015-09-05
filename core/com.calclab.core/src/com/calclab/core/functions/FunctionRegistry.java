@@ -9,11 +9,12 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 
 import com.calclab.core.input.exceptions.FunctionNotFoundException;
+import com.calclab.core.nls.Messages;
 import com.calclab.core.operands.Operand;
 
 public class FunctionRegistry {
 
-	private static final String extensionType = "com.calclab.function";
+	private static final String extensionType = "com.calclab.function"; //$NON-NLS-1$
 	private static FunctionRegistry instance = null;
 
 	private final Map<String, IConfigurationElement> extensions = new HashMap<String, IConfigurationElement>();
@@ -26,7 +27,7 @@ public class FunctionRegistry {
 		IConfigurationElement[] configurations = Platform.getExtensionRegistry()
 				.getConfigurationElementsFor(extensionType);
 		for (IConfigurationElement cfg : configurations) {
-			extensions.put(cfg.getAttribute("name"), cfg);
+			extensions.put(cfg.getAttribute("name"), cfg); //$NON-NLS-1$
 		}
 	}
 
@@ -48,10 +49,10 @@ public class FunctionRegistry {
 	public Function createFunction(String name, List<Operand> arguments)
 			throws CoreException, FunctionNotFoundException {
 		if (!contains(name)) {
-			String msg = "Function '" + name + "' can not be found.";
+			String msg = Messages.FunctionRegistry_2 + name + Messages.FunctionRegistry_3;
 			throw new FunctionNotFoundException(msg, new Throwable());
 		}
-		Function provider = (Function) extensions.get(name).createExecutableExtension("class");
+		Function provider = (Function) extensions.get(name).createExecutableExtension("class"); //$NON-NLS-1$
 		provider.setArguments(arguments);
 		return provider;
 	}

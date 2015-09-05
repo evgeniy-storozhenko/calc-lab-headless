@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
+import com.calclab.functions.common.nls.Messages;
 import com.calclab.operands.common.CommonOperandFactory;
 
 import numbercruncher.mathutils.BigFunctions;
@@ -13,7 +14,7 @@ public class ExpFunction extends AbstractFunction {
 
 	@Override
 	public String getName() {
-		return "exp";
+		return "exp"; //$NON-NLS-1$
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class ExpFunction extends AbstractFunction {
 					AbstractNumber.scale);
 			return CommonOperandFactory.getInstance().createNumber(result);
 		}
-		String message = "Can't calculate '" + getName() + "' with this type of argument.";
+		String message = Messages.getString("ExpFunction.1") + getName() + Messages.getString("ExpFunction.2"); //$NON-NLS-1$ //$NON-NLS-2$
 		throw new OperatorNotFoundException(message, new Throwable());
 	}
 

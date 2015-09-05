@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Headless Calculation
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.calclab.headless;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.calclab.headless.internal.HeadlessCalculationPlugin
-Bundle-Vendor: Calculation Laboratory
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.core.runtime,
  com.calclab.core,
  com.calclab.core.parser,

@@ -12,6 +12,7 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
+import com.calclab.functions.common.nls.Messages;
 import com.calclab.operands.common.NullStepMonitor;
 
 public abstract class AbstractFunction implements Function {
@@ -68,7 +69,7 @@ public abstract class AbstractFunction implements Function {
 
 	@Override
 	public String getInput() {
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	@Override
@@ -82,7 +83,7 @@ public abstract class AbstractFunction implements Function {
 				result = runWithOneArg(arguments.get(0));
 				status.setStage(CalculationStatus.Stage.DONE);
 			} else {
-				String message = "One argument is necessary for the function '" + getName() + "'.";
+				String message = Messages.getString("AbstractFunction.1") + getName() + "'."; //$NON-NLS-1$ //$NON-NLS-2$
 				throw new OperatorNotFoundException(message, new Throwable());
 			}
 		} catch (OperatorNotFoundException e) {
@@ -95,8 +96,8 @@ public abstract class AbstractFunction implements Function {
 	@Override
 	public String toString() {
 		String args = arguments.stream().map(object -> object.toString())
-				.collect(Collectors.joining(","));
-		return getName() + "(" + args + ")";
+				.collect(Collectors.joining(",")); //$NON-NLS-1$
+		return getName() + "(" + args + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected abstract Operand runWithOneArg(Operand operand) throws OperatorNotFoundException;

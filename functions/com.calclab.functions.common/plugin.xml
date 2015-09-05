@@ -7,13 +7,13 @@
             class="com.calclab.functions.common.LogFunction"
             name="log">
          <information
-               description="gives the natural logarithm of z (logarithm to base ). "
+               description="%information.description"
                example="r = log(1000);"
                example_result="6.90775527898213705"
                syntax="log(x)">
          </information>
          <information
-               description="gives the logarithm of y to base x."
+               description="%information.description.0"
                example="r = log(2,8);"
                example_result="3"
                syntax="log(x,y)">
@@ -23,7 +23,7 @@
             class="com.calclab.functions.common.ExpFunction"
             name="exp">
          <information
-               description="returns the exponential e^x for x"
+               description="%information.description.1"
                example="y = exp(1);"
                example_result="2.718281828459045235360287471352662497757247093699959574966967"
                syntax="exp(x)">

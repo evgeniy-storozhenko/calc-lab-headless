@@ -13,17 +13,18 @@ import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
+import com.calclab.operands.common.nls.Messages;
 
 import numbercruncher.mathutils.BigFunctions;
 
 public class BigNumber extends AbstractNumber {
 
-	public static final BigNumber MINUS_ONE = new BigNumber("-1");
-	public static final BigNumber ZERO = new BigNumber("0");
-	public static final BigNumber ONE = new BigNumber("1");
-	public static final BigNumber TWO = new BigNumber("2");
-	public static final BigNumber THREE = new BigNumber("3");
-	public static final BigNumber TEN = new BigNumber("10");
+	public static final BigNumber MINUS_ONE = new BigNumber("-1"); //$NON-NLS-1$
+	public static final BigNumber ZERO = new BigNumber("0"); //$NON-NLS-1$
+	public static final BigNumber ONE = new BigNumber("1"); //$NON-NLS-1$
+	public static final BigNumber TWO = new BigNumber("2"); //$NON-NLS-1$
+	public static final BigNumber THREE = new BigNumber("3"); //$NON-NLS-1$
+	public static final BigNumber TEN = new BigNumber("10"); //$NON-NLS-1$
 
 	public static final BigNumber E = new BigNumber(MathConstants.E);
 	public static final BigNumber PI = new BigNumber(MathConstants.PI);
@@ -76,7 +77,7 @@ public class BigNumber extends AbstractNumber {
 		BigDecimal result = this.toBigDecimal();
 		String plainString = result.toPlainString();
 		if (isNegative()) {
-			plainString = "(" + plainString + ")";
+			plainString = "(" + plainString + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return plainString;
 	}
@@ -132,36 +133,36 @@ public class BigNumber extends AbstractNumber {
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
 			InvalidActionException {
 
-		if (operation.getName().equals("!")) {
+		if (operation.getName().equals("!")) { //$NON-NLS-1$
 			return factorial();
-		} else if (operation.getName().equals("-")) {
+		} else if (operation.getName().equals("-")) { //$NON-NLS-1$
 			return negate();
 		}
 
-		throw new OperatorNotFoundException("Operation '" + operation.getName()
-				+ "' is not found.", new Throwable());
+		throw new OperatorNotFoundException(Messages.getString("BigNumber.0") + operation.getName() //$NON-NLS-1$
+				+ Messages.getString("BigNumber.1"), new Throwable()); //$NON-NLS-1$
 	}
 
 	@Override
 	public Operand perform(Operation operation, Operand operand, StepsMonitor monitor)
 			throws OperatorNotFoundException, InvalidActionException {
 
-		if (operation.getName().equals("+") && operand instanceof AbstractNumber) {
+		if (operation.getName().equals("+") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return add((AbstractNumber) operand);
-		} else if (operation.getName().equals("-") && operand instanceof AbstractNumber) {
+		} else if (operation.getName().equals("-") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return subtract((AbstractNumber) operand);
-		} else if (operation.getName().equals("%") && operand instanceof AbstractNumber) {
+		} else if (operation.getName().equals("%") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return divideAndRemainder((AbstractNumber) operand)[1];
-		} else if (operation.getName().equals("*") && operand instanceof AbstractNumber) {
+		} else if (operation.getName().equals("*") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return multiply((AbstractNumber) operand);
-		} else if (operation.getName().equals("/") && operand instanceof AbstractNumber) {
+		} else if (operation.getName().equals("/") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return divide((AbstractNumber) operand);
-		} else if (operation.getName().equals("^") && operand instanceof AbstractNumber) {
+		} else if (operation.getName().equals("^") && operand instanceof AbstractNumber) { //$NON-NLS-1$
 			return pow((AbstractNumber) operand);
 		}
 
-		throw new OperatorNotFoundException("Operation '" + operation.getName()
-				+ "' is not found.", new Throwable());
+		throw new OperatorNotFoundException(Messages.getString("BigNumber.2") + operation.getName() //$NON-NLS-1$
+				+ Messages.getString("BigNumber.3"), new Throwable()); //$NON-NLS-1$
 	}
 
 	@Override
@@ -294,12 +295,12 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	public BigNumber sqrt() {
-		return pow(new BigNumber("0.5"));
+		return pow(new BigNumber("0.5")); //$NON-NLS-1$
 	}
 
 	public BigNumber factorial() throws InvalidActionException {
 		if (this.isNegative()) {
-			String msg = "n! is a sequence with integer value for nonnegative n.";
+			String msg = Messages.getString("BigNumber.4"); //$NON-NLS-1$
 			throw new InvalidActionException(msg, new Throwable());
 		}
 
@@ -397,7 +398,7 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public boolean isFractionalNumber() {
-		return this.toBigDecimal().toString().contains(".");
+		return this.toBigDecimal().toString().contains("."); //$NON-NLS-1$
 	}
 
 	@Override

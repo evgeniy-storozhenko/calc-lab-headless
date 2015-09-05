@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Core
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.calclab.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Calculation Laboratory
+Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.calclab.core.calculations,
  com.calclab.core.constants,

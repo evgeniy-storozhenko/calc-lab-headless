@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Parser
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.calclab.core.parser
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Calculation Laboratory
+Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.eclipse.core.runtime
 Export-Package: com.calclab.core.parser,

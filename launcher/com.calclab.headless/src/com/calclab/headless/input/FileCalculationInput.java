@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.exceptions.InputException;
+import com.calclab.headless.nls.Messages;
 
 public class FileCalculationInput implements CalculationInput {
 
@@ -23,7 +24,7 @@ public class FileCalculationInput implements CalculationInput {
 			try {
 				expressions = getExpressionsFromFile();
 			} catch (IOException e) {
-				throw new InputException("Can't get expressions from file", e);
+				throw new InputException(Messages.FileCalculationInput_0, e);
 			}
 		}
 		return expressions;

@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.Platform;
 
 import com.calclab.headless.internal.HeadlessCalculationPlugin;
+import com.calclab.headless.nls.Messages;
 
 public class CalculationConfiguration {
 
@@ -17,12 +18,12 @@ public class CalculationConfiguration {
 	private int scale = 60;
 
 	enum CommandArg {
-		InputData("Input expression for calculation", "input", "i"),
-		InputFile("Input file for calculation", "file", "f"),
-		RowFile("Output result of calculation as row", "row", "r"),
-		HTMLFile("Output result of calculation as html", "html", "H"),
-		Help("Help", "help", "h", "?"),
-		Version("Current version", "version", "v");
+		InputData(Messages.CalculationConfiguration_0, "input", "i"), //$NON-NLS-2$ //$NON-NLS-3$
+		InputFile(Messages.CalculationConfiguration_3, "file", "f"), //$NON-NLS-2$ //$NON-NLS-3$
+		RowFile(Messages.CalculationConfiguration_1, "row", "r"), //$NON-NLS-2$ //$NON-NLS-3$
+		HTMLFile(Messages.CalculationConfiguration_9, "html", "H"), //$NON-NLS-2$ //$NON-NLS-3$
+		Help(Messages.CalculationConfiguration_12, "help", "h", "?"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		Version(Messages.CalculationConfiguration_13, "version", "v"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		CommandArg(String message, String... val) {
 			this.val = val;
@@ -47,7 +48,7 @@ public class CalculationConfiguration {
 			final String arg = i.next();
 			CommandArg cmdArg = findArg(arg);
 			if (cmdArg == null) {
-				System.out.println("Invalid argument:" + arg);
+				System.out.println(Messages.CalculationConfiguration_19 + arg);
 				continue;
 			}
 			switch (cmdArg) {
@@ -83,7 +84,7 @@ public class CalculationConfiguration {
 			inputFile = fileInput;
 		} else {
 			System.out.println(String.format(
-					"Invalid input path or access denied in '-f' arg: %s", fileInputPath));
+					Messages.CalculationConfiguration_20, fileInputPath));
 		}
 	}
 
@@ -92,7 +93,7 @@ public class CalculationConfiguration {
 		for (CommandArg commandArg : values) {
 			String[] val = commandArg.getCommands();
 			for (String s : val) {
-				if (("-" + s).equals(arg) || ("--" + s).equals(arg)) {
+				if (("-" + s).equals(arg) || ("--" + s).equals(arg)) { //$NON-NLS-1$ //$NON-NLS-2$
 					return commandArg;
 				}
 			}
@@ -101,31 +102,31 @@ public class CalculationConfiguration {
 	}
 
 	public void showHelp() {
-		System.out.println("Calculation Laboratory Headless command line arguments:");
+		System.out.println(Messages.CalculationConfiguration_2);
 		for (CommandArg v : CommandArg.values()) {
-			System.out.print("\t");
+			System.out.print("\t"); //$NON-NLS-1$
 			String[] commands = v.getCommands();
 			for (int k = 0; k < commands.length; ++k) {
-				System.out.print("-" + commands[k]);
+				System.out.print("-" + commands[k]); //$NON-NLS-1$
 				if (k != commands.length - 1) {
-					System.out.print(", ");
+					System.out.print(", "); //$NON-NLS-1$
 				}
 			}
-			System.out.print(":\t" + v.getMessage());
+			System.out.print(":\t" + v.getMessage()); //$NON-NLS-1$
 			System.out.println();
 		}
 	}
 
 	private void showVersion() {
-		System.out.println(String.format("Calculation Laboratory Headless version: %s",
+		System.out.println(String.format(Messages.CalculationConfiguration_28,
 				getRunnerVersion()));
 	}
 
 	public static String getRunnerVersion() {
 		String version = Platform.getBundle(HeadlessCalculationPlugin.PLUGIN_ID).getHeaders()
-				.get("Bundle-Version");
+				.get("Bundle-Version"); //$NON-NLS-1$
 		if (version == null)
-			return "[unknown]";
+			return "[unknown]"; //$NON-NLS-1$
 		int dotPos = version.lastIndexOf('.');
 		if (dotPos < 0)
 			return version;
