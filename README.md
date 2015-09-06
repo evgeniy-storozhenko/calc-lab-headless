@@ -29,6 +29,19 @@ evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh
 
 > log(2,a)
 	= 3
+
+> help sin
+>
+
+Function: sin
+
+Syntax: sin(x)
+Description: Sine of a number x. Argument is measured in radians. To calculate the sine an argument in degrees, use sind (x).
+
+Example:
+	y = sin(0.5);
+Result:
+	0.479425538604203
 ```
 
 ### Single mode
