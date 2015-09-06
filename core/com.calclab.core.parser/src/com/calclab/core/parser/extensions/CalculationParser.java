@@ -20,6 +20,7 @@ public class CalculationParser implements Parser {
 
 	private static Parser instance = null;
 	private CalcLabParser antlrParser = null;
+	private static final String column = ";";
 
 	public synchronized static Parser getInstance() {
 		if (instance == null) {
@@ -39,6 +40,9 @@ public class CalculationParser implements Parser {
 		Map<String, Calculable> variables = getVariables();
 		antlrParser = new CalcLabParser(tokens);
 		antlrParser.getVariables().putAll(variables);
+		if (inputExpressions.isEmpty() || inputExpressions.equals(column)) {
+			return;
+		}
 		try {
 			antlrParser.calculation();
 		} catch (RecognitionException e) {
