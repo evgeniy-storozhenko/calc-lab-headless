@@ -8,7 +8,6 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.NullStepMonitor;
 
 public class CompositeOperand implements Operand, Calculable {
 
@@ -16,7 +15,7 @@ public class CompositeOperand implements Operand, Calculable {
 	private final Operation operation;
 	private final Operand b;
 	private final CalculationStatus status = new CalculationStatus();
-	private final StepsMonitor monitor = NullStepMonitor.getInstance();
+	private StepsMonitor monitor;
 
 	private Operand result = null;
 
@@ -51,9 +50,11 @@ public class CompositeOperand implements Operand, Calculable {
 		if (status.isWaiting()) {
 			try {
 				status.setStage(CalculationStatus.Stage.INPROCESS);
-				Operand o1 = (a instanceof Calculable) ? ((Calculable) a).calculate() : a;
-				Operand o2 = (b instanceof Calculable) ? ((Calculable) b).calculate() : b;
+
+				Operand o1 = prepare(a);
+				Operand o2 = prepare(b);
 				result = o1.perform(operation, o2, monitor);
+
 				status.setStage(CalculationStatus.Stage.DONE);
 			} catch (OperatorNotFoundException | InvalidActionException | InternalExpression e) {
 				status.setStage(CalculationStatus.Stage.ERROR);
@@ -61,6 +62,15 @@ public class CompositeOperand implements Operand, Calculable {
 			}
 		}
 		return result;
+	}
+
+	private Operand prepare(Operand o) {
+		if (o instanceof Calculable) {
+			Calculable calculable = (Calculable) o;
+			calculable.setStepMonitor(monitor);
+			return calculable.calculate();
+		}
+		return o;
 	}
 
 	@Override
@@ -91,6 +101,11 @@ public class CompositeOperand implements Operand, Calculable {
 	@Override
 	public String getInput() {
 		return null;
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 }

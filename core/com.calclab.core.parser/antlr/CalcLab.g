@@ -99,7 +99,8 @@ compositeUnit returns[Operand value]
 
 unit returns[Operand value]
 	: (number { $value = operandFactory.createNumber($number.text.trim()); } 
-		| compositeExpression { $value = $compositeExpression.value; } 
+		| compositeExpression { $value = $compositeExpression.value; }
+		| help { $value = $help.value; } 
 		| functionOrVariable { $value = $functionOrVariable.value; }
 		| matrix { $value = $matrix.value; }
 	) (u=unaryOperation { $value = operandFactory.createUnaryOperand($value, $u.value); } )?
@@ -170,6 +171,15 @@ matrixColumns returns[ArrayList<Operand> value]
 			((' ' | ARGUMENTS_SEPARATOR) e2=expression { $value.add($e2.value); })*
 ;
 
+help returns[Operand value] 
+	: { List<Operand> arguments = new ArrayList<Operand>(); }
+		HELP (NAME { 
+			Operand arg = operandFactory.createStringOperand($NAME.text.trim());
+			arguments.add(arg);
+		})? 
+		{ $value = operandFactory.createFunctionOperand($HELP.text.trim(), arguments); }
+;
+
 // Composite operations
 unaryOperation returns[Operation value]: FACTORIAL
 		{value = operationFactory.createCommonOperation($FACTORIAL.text);};
@@ -199,6 +209,8 @@ REMAINDER	:	S* '%' S*;
 INVOLUTION : S* '^' S*;
 FACTORIAL : S* '!' S*;
 
+// Operators
+HELP: 'help' S* ;
 
 // System
 DIGIT : '0'..'9'+;

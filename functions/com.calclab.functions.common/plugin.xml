@@ -29,6 +29,22 @@
                syntax="exp(x)">
          </information>
       </client>
+      <client
+            class="com.calclab.functions.common.HelpFunction"
+            name="help">
+         <information
+               description="%information.description.2"
+               example="help"
+               example_result="Help information"
+               syntax="help">
+         </information>
+         <information
+               description="%information.description.3"
+               example="help sin"
+               example_result="Help information about sin function"
+               syntax="help function">
+         </information>
+      </client>
    </extension>
 
 </plugin>

@@ -15,7 +15,7 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.NullStepMonitor;
+import com.calclab.operands.common.monitors.NullStepMonitor;
 
 public class FunctionOperand implements Operand, Calculable {
 
@@ -24,6 +24,7 @@ public class FunctionOperand implements Operand, Calculable {
 	private CalculationStatus status = new CalculationStatus();
 	private Function function = null;
 	private Operand result = null;
+	private StepsMonitor monitor;
 
 	public FunctionOperand(String name, List<Operand> arguments) {
 		this.name = name;
@@ -81,12 +82,15 @@ public class FunctionOperand implements Operand, Calculable {
 			for(int i=0; i < arguments.size(); i++) {
 				Operand arg = arguments.get(i);
 				if (arg instanceof Calculable) {
-					arguments.set(i, ((Calculable) arg).calculate());
+					Calculable calculable = (Calculable) arg;
+					calculable.setStepMonitor(monitor);
+					arguments.set(i, calculable.calculate());
 				}
 			}
 			if (function == null) {
 				function = FunctionRegistry.getInstance().createFunction(name, arguments);
 			}
+			function.setStepMonitor(monitor);
 			result = function.calculate();
 			status = function.getStatus();
 		} catch (CoreException | FunctionNotFoundException e) {
@@ -122,6 +126,11 @@ public class FunctionOperand implements Operand, Calculable {
 
 	public Function getFunction() {
 		return function;
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 }

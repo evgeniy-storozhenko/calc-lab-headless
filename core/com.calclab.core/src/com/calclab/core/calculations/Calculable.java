@@ -11,6 +11,8 @@ public interface Calculable {
 
 	StepsMonitor getStepMonitor();
 
+	void setStepMonitor(StepsMonitor monitor);
+
 	CalculationStatus getStatus();
 
 	Operand getResult();

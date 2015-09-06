@@ -45,7 +45,7 @@ public class HeadlessCalculationApp implements IApplication {
 		CalcaulationProcessFactory calcProcessFactory = new CalcaulationProcessFactory();
 
 		CalculationInput input = inputFactory.createCalculationInput(config);
-		CalculationJob process = calcProcessFactory.createCalculationProcess(input);
+		CalculationJob process = calcProcessFactory.createCalculationJob(input);
 
 		do {
 			process.run();

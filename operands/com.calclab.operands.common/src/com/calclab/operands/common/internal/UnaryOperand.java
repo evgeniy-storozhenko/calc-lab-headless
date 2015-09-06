@@ -8,7 +8,6 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.NullStepMonitor;
 
 public class UnaryOperand implements Operand, Calculable {
 
@@ -16,7 +15,7 @@ public class UnaryOperand implements Operand, Calculable {
 	private final Operand operand;
 	private final Operation operation;
 	private final CalculationStatus status = new CalculationStatus();
-	private final StepsMonitor monitor = NullStepMonitor.getInstance();
+	private StepsMonitor monitor;
 
 	private Operand result = null;
 
@@ -105,6 +104,11 @@ public class UnaryOperand implements Operand, Calculable {
 	@Override
 	public String getInput() {
 		return null;
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 }

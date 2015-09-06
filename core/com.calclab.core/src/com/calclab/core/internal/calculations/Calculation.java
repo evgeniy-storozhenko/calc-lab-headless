@@ -2,6 +2,7 @@ package com.calclab.core.internal.calculations;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
+import com.calclab.core.calculations.StepFactory;
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
 
@@ -11,6 +12,7 @@ public class Calculation implements Calculable {
 	private Operand result;
 	private final String input;
 	private CalculationStatus status = new CalculationStatus();
+	private StepsMonitor monitor = StepFactory.getInstance().createDefaultStepMonitor();
 
 	public Calculation(Operand operand) {
 		this.operand = operand;
@@ -29,8 +31,10 @@ public class Calculation implements Calculable {
 		}
 		if (operand instanceof Calculable) {
 			status.setStage(CalculationStatus.Stage.INPROCESS);
-			result = ((Calculable) operand).calculate();
-			status = ((Calculable) operand).getStatus();
+			Calculable calculable = (Calculable) operand;
+			calculable.setStepMonitor(monitor);
+			result = calculable.calculate();
+			status = calculable.getStatus();
 		} else {
 			result = operand;
 			status.setStage(CalculationStatus.Stage.DONE);
@@ -40,8 +44,7 @@ public class Calculation implements Calculable {
 
 	@Override
 	public StepsMonitor getStepMonitor() {
-		// TODO Auto-generated method stub
-		return null;
+		return monitor;
 	}
 
 	@Override
@@ -72,6 +75,11 @@ public class Calculation implements Calculable {
 	@Override
 	public String getInput() {
 		return input;
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 }

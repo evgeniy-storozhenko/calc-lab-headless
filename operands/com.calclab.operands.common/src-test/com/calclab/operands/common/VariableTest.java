@@ -17,6 +17,7 @@ import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.Variable;
+import com.calclab.operands.common.monitors.NullStepMonitor;
 
 import junit.framework.TestCase;
 
@@ -155,6 +156,7 @@ public class VariableTest extends TestCase {
 		protected CalculationStatus status = new CalculationStatus();
 		protected Operand result = null;
 		protected boolean exect = true;
+		private StepsMonitor monitor;
 
 		@Override
 		public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
@@ -183,7 +185,7 @@ public class VariableTest extends TestCase {
 
 		@Override
 		public StepsMonitor getStepMonitor() {
-			return NullStepMonitor.getInstance();
+			return monitor;
 		}
 
 		@Override
@@ -224,6 +226,11 @@ public class VariableTest extends TestCase {
 			String args = arguments.stream().map(object -> object.toString())
 					.collect(Collectors.joining(","));
 			return getName() + "(" + args + ")";
+		}
+
+		@Override
+		public void setStepMonitor(StepsMonitor monitor) {
+			this.monitor = monitor;
 		}
 
 	}

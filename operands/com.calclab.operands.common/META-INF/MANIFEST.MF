@@ -8,4 +8,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.core,
  org.eclipse.equinox.registry,
  numbercruncher.mathutils
-Export-Package: com.calclab.operands.common
+Export-Package: com.calclab.operands.common,
+ com.calclab.operands.common.monitors

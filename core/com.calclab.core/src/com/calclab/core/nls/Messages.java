@@ -6,6 +6,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "com.calclab.core.nls.messages"; //$NON-NLS-1$
 	public static String FunctionRegistry_2;
 	public static String FunctionRegistry_3;
+	public static String Function;
 
 	static {
 		// initialize resource bundle

@@ -11,8 +11,10 @@ import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.Matrix;
+import com.calclab.operands.common.internal.StringOperand;
 import com.calclab.operands.common.internal.UnaryOperand;
 import com.calclab.operands.common.internal.Variable;
+import com.calclab.operands.common.internal.VoidOperand;
 
 public class CommonOperandFactory {
 
@@ -34,6 +36,14 @@ public class CommonOperandFactory {
 
 	public AbstractNumber createNumber(String input) {
 		return new BigNumber(input);
+	}
+
+	public Operand createStringOperand(String input) {
+		return new StringOperand(input);
+	}
+
+	public Operand createVoidOperand() {
+		return new VoidOperand();
 	}
 
 	public AbstractNumber createNumber(BigDecimal input) {

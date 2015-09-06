@@ -8,12 +8,13 @@ import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.NullStepMonitor;
+import com.calclab.operands.common.monitors.NullStepMonitor;
 
 public class Variable implements Operand, Calculable {
 
 	private final String key;
 	private Calculable expression;
+	private StepsMonitor monitor;
 
 	public Variable(String key, Calculable expression) {
 		this.key = key;
@@ -44,6 +45,7 @@ public class Variable implements Operand, Calculable {
 
 	@Override
 	public Operand calculate() {
+		expression.setStepMonitor(monitor);
 		return expression.calculate();
 	}
 
@@ -65,6 +67,11 @@ public class Variable implements Operand, Calculable {
 	@Override
 	public String getInput() {
 		return "";
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 }

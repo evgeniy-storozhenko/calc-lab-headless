@@ -13,7 +13,6 @@ import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 import com.calclab.functions.common.nls.Messages;
-import com.calclab.operands.common.NullStepMonitor;
 
 public abstract class AbstractFunction implements Function {
 
@@ -21,6 +20,7 @@ public abstract class AbstractFunction implements Function {
 	protected CalculationStatus status = new CalculationStatus();
 	protected Operand result = null;
 	protected boolean exect = true;
+	private StepsMonitor monitor;
 
 	@Override
 	public Operand perform(Operation operation, StepsMonitor monitor) throws OperatorNotFoundException,
@@ -49,7 +49,7 @@ public abstract class AbstractFunction implements Function {
 
 	@Override
 	public StepsMonitor getStepMonitor() {
-		return NullStepMonitor.getInstance();
+		return monitor;
 	}
 
 	@Override
@@ -98,6 +98,11 @@ public abstract class AbstractFunction implements Function {
 		String args = arguments.stream().map(object -> object.toString())
 				.collect(Collectors.joining(",")); //$NON-NLS-1$
 		return getName() + "(" + args + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+	}
+
+	@Override
+	public void setStepMonitor(StepsMonitor monitor) {
+		this.monitor = monitor;
 	}
 
 	protected abstract Operand runWithOneArg(Operand operand) throws OperatorNotFoundException;
