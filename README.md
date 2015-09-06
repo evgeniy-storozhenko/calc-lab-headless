@@ -36,7 +36,8 @@ evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh
 Function: sin
 
 Syntax: sin(x)
-Description: Sine of a number x. Argument is measured in radians. To calculate the sine an argument in degrees, use sind (x).
+Description: Sine of a number x. Argument is measured in radians. 
+To calculate the sine an argument in degrees, use sind (x).
 
 Example:
 	y = sin(0.5);
