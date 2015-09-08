@@ -19,7 +19,7 @@ Calculation Laboratory Headless command line arguments:
 
 ## Examples
 ### Continuous mode
-```
+```matlab
 evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh
 > 2+2
 	= 4
@@ -31,13 +31,12 @@ evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh
 	= 3
 
 > help sin
->
 
 Function: sin
 
 Syntax: sin(x)
 Description: Sine of a number x. Argument is measured in radians. 
-To calculate the sine an argument in degrees, use sind (x).
+To calculatе the sine an argument in degrees, use sind (x).
 
 Example:
 	y = sin(0.5);
@@ -46,7 +45,7 @@ Result:
 ```
 
 ### Single mode
-```
+```sh
 evgeny@furious: ~/Desktop/calclab-headless $ ./calclab.sh -i "13^8;a=2;b=3*a;"
 13^8 = 815730721
 a=2 = 2
