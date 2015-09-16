@@ -23,6 +23,26 @@
                syntax="cos(x)">
          </information>
       </client>
+      <client
+            class="com.calclab.functions.trigonometric.SindFunction"
+            name="sind">
+         <information
+               description="%information.description.1"
+               example="y = sind(30);"
+               example_result="0.5"
+               syntax="sind(x)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.trigonometric.CosdFunction"
+            name="cosd">
+         <information
+               description="%information.description.2"
+               example="y = cosd(0);"
+               example_result="1"
+               syntax="cosd(x)">
+         </information>
+      </client>
    </extension>
 
 </plugin>

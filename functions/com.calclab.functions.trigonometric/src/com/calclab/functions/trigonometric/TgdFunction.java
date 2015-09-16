@@ -9,7 +9,7 @@ public class TgdFunction extends AbstractFunction {
 
 	@Override
 	public String getName() {
-		return "tgd";
+		return "tgd"; //$NON-NLS-1$
 	}
 
 	@Override

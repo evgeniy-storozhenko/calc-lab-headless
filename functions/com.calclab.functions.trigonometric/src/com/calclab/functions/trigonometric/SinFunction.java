@@ -7,13 +7,14 @@ import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.functions.common.AbstractFunction;
+import com.calclab.functions.trigonometric.nls.Messages;
 import com.calclab.operands.common.CommonOperandFactory;
 
 public class SinFunction extends AbstractFunction {
 
 	@Override
 	public String getName() {
-		return "sin";
+		return "sin"; //$NON-NLS-1$
 	}
 
 	@Override
@@ -29,7 +30,9 @@ public class SinFunction extends AbstractFunction {
 			double remainder = divideAndRemainderResult[1].doubleValue();
 			return factory.createNumber(Math.sin(remainder));
 		}
-		throw new OperatorNotFoundException("");
+		throw new OperatorNotFoundException(
+				Messages.getString("CantCalculate") + getName() //$NON-NLS-1$
+						+ Messages.getString("WithThisTypeOfArgument")); // $NON-NLS-2$
 	}
 
 }
