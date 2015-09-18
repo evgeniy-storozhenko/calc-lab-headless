@@ -1,6 +1,7 @@
 package com.calclab.functions.trigonometric;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import com.calclab.core.constants.MathConstants;
 import com.calclab.core.operands.AbstractNumber;
@@ -23,16 +24,28 @@ public class CosFunction extends AbstractFunction {
 		if (operand instanceof AbstractNumber) {
 			AbstractNumber number = (AbstractNumber) operand;
 			if (number.withinLimitsOfDouble()) {
-				return factory.createNumber(Math.cos(number.doubleValue()));
+				AbstractNumber res = factory.createNumber(Math.cos(number.doubleValue()));
+				return round(res);
 			}
 			AbstractNumber twoPi = factory.createNumber(MathConstants.PI.multiply(BigDecimal.valueOf(2)));
 			AbstractNumber[] divideAndRemainderResult = number.divideAndRemainder(twoPi);
 			double remainder = divideAndRemainderResult[1].doubleValue();
-			return factory.createNumber(Math.cos(remainder));
+			AbstractNumber res = factory.createNumber(Math.cos(remainder));
+			return round(res);
 		}
 		throw new OperatorNotFoundException(
 				Messages.getString("CantCalculate") + getName() //$NON-NLS-1$
 						+ Messages.getString("WithThisTypeOfArgument")); // $NON-NLS-2$
+	}
+
+	private AbstractNumber round(AbstractNumber res) {
+		AbstractNumber roundedRes = res.setScale(3, RoundingMode.HALF_EVEN);
+		String strRes = res.toString();
+		if (strRes.length() > 2 && roundedRes.toString().startsWith(strRes.substring(0, 3))) {
+			return res;
+		} else {
+			return roundedRes;
+		}
 	}
 
 }
