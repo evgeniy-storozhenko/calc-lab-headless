@@ -1,8 +1,10 @@
 package com.calclab.functions.trigonometric;
 
+import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.functions.common.AbstractFunction;
+import com.calclab.operands.common.CommonOperandFactory;
 
 
 public class CtgdFunction extends AbstractFunction {
@@ -14,8 +16,9 @@ public class CtgdFunction extends AbstractFunction {
 
 	@Override
 	protected Operand runWithOneArg(Operand operand) throws OperatorNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		CommonOperandFactory factory = CommonOperandFactory.getInstance();
+		TgdFunction tgd = new TgdFunction();
+		return factory.createNumber("1").divide((AbstractNumber) tgd.runWithOneArg(operand));
 	}
 
 }

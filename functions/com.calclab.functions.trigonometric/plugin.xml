@@ -43,6 +43,46 @@
                syntax="cosd(x)">
          </information>
       </client>
+      <client
+            class="com.calclab.functions.trigonometric.CtgFunction"
+            name="ctg">
+         <information
+               description="%information.description.3"
+               example="y = ctg(0.5);"
+               example_result="1.83048772171245"
+               syntax="ctg(x)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.trigonometric.TgdFunction"
+            name="tgd">
+         <information
+               description="%information.description.4"
+               example="y = tgd(30);"
+               example_result="0.5773502691896"
+               syntax="tgd(x)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.trigonometric.CtgdFunction"
+            name="ctgd">
+         <information
+               description="%information.description.5"
+               example="y = ctgd(0);"
+               example_result="∞"
+               syntax="ctgd(x)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.trigonometric.TgFunction"
+            name="tg">
+         <information
+               description="%information.description.6"
+               example="y = tg(0.5);"
+               example_result="0.5463024898437"
+               syntax="tg(x)">
+         </information>
+      </client>
    </extension>
 
 </plugin>

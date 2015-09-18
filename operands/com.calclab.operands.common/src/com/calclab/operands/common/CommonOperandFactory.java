@@ -10,6 +10,7 @@ import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.FunctionOperand;
+import com.calclab.operands.common.internal.Infinity;
 import com.calclab.operands.common.internal.Matrix;
 import com.calclab.operands.common.internal.StringOperand;
 import com.calclab.operands.common.internal.UnaryOperand;
@@ -80,6 +81,10 @@ public class CommonOperandFactory {
 
 	public Operand createMatrix(Operand[][] arguments) {
 		return new Matrix(arguments);
+	}
+
+	public Operand createInfinity() {
+		return new Infinity();
 	}
 
 }

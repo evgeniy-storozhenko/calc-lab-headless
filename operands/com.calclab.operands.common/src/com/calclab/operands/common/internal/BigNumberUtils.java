@@ -12,7 +12,7 @@ public class BigNumberUtils {
 	public static BigNumber approximationStirlingMoivre(BigNumber n) {
 
 		BigNumber first = BigNumber.TWO.multiply(BigNumber.PI).multiply(n).sqrt();
-		BigNumber second = n.divide(BigNumber.E).pow(n);
+		BigNumber second = (BigNumber) n.divide(BigNumber.E).pow(n);
 		BigNumber approximation = BigNumber.ONE;
 		approximation = approximation.add(BigNumber.ONE
 				.divide(n.multiply(new BigNumber("12"))));

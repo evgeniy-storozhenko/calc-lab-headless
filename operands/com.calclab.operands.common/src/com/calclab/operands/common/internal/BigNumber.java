@@ -216,7 +216,10 @@ public class BigNumber extends AbstractNumber {
 	}
 
 	@Override
-	public BigNumber divide(AbstractNumber number) {
+	public AbstractNumber divide(AbstractNumber number) {
+		if (number.toString().equals("0")) {
+			return new Infinity();
+		}
 		BigNumber result = clone();
 		BigNumber bigNumber;
 		if (number instanceof BigNumber) {

@@ -213,7 +213,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_1() {
 		BigNumber num_1 = new BigNumber("0");
 		BigNumber num_2 = new BigNumber("45.120214534");
-		num_1 = num_1.divide(num_2);
+		num_1 = (BigNumber) num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("0");
 		assertEquals(expResult, num_1);
 	}
@@ -221,7 +221,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_2() {
 		BigNumber num_1 = new BigNumber("100.456");
 		BigNumber num_2 = new BigNumber("45.120214534");
-		num_1 = num_1.divide(num_2);
+		num_1 = (BigNumber) num_1.divide(num_2);
 		assertTrue(num_1.toString()
 				.contains("2.2264078537193597112341247805468601542531841189582"
 						+ "9395836356"));
@@ -230,7 +230,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_3() {
 		BigNumber num_1 = new BigNumber("10");
 		BigNumber num_2 = new BigNumber("-45.12021");
-		num_1 = num_1.divide(num_2);
+		num_1 = (BigNumber) num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("-0.2216301741503419421141878550653"
 				+ "90874732187638311080555697768");
 		assertEquals(expResult, num_1);
@@ -239,7 +239,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_4() {
 		BigNumber num_1 = new BigNumber("-100");
 		BigNumber num_2 = new BigNumber("-100");
-		num_1 = num_1.divide(num_2);
+		num_1 = (BigNumber) num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("1");
 		assertEquals(expResult, num_1);
 	}
@@ -247,7 +247,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_5() {
 		BigNumber num_1 = new BigNumber("-100");
 		BigNumber num_2 = new BigNumber("1");
-		num_1 = num_1.divide(num_2);
+		num_1 = (BigNumber) num_1.divide(num_2);
 		BigNumber expResult = new BigNumber("-100");
 		assertEquals(expResult, num_1);
 	}
@@ -255,7 +255,7 @@ public class BigNumberTest extends TestCase {
 	public void testDivide_6() {
 		BigNumber num_1 = new BigNumber("4");
 		BigNumber num_2 = new BigNumber("3");
-		BigNumber num_3 = num_1.divide(num_2);
+		BigNumber num_3 = (BigNumber) num_1.divide(num_2);
 		assertEquals("1.333333333333333333333333333333333333333333333333333333333334",
 				num_3.toString());
 	}
@@ -264,7 +264,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber num_1 = new BigNumber("4");
 		BigNumber num_2 = new BigNumber("3");
 		BigNumber num_3 = new BigNumber("6");
-		BigNumber num_4 = num_1.divide(num_2).multiply(num_3);
+		BigNumber num_4 = (BigNumber) num_1.divide(num_2).multiply(num_3);
 		assertEquals("8", num_4.toString());
 	}
 
@@ -283,11 +283,11 @@ public class BigNumberTest extends TestCase {
 	public void test_3() {
 		BigNumber a1 = new BigNumber("4");
 		BigNumber a2 = new BigNumber("2");
-		BigNumber a3 = a1.divide(a2);
+		BigNumber a3 = (BigNumber) a1.divide(a2);
 
 		BigNumber b1 = new BigNumber("10");
 		BigNumber b2 = new BigNumber("5");
-		BigNumber b3 = b1.divide(b2);
+		BigNumber b3 = (BigNumber) b1.divide(b2);
 
 		assertTrue(a3.equals(b3));
 	}
@@ -297,7 +297,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber b = new BigNumber("2");
 		BigNumber c = new BigNumber("2");
 
-		BigNumber d = a.divide(b).add(c);
+		BigNumber d = (BigNumber) a.divide(b).add(c);
 
 		assertEquals(a.toString(), "1");
 		assertEquals(b.toString(), "2");
