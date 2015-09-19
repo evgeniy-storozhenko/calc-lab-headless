@@ -14,7 +14,7 @@ public class CalcLabParserTest extends TestCase {
 
 	public static String ls = System.lineSeparator();
 
-	public void testParse_1() {
+	public void testParse() {
 		isParseEquals("0;");
 	}
 
@@ -202,6 +202,18 @@ public class CalcLabParserTest extends TestCase {
 
 	public void testParse_44() {
 		isParseEquals("log ( 2 , 8 );", "log(2,8);");
+	}
+
+	public void testParse_45() {
+		isParseEquals("3.1636e-11;", "0.000000000031636;");
+	}
+
+	public void testParse_46() {
+		isParseEquals("5.9431e+3;", "5943.1;");
+	}
+
+	public void testParse_47() {
+		isParseEquals("-2.743226E+6;", "(-2743226);");
 	}
 
 	private void isParseEquals(String input) {

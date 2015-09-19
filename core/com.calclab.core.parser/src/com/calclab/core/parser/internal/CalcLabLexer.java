@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-09-19 16:03:17
+// $ANTLR 3.5.2 CalcLab.g 2015-09-19 17:40:09
 
 package com.calclab.core.parser.internal;
 
@@ -18,6 +18,8 @@ public class CalcLabLexer extends Lexer {
 	public static final int T__26 = 26;
 	public static final int T__27 = 27;
 	public static final int T__28 = 28;
+	public static final int T__29 = 29;
+	public static final int T__30 = 30;
 	public static final int ARGUMENTS_SEPARATOR = 4;
 	public static final int CHAR = 5;
 	public static final int CLOSING_PARENTHESIS = 6;
@@ -86,10 +88,10 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = T__26;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:12:7: ( '\\n' )
-			// CalcLab.g:12:9: '\\n'
+			// CalcLab.g:12:7: ( 'E' )
+			// CalcLab.g:12:9: 'E'
 			{
-				match('\n');
+				match('E');
 			}
 
 			state.type = _type;
@@ -105,10 +107,10 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = T__27;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:13:7: ( '\\r' )
-			// CalcLab.g:13:9: '\\r'
+			// CalcLab.g:13:7: ( '\\n' )
+			// CalcLab.g:13:9: '\\n'
 			{
-				match('\r');
+				match('\n');
 			}
 
 			state.type = _type;
@@ -124,8 +126,27 @@ public class CalcLabLexer extends Lexer {
 		try {
 			int _type = T__28;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// CalcLab.g:14:7: ( '\\t' )
-			// CalcLab.g:14:9: '\\t'
+			// CalcLab.g:14:7: ( '\\r' )
+			// CalcLab.g:14:9: '\\r'
+			{
+				match('\r');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__28"
+
+	// $ANTLR start "T__29"
+	public final void mT__29() throws RecognitionException {
+		try {
+			int _type = T__29;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:15:7: ( '\\t' )
+			// CalcLab.g:15:9: '\\t'
 			{
 				match('\t');
 			}
@@ -136,7 +157,26 @@ public class CalcLabLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__28"
+	// $ANTLR end "T__29"
+
+	// $ANTLR start "T__30"
+	public final void mT__30() throws RecognitionException {
+		try {
+			int _type = T__30;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:16:7: ( 'e' )
+			// CalcLab.g:16:9: 'e'
+			{
+				match('e');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__30"
 
 	// $ANTLR start "PLUS"
 	public final void mPLUS() throws RecognitionException {
@@ -1278,11 +1318,11 @@ public class CalcLabLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// CalcLab.g:1:8: ( T__25 | T__26 | T__27 | T__28 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER |
-		// INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS |
+		// CalcLab.g:1:8: ( T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS
+		// | REMAINDER | INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS |
 		// OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR |
 		// EXPRESSIONS_SEPARATOR | S )
-		int alt33 = 23;
+		int alt33 = 25;
 		alt33 = dfa33.predict(input);
 		switch (alt33) {
 		case 1:
@@ -1314,133 +1354,147 @@ public class CalcLabLexer extends Lexer {
 		}
 			break;
 		case 5:
-		// CalcLab.g:1:34: PLUS
+		// CalcLab.g:1:34: T__29
+		{
+			mT__29();
+
+		}
+			break;
+		case 6:
+		// CalcLab.g:1:40: T__30
+		{
+			mT__30();
+
+		}
+			break;
+		case 7:
+		// CalcLab.g:1:46: PLUS
 		{
 			mPLUS();
 
 		}
 			break;
-		case 6:
-		// CalcLab.g:1:39: MINUS
+		case 8:
+		// CalcLab.g:1:51: MINUS
 		{
 			mMINUS();
 
 		}
 			break;
-		case 7:
-		// CalcLab.g:1:45: MULTIPLY
+		case 9:
+		// CalcLab.g:1:57: MULTIPLY
 		{
 			mMULTIPLY();
 
 		}
 			break;
-		case 8:
-		// CalcLab.g:1:54: DIVISION
+		case 10:
+		// CalcLab.g:1:66: DIVISION
 		{
 			mDIVISION();
 
 		}
 			break;
-		case 9:
-		// CalcLab.g:1:63: EQUALS
+		case 11:
+		// CalcLab.g:1:75: EQUALS
 		{
 			mEQUALS();
 
 		}
 			break;
-		case 10:
-		// CalcLab.g:1:70: REMAINDER
+		case 12:
+		// CalcLab.g:1:82: REMAINDER
 		{
 			mREMAINDER();
 
 		}
 			break;
-		case 11:
-		// CalcLab.g:1:80: INVOLUTION
+		case 13:
+		// CalcLab.g:1:92: INVOLUTION
 		{
 			mINVOLUTION();
 
 		}
 			break;
-		case 12:
-		// CalcLab.g:1:91: FACTORIAL
+		case 14:
+		// CalcLab.g:1:103: FACTORIAL
 		{
 			mFACTORIAL();
 
 		}
 			break;
-		case 13:
-		// CalcLab.g:1:101: HELP
+		case 15:
+		// CalcLab.g:1:113: HELP
 		{
 			mHELP();
 
 		}
 			break;
-		case 14:
-		// CalcLab.g:1:106: DIGIT
+		case 16:
+		// CalcLab.g:1:118: DIGIT
 		{
 			mDIGIT();
 
 		}
 			break;
-		case 15:
-		// CalcLab.g:1:112: NAME
+		case 17:
+		// CalcLab.g:1:124: NAME
 		{
 			mNAME();
 
 		}
 			break;
-		case 16:
-		// CalcLab.g:1:117: OPENING_PARENTHESIS
+		case 18:
+		// CalcLab.g:1:129: OPENING_PARENTHESIS
 		{
 			mOPENING_PARENTHESIS();
 
 		}
 			break;
-		case 17:
-		// CalcLab.g:1:137: CLOSING_PARENTHESIS
+		case 19:
+		// CalcLab.g:1:149: CLOSING_PARENTHESIS
 		{
 			mCLOSING_PARENTHESIS();
 
 		}
 			break;
-		case 18:
-		// CalcLab.g:1:157: OPENING_SQ_PARENTHESIS
+		case 20:
+		// CalcLab.g:1:169: OPENING_SQ_PARENTHESIS
 		{
 			mOPENING_SQ_PARENTHESIS();
 
 		}
 			break;
-		case 19:
-		// CalcLab.g:1:180: CLOSING_SQ_PARENTHESIS
+		case 21:
+		// CalcLab.g:1:192: CLOSING_SQ_PARENTHESIS
 		{
 			mCLOSING_SQ_PARENTHESIS();
 
 		}
 			break;
-		case 20:
-		// CalcLab.g:1:203: DECIMAL_SEPARATOR
+		case 22:
+		// CalcLab.g:1:215: DECIMAL_SEPARATOR
 		{
 			mDECIMAL_SEPARATOR();
 
 		}
 			break;
-		case 21:
-		// CalcLab.g:1:221: ARGUMENTS_SEPARATOR
+		case 23:
+		// CalcLab.g:1:233: ARGUMENTS_SEPARATOR
 		{
 			mARGUMENTS_SEPARATOR();
 
 		}
 			break;
-		case 22:
-		// CalcLab.g:1:241: EXPRESSIONS_SEPARATOR
+		case 24:
+		// CalcLab.g:1:253: EXPRESSIONS_SEPARATOR
 		{
 			mEXPRESSIONS_SEPARATOR();
 
 		}
 			break;
-		case 23:
-		// CalcLab.g:1:263: S
+		case 25:
+		// CalcLab.g:1:275: S
 		{
 			mS();
 
@@ -1451,33 +1505,38 @@ public class CalcLabLexer extends Lexer {
 	}
 
 	protected DFA33 dfa33 = new DFA33(this);
-	static final String DFA33_eotS = "\1\uffff\1\27\1\31\1\32\1\33\10\uffff\1\17\12\uffff\1\35\3\uffff\1\17" +
-			"\1\uffff\1\17\2\41\1\uffff";
-	static final String DFA33_eofS = "\42\uffff";
-	static final String DFA33_minS = "\5\11\10\uffff\1\145\12\uffff\1\11\3\uffff\1\154\1\uffff\1\160\2\11\1" +
+	static final String DFA33_eotS = "\1\uffff\1\31\1\33\1\34\1\35\1\36\1\37\10\uffff\1\21\12\uffff\1\41\5\uffff" +
+			"\1\21\1\uffff\1\21\2\45\1\uffff";
+	static final String DFA33_eofS = "\46\uffff";
+	static final String DFA33_minS = "\7\11\10\uffff\1\145\12\uffff\1\11\5\uffff\1\154\1\uffff\1\160\2\11\1" +
 			"\uffff";
-	static final String DFA33_maxS = "\5\172\10\uffff\1\145\12\uffff\1\172\3\uffff\1\154\1\uffff\1\160\1\172" +
+	static final String DFA33_maxS = "\7\172\10\uffff\1\145\12\uffff\1\172\5\uffff\1\154\1\uffff\1\160\1\172" +
 			"\1\40\1\uffff";
-	static final String DFA33_acceptS = "\5\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\uffff\1\16\1\17\1\20\1" +
-			"\21\1\22\1\23\1\24\1\25\1\26\1\1\1\uffff\1\2\1\3\1\4\1\uffff\1\27\3\uffff" +
-			"\1\15";
-	static final String DFA33_specialS = "\42\uffff}>";
+	static final String DFA33_acceptS = "\7\uffff\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\uffff\1\20\1\21\1\22" +
+			"\1\23\1\24\1\25\1\26\1\27\1\30\1\1\1\uffff\1\2\1\3\1\4\1\5\1\6\1\uffff" +
+			"\1\31\3\uffff\1\17";
+	static final String DFA33_specialS = "\46\uffff}>";
 	static final String[] DFA33_transitionS = {
-			"\1\4\1\2\2\uffff\1\3\22\uffff\1\1\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\25\1\6\1\24\1\10\12\16\1\uffff\1\26\1\uffff\1\11\3\uffff\32" +
-					"\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\7\17\1\15\22\17",
-			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
-					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
-			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
-					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
-			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
-					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
-			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
-					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
+			"\1\5\1\3\2\uffff\1\4\22\uffff\1\1\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\27\1\10\1\26\1\12\12\20\1\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\4\21\1\2\25\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\4\21\1\6\2\21\1\17" +
+					"\22\21",
+			"\2\32\2\uffff\1\32\22\uffff\1\32\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\uffff\1\10\1\uffff\1\12\13\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\32\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\32\21",
+			"\2\21\2\uffff\1\21\22\uffff\1\21\17\uffff\12\21\7\uffff\32\21\4\uffff" +
+					"\1\21\1\uffff\32\21",
+			"\2\32\2\uffff\1\32\22\uffff\1\32\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\uffff\1\10\1\uffff\1\12\13\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\32\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\32\21",
+			"\2\32\2\uffff\1\32\22\uffff\1\32\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\uffff\1\10\1\uffff\1\12\13\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\32\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\32\21",
+			"\2\32\2\uffff\1\32\22\uffff\1\32\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\uffff\1\10\1\uffff\1\12\13\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\32\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\32\21",
+			"\2\21\2\uffff\1\21\22\uffff\1\21\17\uffff\12\21\7\uffff\32\21\4\uffff" +
+					"\1\21\1\uffff\32\21",
 			"",
 			"",
 			"",
@@ -1486,7 +1545,7 @@ public class CalcLabLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\34",
+			"\1\40",
 			"",
 			"",
 			"",
@@ -1497,18 +1556,20 @@ public class CalcLabLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
-					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
-					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
+			"\2\32\2\uffff\1\32\22\uffff\1\32\1\16\3\uffff\1\14\2\uffff\1\22\1\23" +
+					"\1\11\1\7\1\uffff\1\10\1\uffff\1\12\13\uffff\1\30\1\uffff\1\13\3\uffff" +
+					"\32\21\1\24\1\uffff\1\25\1\15\1\21\1\uffff\32\21",
 			"",
 			"",
 			"",
-			"\1\36",
 			"",
-			"\1\37",
-			"\2\40\2\uffff\1\40\22\uffff\1\40\17\uffff\12\17\7\uffff\32\17\4\uffff" +
-					"\1\17\1\uffff\32\17",
-			"\2\40\2\uffff\1\40\22\uffff\1\40",
+			"",
+			"\1\42",
+			"",
+			"\1\43",
+			"\2\44\2\uffff\1\44\22\uffff\1\44\17\uffff\12\21\7\uffff\32\21\4\uffff" +
+					"\1\21\1\uffff\32\21",
+			"\2\44\2\uffff\1\44\22\uffff\1\44",
 			""
 	};
 
@@ -1544,7 +1605,7 @@ public class CalcLabLexer extends Lexer {
 
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__25 | T__26 | T__27 | T__28 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER | INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | S );";
+			return "1:1: Tokens : ( T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER | INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | S );";
 		}
 	}
 

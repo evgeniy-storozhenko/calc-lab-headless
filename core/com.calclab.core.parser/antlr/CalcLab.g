@@ -107,7 +107,7 @@ unit returns[Operand value]
 ;
 
 number
-	: MINUS? S* DIGIT (DECIMAL_SEPARATOR DIGIT)* S*
+	: MINUS? S* DIGIT (DECIMAL_SEPARATOR DIGIT)? (('e' | 'E') (MINUS | PLUS) DIGIT)? S*
 ;
 
 compositeExpression returns[Operand value] 
