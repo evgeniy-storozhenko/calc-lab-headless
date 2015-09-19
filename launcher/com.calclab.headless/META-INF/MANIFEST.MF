@@ -12,5 +12,3 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.equinox.launcher
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
-Export-Package: com.calclab.headless,
- com.calclab.headless.input

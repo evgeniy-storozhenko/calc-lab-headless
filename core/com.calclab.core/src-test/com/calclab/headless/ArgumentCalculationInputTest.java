@@ -7,10 +7,10 @@ import java.io.IOException;
 
 import org.junit.Assert;
 
+import com.calclab.core.CalculationConfiguration;
 import com.calclab.core.input.CalculationInput;
+import com.calclab.core.input.InputFactory;
 import com.calclab.core.input.exceptions.InputException;
-import com.calclab.headless.CalculationConfiguration;
-import com.calclab.headless.input.InputFactory;
 
 import junit.framework.TestCase;
 

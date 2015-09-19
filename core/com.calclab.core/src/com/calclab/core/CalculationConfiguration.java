@@ -1,4 +1,4 @@
-package com.calclab.headless;
+package com.calclab.core;
 
 import java.io.File;
 import java.util.Arrays;
@@ -6,16 +6,16 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.Platform;
 
-import com.calclab.headless.internal.HeadlessCalculationPlugin;
-import com.calclab.headless.nls.Messages;
+import com.calclab.core.nls.Messages;
 
 public class CalculationConfiguration {
 
+	private int scale = 60;
 	private String inputData = null;
 	private File inputFile = null;
 	private File rowFileOutput = null;
 	private File htmlFileOutput = null;
-	private int scale = 60;
+	public static final String PLUGIN_ID = "com.calclab.core";
 
 	enum CommandArg {
 		InputData(Messages.CalculationConfiguration_0, "input", "i"), //$NON-NLS-2$ //$NON-NLS-3$
@@ -123,7 +123,7 @@ public class CalculationConfiguration {
 	}
 
 	public static String getRunnerVersion() {
-		String version = Platform.getBundle(HeadlessCalculationPlugin.PLUGIN_ID).getHeaders()
+		String version = Platform.getBundle(PLUGIN_ID).getHeaders()
 				.get("Bundle-Version"); //$NON-NLS-1$
 		if (version == null)
 			return "[unknown]"; //$NON-NLS-1$

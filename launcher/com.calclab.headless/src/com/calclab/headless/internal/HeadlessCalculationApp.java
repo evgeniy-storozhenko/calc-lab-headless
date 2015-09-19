@@ -3,14 +3,14 @@ package com.calclab.headless.internal;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
+import com.calclab.core.CalculationConfiguration;
 import com.calclab.core.calculator.CalcaulationProcessFactory;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
 import com.calclab.core.calculator.view.HtmlView;
 import com.calclab.core.calculator.view.RowView;
 import com.calclab.core.input.CalculationInput;
-import com.calclab.headless.CalculationConfiguration;
-import com.calclab.headless.input.InputFactory;
+import com.calclab.core.input.InputFactory;
 import com.calclab.headless.utils.HeadlessCalculationHelper;
 
 /**

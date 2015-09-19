@@ -1,7 +1,9 @@
-package com.calclab.headless.input;
+package com.calclab.core.input;
 
-import com.calclab.core.input.CalculationInput;
-import com.calclab.headless.CalculationConfiguration;
+import com.calclab.core.CalculationConfiguration;
+import com.calclab.core.input.impl.ArgumentCalculationInput;
+import com.calclab.core.input.impl.FileCalculationInput;
+import com.calclab.core.input.impl.StdCalculationInput;
 
 public class InputFactory {
 

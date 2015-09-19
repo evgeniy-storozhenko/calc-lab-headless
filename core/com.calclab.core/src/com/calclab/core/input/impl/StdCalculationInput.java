@@ -1,4 +1,4 @@
-package com.calclab.headless.input;
+package com.calclab.core.input.impl;
 
 import java.util.Scanner;
 

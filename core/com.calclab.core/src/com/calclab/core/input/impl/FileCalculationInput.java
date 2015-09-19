@@ -1,4 +1,4 @@
-package com.calclab.headless.input;
+package com.calclab.core.input.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.exceptions.InputException;
-import com.calclab.headless.nls.Messages;
+import com.calclab.core.nls.Messages;
 
 public class FileCalculationInput implements CalculationInput {
 
