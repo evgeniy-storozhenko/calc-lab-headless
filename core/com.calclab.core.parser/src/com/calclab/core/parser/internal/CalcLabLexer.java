@@ -1,4 +1,4 @@
-// $ANTLR 3.5.2 CalcLab.g 2015-09-06 16:55:30
+// $ANTLR 3.5.2 CalcLab.g 2015-09-19 16:03:17
 
 package com.calclab.core.parser.internal;
 
@@ -15,6 +15,9 @@ import org.antlr.runtime.RecognizerSharedState;
 public class CalcLabLexer extends Lexer {
 	public static final int EOF = -1;
 	public static final int T__25 = 25;
+	public static final int T__26 = 26;
+	public static final int T__27 = 27;
+	public static final int T__28 = 28;
 	public static final int ARGUMENTS_SEPARATOR = 4;
 	public static final int CHAR = 5;
 	public static final int CLOSING_PARENTHESIS = 6;
@@ -77,6 +80,63 @@ public class CalcLabLexer extends Lexer {
 		}
 	}
 	// $ANTLR end "T__25"
+
+	// $ANTLR start "T__26"
+	public final void mT__26() throws RecognitionException {
+		try {
+			int _type = T__26;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:12:7: ( '\\n' )
+			// CalcLab.g:12:9: '\\n'
+			{
+				match('\n');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__26"
+
+	// $ANTLR start "T__27"
+	public final void mT__27() throws RecognitionException {
+		try {
+			int _type = T__27;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:13:7: ( '\\r' )
+			// CalcLab.g:13:9: '\\r'
+			{
+				match('\r');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__27"
+
+	// $ANTLR start "T__28"
+	public final void mT__28() throws RecognitionException {
+		try {
+			int _type = T__28;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// CalcLab.g:14:7: ( '\\t' )
+			// CalcLab.g:14:9: '\\t'
+			{
+				match('\t');
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		} finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__28"
 
 	// $ANTLR start "PLUS"
 	public final void mPLUS() throws RecognitionException {
@@ -1218,10 +1278,11 @@ public class CalcLabLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// CalcLab.g:1:8: ( T__25 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER | INVOLUTION | FACTORIAL |
-		// HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS |
-		// CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | S )
-		int alt33 = 20;
+		// CalcLab.g:1:8: ( T__25 | T__26 | T__27 | T__28 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER |
+		// INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS |
+		// OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR |
+		// EXPRESSIONS_SEPARATOR | S )
+		int alt33 = 23;
 		alt33 = dfa33.predict(input);
 		switch (alt33) {
 		case 1:
@@ -1232,133 +1293,154 @@ public class CalcLabLexer extends Lexer {
 		}
 			break;
 		case 2:
-		// CalcLab.g:1:16: PLUS
+		// CalcLab.g:1:16: T__26
+		{
+			mT__26();
+
+		}
+			break;
+		case 3:
+		// CalcLab.g:1:22: T__27
+		{
+			mT__27();
+
+		}
+			break;
+		case 4:
+		// CalcLab.g:1:28: T__28
+		{
+			mT__28();
+
+		}
+			break;
+		case 5:
+		// CalcLab.g:1:34: PLUS
 		{
 			mPLUS();
 
 		}
 			break;
-		case 3:
-		// CalcLab.g:1:21: MINUS
+		case 6:
+		// CalcLab.g:1:39: MINUS
 		{
 			mMINUS();
 
 		}
 			break;
-		case 4:
-		// CalcLab.g:1:27: MULTIPLY
+		case 7:
+		// CalcLab.g:1:45: MULTIPLY
 		{
 			mMULTIPLY();
 
 		}
 			break;
-		case 5:
-		// CalcLab.g:1:36: DIVISION
+		case 8:
+		// CalcLab.g:1:54: DIVISION
 		{
 			mDIVISION();
 
 		}
 			break;
-		case 6:
-		// CalcLab.g:1:45: EQUALS
+		case 9:
+		// CalcLab.g:1:63: EQUALS
 		{
 			mEQUALS();
 
 		}
 			break;
-		case 7:
-		// CalcLab.g:1:52: REMAINDER
+		case 10:
+		// CalcLab.g:1:70: REMAINDER
 		{
 			mREMAINDER();
 
 		}
 			break;
-		case 8:
-		// CalcLab.g:1:62: INVOLUTION
+		case 11:
+		// CalcLab.g:1:80: INVOLUTION
 		{
 			mINVOLUTION();
 
 		}
 			break;
-		case 9:
-		// CalcLab.g:1:73: FACTORIAL
+		case 12:
+		// CalcLab.g:1:91: FACTORIAL
 		{
 			mFACTORIAL();
 
 		}
 			break;
-		case 10:
-		// CalcLab.g:1:83: HELP
+		case 13:
+		// CalcLab.g:1:101: HELP
 		{
 			mHELP();
 
 		}
 			break;
-		case 11:
-		// CalcLab.g:1:88: DIGIT
+		case 14:
+		// CalcLab.g:1:106: DIGIT
 		{
 			mDIGIT();
 
 		}
 			break;
-		case 12:
-		// CalcLab.g:1:94: NAME
+		case 15:
+		// CalcLab.g:1:112: NAME
 		{
 			mNAME();
 
 		}
 			break;
-		case 13:
-		// CalcLab.g:1:99: OPENING_PARENTHESIS
+		case 16:
+		// CalcLab.g:1:117: OPENING_PARENTHESIS
 		{
 			mOPENING_PARENTHESIS();
 
 		}
 			break;
-		case 14:
-		// CalcLab.g:1:119: CLOSING_PARENTHESIS
+		case 17:
+		// CalcLab.g:1:137: CLOSING_PARENTHESIS
 		{
 			mCLOSING_PARENTHESIS();
 
 		}
 			break;
-		case 15:
-		// CalcLab.g:1:139: OPENING_SQ_PARENTHESIS
+		case 18:
+		// CalcLab.g:1:157: OPENING_SQ_PARENTHESIS
 		{
 			mOPENING_SQ_PARENTHESIS();
 
 		}
 			break;
-		case 16:
-		// CalcLab.g:1:162: CLOSING_SQ_PARENTHESIS
+		case 19:
+		// CalcLab.g:1:180: CLOSING_SQ_PARENTHESIS
 		{
 			mCLOSING_SQ_PARENTHESIS();
 
 		}
 			break;
-		case 17:
-		// CalcLab.g:1:185: DECIMAL_SEPARATOR
+		case 20:
+		// CalcLab.g:1:203: DECIMAL_SEPARATOR
 		{
 			mDECIMAL_SEPARATOR();
 
 		}
 			break;
-		case 18:
-		// CalcLab.g:1:203: ARGUMENTS_SEPARATOR
+		case 21:
+		// CalcLab.g:1:221: ARGUMENTS_SEPARATOR
 		{
 			mARGUMENTS_SEPARATOR();
 
 		}
 			break;
-		case 19:
-		// CalcLab.g:1:223: EXPRESSIONS_SEPARATOR
+		case 22:
+		// CalcLab.g:1:241: EXPRESSIONS_SEPARATOR
 		{
 			mEXPRESSIONS_SEPARATOR();
 
 		}
 			break;
-		case 20:
-		// CalcLab.g:1:245: S
+		case 23:
+		// CalcLab.g:1:263: S
 		{
 			mS();
 
@@ -1369,23 +1451,33 @@ public class CalcLabLexer extends Lexer {
 	}
 
 	protected DFA33 dfa33 = new DFA33(this);
-	static final String DFA33_eotS = "\1\uffff\1\25\1\26\10\uffff\1\15\13\uffff\2\15\2\33\1\uffff";
-	static final String DFA33_eofS = "\34\uffff";
-	static final String DFA33_minS = "\3\11\10\uffff\1\145\13\uffff\1\154\1\160\2\11\1\uffff";
-	static final String DFA33_maxS = "\3\172\10\uffff\1\145\13\uffff\1\154\1\160\1\172\1\40\1\uffff";
-	static final String DFA33_acceptS = "\3\uffff\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\uffff\1\13\1\14\1\15\1\16" +
-			"\1\17\1\20\1\21\1\22\1\23\1\1\1\24\4\uffff\1\12";
-	static final String DFA33_specialS = "\34\uffff}>";
+	static final String DFA33_eotS = "\1\uffff\1\27\1\31\1\32\1\33\10\uffff\1\17\12\uffff\1\35\3\uffff\1\17" +
+			"\1\uffff\1\17\2\41\1\uffff";
+	static final String DFA33_eofS = "\42\uffff";
+	static final String DFA33_minS = "\5\11\10\uffff\1\145\12\uffff\1\11\3\uffff\1\154\1\uffff\1\160\2\11\1" +
+			"\uffff";
+	static final String DFA33_maxS = "\5\172\10\uffff\1\145\12\uffff\1\172\3\uffff\1\154\1\uffff\1\160\1\172" +
+			"\1\40\1\uffff";
+	static final String DFA33_acceptS = "\5\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\uffff\1\16\1\17\1\20\1" +
+			"\21\1\22\1\23\1\24\1\25\1\26\1\1\1\uffff\1\2\1\3\1\4\1\uffff\1\27\3\uffff" +
+			"\1\15";
+	static final String DFA33_specialS = "\42\uffff}>";
 	static final String[] DFA33_transitionS = {
-			"\2\2\2\uffff\1\2\22\uffff\1\1\1\12\3\uffff\1\10\2\uffff\1\16\1\17\1\5" +
-					"\1\3\1\23\1\4\1\22\1\6\12\14\1\uffff\1\24\1\uffff\1\7\3\uffff\32\15\1" +
-					"\20\1\uffff\1\21\1\11\1\15\1\uffff\7\15\1\13\22\15",
-			"\2\2\2\uffff\1\2\22\uffff\1\2\1\12\3\uffff\1\10\2\uffff\1\16\1\17\1" +
-					"\5\1\3\1\uffff\1\4\1\uffff\1\6\13\uffff\1\24\1\uffff\1\7\3\uffff\32\15" +
-					"\1\20\1\uffff\1\21\1\11\1\15\1\uffff\32\15",
-			"\2\2\2\uffff\1\2\22\uffff\1\2\1\12\3\uffff\1\10\2\uffff\1\16\1\17\1" +
-					"\5\1\3\1\uffff\1\4\1\uffff\1\6\13\uffff\1\24\1\uffff\1\7\3\uffff\32\15" +
-					"\1\20\1\uffff\1\21\1\11\1\15\1\uffff\32\15",
+			"\1\4\1\2\2\uffff\1\3\22\uffff\1\1\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\25\1\6\1\24\1\10\12\16\1\uffff\1\26\1\uffff\1\11\3\uffff\32" +
+					"\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\7\17\1\15\22\17",
+			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
+					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
+			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
+					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
+			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
+					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
+			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
+					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
 			"",
 			"",
 			"",
@@ -1394,7 +1486,7 @@ public class CalcLabLexer extends Lexer {
 			"",
 			"",
 			"",
-			"\1\27",
+			"\1\34",
 			"",
 			"",
 			"",
@@ -1405,12 +1497,18 @@ public class CalcLabLexer extends Lexer {
 			"",
 			"",
 			"",
+			"\2\30\2\uffff\1\30\22\uffff\1\30\1\14\3\uffff\1\12\2\uffff\1\20\1\21" +
+					"\1\7\1\5\1\uffff\1\6\1\uffff\1\10\13\uffff\1\26\1\uffff\1\11\3\uffff" +
+					"\32\17\1\22\1\uffff\1\23\1\13\1\17\1\uffff\32\17",
 			"",
-			"\1\30",
-			"\1\31",
-			"\2\32\2\uffff\1\32\22\uffff\1\32\17\uffff\12\15\7\uffff\32\15\4\uffff" +
-					"\1\15\1\uffff\32\15",
-			"\2\32\2\uffff\1\32\22\uffff\1\32",
+			"",
+			"",
+			"\1\36",
+			"",
+			"\1\37",
+			"\2\40\2\uffff\1\40\22\uffff\1\40\17\uffff\12\17\7\uffff\32\17\4\uffff" +
+					"\1\17\1\uffff\32\17",
+			"\2\40\2\uffff\1\40\22\uffff\1\40",
 			""
 	};
 
@@ -1446,7 +1544,7 @@ public class CalcLabLexer extends Lexer {
 
 		@Override
 		public String getDescription() {
-			return "1:1: Tokens : ( T__25 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER | INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | S );";
+			return "1:1: Tokens : ( T__25 | T__26 | T__27 | T__28 | PLUS | MINUS | MULTIPLY | DIVISION | EQUALS | REMAINDER | INVOLUTION | FACTORIAL | HELP | DIGIT | NAME | OPENING_PARENTHESIS | CLOSING_PARENTHESIS | OPENING_SQ_PARENTHESIS | CLOSING_SQ_PARENTHESIS | DECIMAL_SEPARATOR | ARGUMENTS_SEPARATOR | EXPRESSIONS_SEPARATOR | S );";
 		}
 	}
 

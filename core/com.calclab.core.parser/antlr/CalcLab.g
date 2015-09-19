@@ -145,8 +145,8 @@ functionOrVariable returns[Operand value]
 
 arguments returns[ArrayList<Operand> value]
 	: { $value = new ArrayList<Operand>(); }
-		e1=expression { $value.add($e1.value); } 
-			(ARGUMENTS_SEPARATOR e2=expression { $value.add($e2.value); })*
+		e1=expression { $value.add($e1.value); } (' ' | '\n' |'\r' | '\t')* // conflict with S
+			(ARGUMENTS_SEPARATOR (' ' | '\n' |'\r' | '\t')* e2=expression (' ' | '\n' |'\r' | '\t')* { $value.add($e2.value); })*
 ;
 
 

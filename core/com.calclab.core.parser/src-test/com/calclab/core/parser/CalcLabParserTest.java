@@ -200,6 +200,10 @@ public class CalcLabParserTest extends TestCase {
 		isParseEquals("2%2;", "(2%2);");
 	}
 
+	public void testParse_44() {
+		isParseEquals("log ( 2 , 8 );", "log(2,8);");
+	}
+
 	private void isParseEquals(String input) {
 		Calculable calculation = parse(input);
 		assertEquals(input, calculation.toString());
