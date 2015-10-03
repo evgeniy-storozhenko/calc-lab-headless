@@ -5,24 +5,28 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.equinox.app.IApplication;
 
 import com.calclab.core.nls.Messages;
 
 public class CalculationConfiguration {
 
 	private int scale = 60;
+	private int scaleToDisplay = 8;
 	private String inputData = null;
 	private File inputFile = null;
 	private File rowFileOutput = null;
 	private File htmlFileOutput = null;
-	public static final String PLUGIN_ID = "com.calclab.core";
+	public static final String PLUGIN_ID = "com.calclab.core"; //$NON-NLS-1$
 
 	enum CommandArg {
-		InputData(Messages.CalculationConfiguration_0, "input", "i"), //$NON-NLS-2$ //$NON-NLS-3$
-		InputFile(Messages.CalculationConfiguration_3, "file", "f"), //$NON-NLS-2$ //$NON-NLS-3$
-		RowFile(Messages.CalculationConfiguration_1, "row", "r"), //$NON-NLS-2$ //$NON-NLS-3$
-		HTMLFile(Messages.CalculationConfiguration_9, "html", "H"), //$NON-NLS-2$ //$NON-NLS-3$
-		Help(Messages.CalculationConfiguration_12, "help", "h", "?"), //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		InputData(Messages.CalculationConfiguration_0, "input", "i"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		InputFile(Messages.CalculationConfiguration_3, "file", "f"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		RowFile(Messages.CalculationConfiguration_1, "row", "r"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		HTMLFile(Messages.CalculationConfiguration_9, "html", "H"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		Scale(Messages.CalculationConfiguration_10, "scale", "s"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		ScaleToDisplay(Messages.CalculationConfiguration_4, "display", "d"), //$NON-NLS-2$ //$NON-NLS-3$
+		Help(Messages.CalculationConfiguration_12, "help", "h", "?"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		Version(Messages.CalculationConfiguration_13, "version", "v"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		CommandArg(String message, String... val) {
@@ -66,10 +70,10 @@ public class CalculationConfiguration {
 				break;
 			case Help:
 				showHelp();
-				break;
+				exit();
 			case Version:
 				showVersion();
-				break;
+				exit();
 			default:
 				return false;
 			}
@@ -117,7 +121,7 @@ public class CalculationConfiguration {
 		}
 	}
 
-	private void showVersion() {
+	public void showVersion() {
 		System.out.println(String.format(Messages.CalculationConfiguration_28,
 				getRunnerVersion()));
 	}
@@ -131,6 +135,10 @@ public class CalculationConfiguration {
 		if (dotPos < 0)
 			return version;
 		return version.substring(0, dotPos);
+	}
+
+	private void exit() {
+		System.exit(IApplication.EXIT_OK);
 	}
 
 	public String getInputData() {
@@ -153,4 +161,7 @@ public class CalculationConfiguration {
 		return scale;
 	}
 
+	public int getScaleToDisplay() {
+		return scaleToDisplay;
+	}
 }

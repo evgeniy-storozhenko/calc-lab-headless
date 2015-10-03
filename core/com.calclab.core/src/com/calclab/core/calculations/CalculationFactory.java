@@ -9,7 +9,7 @@ public class CalculationFactory {
 		return new Calculation(operand);
 	}
 
-	public Calculable createCalculation(Operand operand, String input) {
-		return new Calculation(operand, input);
+	public Calculable createCalculation(String variable, Operand operand, String input) {
+		return new Calculation(variable, operand, input);
 	}
 }

@@ -38,7 +38,7 @@ public class Infinity extends AbstractNumber {
 
 	@Override
 	public boolean isExact() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -210,6 +210,12 @@ public class Infinity extends AbstractNumber {
 
 	@Override
 	public double doubleValue() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int signum() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

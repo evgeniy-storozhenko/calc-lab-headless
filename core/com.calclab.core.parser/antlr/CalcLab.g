@@ -63,12 +63,13 @@ calculation
 				in.append($EQUALS.text);
 			})?
 		e=expression {
-		 	in.append($e.text);
-		 	Calculable calculable = calcFactory.createCalculation($e.value, in.toString());
-		 	calculations.add(calculable);
-		 	if (variable != null) {
-		 		variables.put(variable, calculable);
+			if (variable == null) {
+		 		variable = "ans";
 		 	}
+		 	in.append($e.text);
+		 	Calculable calculable = calcFactory.createCalculation(variable, $e.value, in.toString());
+		 	calculations.add(calculable);
+		 	variables.put(variable, calculable);
 		 }
 		EXPRESSIONS_SEPARATOR
 		)+

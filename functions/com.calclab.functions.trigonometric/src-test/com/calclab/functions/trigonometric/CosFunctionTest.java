@@ -12,6 +12,11 @@ import junit.framework.TestCase;
 
 public class CosFunctionTest extends TestCase {
 
+	public CosFunctionTest(String testName) {
+		super(testName);
+		AbstractNumber.scaleToDisplay = 1000;
+	}
+
 	private AbstractNumber createNumber(String input) {
 		return CommonOperandFactory.getInstance().createNumber(input);
 	}

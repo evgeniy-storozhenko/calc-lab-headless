@@ -14,6 +14,7 @@ public class InputFactory {
 		} else if (config.getInputData() != null) {
 			input = new ArgumentCalculationInput(config.getInputData());
 		} else {
+			config.showVersion();
 			input = new StdCalculationInput();
 		}
 		return input;

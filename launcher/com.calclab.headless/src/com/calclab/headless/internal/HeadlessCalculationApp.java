@@ -4,7 +4,7 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
 import com.calclab.core.CalculationConfiguration;
-import com.calclab.core.calculator.CalcaulationProcessFactory;
+import com.calclab.core.calculator.CalcaulationJobFactory;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
 import com.calclab.core.calculator.view.HtmlView;
@@ -42,10 +42,11 @@ public class HeadlessCalculationApp implements IApplication {
 	private int perform(final CalculationConfiguration config) {
 
 		InputFactory inputFactory = new InputFactory();
-		CalcaulationProcessFactory calcProcessFactory = new CalcaulationProcessFactory();
+		CalcaulationJobFactory calcProcessFactory = new CalcaulationJobFactory();
 
 		CalculationInput input = inputFactory.createCalculationInput(config);
-		CalculationJob process = calcProcessFactory.createCalculationJob(input);
+		CalculationJob process = calcProcessFactory.createCalculationJob(input, config.getScale(),
+				config.getScaleToDisplay());
 
 		do {
 			process.run();

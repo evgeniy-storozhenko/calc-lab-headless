@@ -18,6 +18,7 @@ import com.calclab.core.parser.extensions.SyntaxErrorException;
 public class CalculationJobImpl implements CalculationJob {
 
 	private final int scale;
+	private final int scaleToDisplay;
 	private final Parser parser;
 	private final CalculationInput input;
 	private final CalculationStatus status = new CalculationStatus();
@@ -27,20 +28,22 @@ public class CalculationJobImpl implements CalculationJob {
 
 	public CalculationJobImpl(CalculationInput input) {
 		this.scale = 60;
+		this.scaleToDisplay = 8;
 		this.input = input;
 		this.parser = ParserFactory.createCalculationParser();
 	}
 
-	public CalculationJobImpl(CalculationInput input, int scale) {
-		this.scale = scale;
+	public CalculationJobImpl(CalculationInput input, int scale, int scaleToDisplay) {
 		this.input = input;
+		this.scale = scale;
+		this.scaleToDisplay = scaleToDisplay;
 		this.parser = ParserFactory.createCalculationParser();
 	}
 
 	@Override
 	public void run() {
 		try {
-			setScale();
+			initParams();
 			status.setStage(CalculationStatus.Stage.INPROCESS);
 			input.setExpressions(parser.prepareInputHook(input.getExpressions()));
 			parser.parse(input);
@@ -56,8 +59,17 @@ public class CalculationJobImpl implements CalculationJob {
 		}
 	}
 
+	private void initParams() {
+		setScale();
+		setScaleToDisplay();
+	}
+
 	private void setScale() {
 		AbstractNumber.scale = scale;
+	}
+
+	private void setScaleToDisplay() {
+		AbstractNumber.scaleToDisplay = scaleToDisplay;
 	}
 
 	@Override

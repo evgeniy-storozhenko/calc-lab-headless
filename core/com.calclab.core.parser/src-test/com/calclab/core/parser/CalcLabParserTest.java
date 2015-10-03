@@ -5,12 +5,18 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 
 import com.calclab.core.calculations.Calculable;
+import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.parser.internal.CalcLabLexer;
 import com.calclab.core.parser.internal.CalcLabParser;
 
 import junit.framework.TestCase;
 
 public class CalcLabParserTest extends TestCase {
+
+	public CalcLabParserTest(String testName) {
+		super(testName);
+		AbstractNumber.scaleToDisplay = 1000;
+	}
 
 	public static String ls = System.lineSeparator();
 

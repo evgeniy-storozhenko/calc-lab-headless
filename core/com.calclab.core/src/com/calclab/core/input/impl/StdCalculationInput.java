@@ -14,9 +14,8 @@ public class StdCalculationInput implements CalculationInput {
 
 	@Override
 	public String getExpressions() throws InputException {
-		System.out.print("> ");
-
 		if (expressions == null) {
+			System.out.print(">> ");
 			expressions = scanner.nextLine().trim();
 			if (!getLastChar().equals(column)) {
 				expressions += column;

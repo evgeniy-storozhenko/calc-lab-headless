@@ -12,6 +12,11 @@ import junit.framework.TestCase;
 
 public class ExpFunctionTest extends TestCase {
 
+	public ExpFunctionTest(String testName) {
+		super(testName);
+		AbstractNumber.scaleToDisplay = 1000;
+	}
+
 	private AbstractNumber createNumber(String input) {
 		return CommonOperandFactory.getInstance().createNumber(input);
 	}
