@@ -1,5 +1,7 @@
 package com.calclab.core.functions;
 
+import com.calclab.core.nls.Messages;
+
 public class FunctionInfo {
 	
 	private String syntax;
@@ -44,21 +46,21 @@ public class FunctionInfo {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.lineSeparator());
 		builder.append(System.lineSeparator());
-		builder.append("Syntax: ");
+		builder.append(Messages.FunctionInfo_0);
 		builder.append(syntax);
 		builder.append(System.lineSeparator());
-		builder.append("Description: ");
+		builder.append(Messages.FunctionInfo_1);
 		builder.append(description);
 		builder.append(System.lineSeparator());
 		builder.append(System.lineSeparator());
-		builder.append("Example: ");
+		builder.append(Messages.FunctionInfo_2);
 		builder.append(System.lineSeparator());
-		builder.append("\t");
+		builder.append("\t"); //$NON-NLS-1$
 		builder.append(example);
 		builder.append(System.lineSeparator());
-		builder.append("Result: ");
+		builder.append(Messages.FunctionInfo_4);
 		builder.append(System.lineSeparator());
-		builder.append("\t");
+		builder.append("\t"); //$NON-NLS-1$
 		builder.append(exampleResult);
 		return builder.toString();
 	}

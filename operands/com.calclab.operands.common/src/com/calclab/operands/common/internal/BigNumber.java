@@ -39,7 +39,7 @@ public class BigNumber extends AbstractNumber {
 
 	public BigNumber(String str) {
 		numerator = new BigDecimal(str);
-		String[] split = str.split(AbstractNumber.dsecimalMark);
+		String[] split = str.split(AbstractNumber.dsecimalMarkRegEx);
 		if (split.length == 1) {
 			denominator = BigDecimal.ONE;
 		} else {
@@ -74,12 +74,59 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public String toString() {
-		BigDecimal result = this.toBigDecimal();
+		int offset = 0;
+		BigDecimal result = this.toBigDecimal().abs();
 		String plainString = result.toPlainString();
-		if (isNegative()) {
-			plainString = "(" + plainString + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+		final int length = plainString.length();
+		final int firstNotZeroIndex = findFirstNotZeroIndex(plainString, length);
+		final boolean isNegative = this.isNegative();
+
+		if (length <= AbstractNumber.scaleToDisplay) {
+			return isNegative ? "(-" + plainString + ")" : plainString; //$NON-NLS-1$ //$NON-NLS-2$
 		}
-		return plainString;
+
+		int position = plainString.indexOf(AbstractNumber.dsecimalMark);
+		if (position == -1) {
+			position = length;
+		}
+
+		offset = position - AbstractNumber.scaleToDisplay;
+		String mantissa = getMantissa(offset, firstNotZeroIndex, plainString);
+		if (firstNotZeroIndex > 0 && offset < 0) {
+			offset -= firstNotZeroIndex - 1;
+		}
+
+		String sciNotation = mantissa;
+		if (offset > 0 || firstNotZeroIndex > 3) {
+			sciNotation += "e";
+			sciNotation += (offset < 0) ? "" : "+";
+			sciNotation += offset;
+		}
+		sciNotation = isNegative ? "(-" + sciNotation + ")" : sciNotation; //$NON-NLS-1$ //$NON-NLS-2$ ;
+		return sciNotation;
+	}
+
+	private String getMantissa(int offset, int firstNotZeroIndex, String plainString) {
+		String mantissa = null;
+		if (offset > 0 || firstNotZeroIndex == 0) {
+			mantissa = plainString.substring(0, AbstractNumber.scaleToDisplay);
+		} else {
+			int endIndex = (AbstractNumber.scaleToDisplay + firstNotZeroIndex);
+			mantissa = plainString.substring(firstNotZeroIndex, endIndex);
+		}
+		return mantissa;
+	}
+
+	private int findFirstNotZeroIndex(String plainString, int length) {
+		int firstNotZero = 0;
+		char dsecimalMark = AbstractNumber.dsecimalMark.toCharArray()[0];
+		for (int i = 0; i < length; i++) {
+			if (plainString.charAt(i) != dsecimalMark && plainString.charAt(i) != '0') {
+				break;
+			}
+			firstNotZero++;
+		}
+		return firstNotZero;
 	}
 
 	@Override
@@ -87,7 +134,7 @@ public class BigNumber extends AbstractNumber {
 		try {
 			BigDecimal opimized = numerator.divide(denominator);
 			String stringValue = opimized.toPlainString();
-			if (stringValue.contains(AbstractNumber.dsecimalMark)) {
+			if (stringValue.contains(AbstractNumber.dsecimalMarkRegEx)) {
 				BigNumber result = new BigNumber(stringValue);
 				numerator = result.getNumerator();
 				denominator = result.getDenominator();
@@ -171,6 +218,11 @@ public class BigNumber extends AbstractNumber {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int signum() {
+		return numerator.signum() * denominator.signum();
 	}
 
 	@Override
@@ -382,7 +434,7 @@ public class BigNumber extends AbstractNumber {
 		if (exact) {
 			result = numerator.divide(denominator, BigDecimal.ROUND_UNNECESSARY);
 		} else {
-			result = numerator.divide(denominator, 60, BigDecimal.ROUND_CEILING);
+			result = numerator.divide(denominator, AbstractNumber.scale, BigDecimal.ROUND_CEILING);
 		}
 		return result.stripTrailingZeros();
 	}
@@ -406,7 +458,7 @@ public class BigNumber extends AbstractNumber {
 
 	@Override
 	public String toScientificNotation() {
-		return toBigDecimal().toEngineeringString();
+		return toString();
 	}
 
 	@Override

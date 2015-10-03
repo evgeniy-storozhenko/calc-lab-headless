@@ -62,9 +62,7 @@ public class RowView implements CalculationView {
 			if (res instanceof Void) {
 				return;
 			}
-			result.append("	");
-			result.append((res.isExact()) ? "=" : "≈");
-			result.append(" ");
+			result.append((res.isExact()) ? " = " : " ≈ ");
 
 			result.append(res.toString());
 			result.append(System.lineSeparator());

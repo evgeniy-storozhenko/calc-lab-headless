@@ -13,6 +13,8 @@ Calculation Laboratory Headless command line arguments:
 	-file, -f:	Input file for calculation
 	-row, -r:	Output result of calculation as row
 	-html, -H:	Output result of calculation as html
+	-scale, -s:	Scale determines the accuracy of calculations
+	-display, -d:	Scale for display of numbers
 	-help, -h, -?:	Help
 	-version, -v:	Current version
 ```

@@ -10,9 +10,13 @@ public abstract class AbstractNumber extends Number
 
 	private static final long serialVersionUID = 6728533579589019981L;
 
-	public static final String dsecimalMark = "\\.";
+	public static final String dsecimalMarkRegEx = "\\.";
+
+	public static final String dsecimalMark = ".";
 
 	public static int scale = 60;
+
+	public static int scaleToDisplay = 8;
 
 	public abstract Number getNumerator();
 
@@ -57,6 +61,13 @@ public abstract class AbstractNumber extends Number
 	 * @return
 	 */
 	public abstract boolean isNegative();
+
+	/**
+	 * Return 1 if this number bigger then 0, -1 if lesser then 0, 0 if it equals 0
+	 * 
+	 * @return
+	 */
+	public abstract int signum();
 
 	/**
 	 * Return true if this number multiple to two

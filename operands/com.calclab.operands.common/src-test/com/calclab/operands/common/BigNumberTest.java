@@ -12,6 +12,7 @@ public class BigNumberTest extends TestCase {
 
 	public BigNumberTest(String testName) {
 		super(testName);
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
@@ -461,7 +462,7 @@ public class BigNumberTest extends TestCase {
 		BigNumber a = new BigNumber("2000");
 		BigNumber b = new BigNumber("93.5");
 		AbstractNumber c = a.pow(b);
-		int ordersOfMagnitude = c.toString().split(AbstractNumber.dsecimalMark)[0].length();
+		int ordersOfMagnitude = c.toString().split(AbstractNumber.dsecimalMarkRegEx)[0].length();
 
 		assertTrue(c.toString().contains("442898"));
 		assertTrue(ordersOfMagnitude == 309);
@@ -471,79 +472,81 @@ public class BigNumberTest extends TestCase {
 	 * 2000^(-93.5)
 	 */
 	public void testPow_14() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("2000");
 		BigNumber b = new BigNumber("-93.5");
 		AbstractNumber c = a.pow(b);
-		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
 
-		assertTrue(c.toScientificNotation().contains("2.25785"));
-		assertTrue(ordersOfMagnitude.equals("-309"));
+		assertEquals("22578516e-316", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
 	 * 2000.5^(-93.5)
 	 */
 	public void testPow_15() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("2000.5");
 		BigNumber b = new BigNumber("-93.5");
 		AbstractNumber c = a.pow(b);
-		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
 
-		assertTrue(c.toScientificNotation().contains("2.20569"));
-		assertTrue(ordersOfMagnitude.equals("-309"));
+		assertEquals("22056928e-316", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
 	 * -2000.5^(-93.5)
 	 */
 	public void testPow_16() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("-2000.5");
 		BigNumber b = new BigNumber("-93.5");
 		AbstractNumber c = a.pow(b);
-		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
 
-		assertTrue(c.toScientificNotation().contains("-2.20569"));
-		assertTrue(ordersOfMagnitude.equals("-309"));
+		assertEquals("(-22056928e-316)", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
 	 * 0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^41
 	 */
 	public void testPow_17() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("0.00000000000000000000000000000000000000000000000000000000"
 				+ "00000000000235378224278505652343786");
 		BigNumber b = new BigNumber("41");
 		AbstractNumber c = a.pow(b);
-		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
 
-		assertTrue(c.toScientificNotation().contains("174.75015450382927683774944704058139980028568"));
-		assertTrue(ordersOfMagnitude.equals("-2775"));
+		assertEquals("17475015e-2780", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
 	 * -0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^41
 	 */
 	public void testPow_18() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("-0.00000000000000000000000000000000000000000000000000000000"
 				+ "00000000000235378224278505652343786");
 		BigNumber b = new BigNumber("41");
 		AbstractNumber c = a.pow(b);
-		String ordersOfMagnitude = c.toScientificNotation().split("E")[1];
 
-		assertTrue(c.toScientificNotation().contains("-174.75015450382927683774944704058139980028568"));
-		assertTrue(ordersOfMagnitude.equals("-2775"));
+		assertEquals("(-17475015e-2780)", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
 	 * -0.0000000000000000000000000000000000000000000000000000000000000000000235378224278505652343786^(-41)
 	 */
 	public void testPow_19() {
+		AbstractNumber.scaleToDisplay = 8;
 		BigNumber a = new BigNumber("-0.00000000000000000000000000000000000000000000000000000000"
 				+ "00000000000235378224278505652343786");
 		BigNumber b = new BigNumber("-41");
 		AbstractNumber c = a.pow(b);
 
-		assertTrue(c.toScientificNotation().contains("-57224555986191539150894314506323746216284179"));
+		assertEquals("(-57224555e+2765)", c.toScientificNotation());
+		AbstractNumber.scaleToDisplay = 1000;
 	}
 
 	/**
@@ -593,33 +596,72 @@ public class BigNumberTest extends TestCase {
 	/**
 	 * 5 % 3 = 2
 	 */
-	public void divideAndRemainder() {
+	public void testDivideAndRemainder() {
 		BigNumber num_1 = new BigNumber("5");
 		BigNumber num_2 = new BigNumber("3");
-		num_1 = num_1.add(num_2);
+		AbstractNumber[] res = num_1.divideAndRemainder(num_2);
 		BigNumber expResult = new BigNumber("2");
-		assertEquals(expResult, num_1);
+		assertEquals(expResult, res[1]);
 	}
 
 	/**
 	 * 6.9 % 4 = 2.9
 	 */
-	public void divideAndRemainder_2() {
+	public void testDivideAndRemainder_2() {
 		BigNumber num_1 = new BigNumber("6.9");
 		BigNumber num_2 = new BigNumber("4");
-		num_1 = num_1.add(num_2);
+		AbstractNumber[] res = num_1.divideAndRemainder(num_2);
 		BigNumber expResult = new BigNumber("2.9");
-		assertEquals(expResult, num_1);
+		assertEquals(expResult, res[1]);
 	}
 
 	/**
 	 * -8.1 % 4 = -(0.1)
 	 */
-	public void divideAndRemainder_3() {
+	public void testDivideAndRemainder_3() {
 		BigNumber num_1 = new BigNumber("-8.1");
 		BigNumber num_2 = new BigNumber("4");
-		num_1 = num_1.add(num_2);
-		BigNumber expResult = new BigNumber("-(0.1)");
-		assertEquals(expResult, num_1);
+		AbstractNumber[] res = num_1.divideAndRemainder(num_2);
+		BigNumber expResult = new BigNumber("-0.1");
+		assertEquals(expResult, res[1]);
 	}
+
+	public void testToScientificNotation() {
+		AbstractNumber.scaleToDisplay = 8;
+
+		BigNumber a = new BigNumber("41124124124219594634735214235346241241265434525");
+		BigNumber b = new BigNumber("41124124124219594634735214235346241241.65434525");
+		BigNumber c = new BigNumber("41124124124.21959463473521423534624121265434525");
+		BigNumber d = new BigNumber("4.112412412421959463473521423534624141265434525");
+		BigNumber e = new BigNumber("0.000000000000000094634735214235346412412654345");
+		BigNumber f = new BigNumber("0.000946347352142353464124126543423534641241265");
+		BigNumber g = new BigNumber("0.000946");
+
+		assertEquals("41124124e+39", a.toString());
+		assertEquals("41124124e+30", b.toString());
+		assertEquals("41124124e+3", c.toString());
+		assertEquals("4.112412", d.toString());
+		assertEquals("94634735e-24", e.toString());
+		assertEquals("94634735e-11", f.toString());
+		assertEquals("0.000946", g.toString());
+
+		BigNumber na = new BigNumber("-41124124124219594634735214235346241241265434525");
+		BigNumber nb = new BigNumber("-41124124124219594634735214235346241241.65434525");
+		BigNumber nc = new BigNumber("-41124124124.21959463473521423534624121265434525");
+		BigNumber nd = new BigNumber("-4.112412412421959463473521423534624141265434525");
+		BigNumber ne = new BigNumber("-0.000000000000000094634735214235346412412654345");
+		BigNumber nf = new BigNumber("-0.000946347352142353464124126543423534641241265");
+		BigNumber ng = new BigNumber("-0.000946");
+
+		assertEquals("(-41124124e+39)", na.toString());
+		assertEquals("(-41124124e+30)", nb.toString());
+		assertEquals("(-41124124e+3)", nc.toString());
+		assertEquals("(-4.112412)", nd.toString());
+		assertEquals("(-94634735e-24)", ne.toString());
+		assertEquals("(-94634735e-11)", nf.toString());
+		assertEquals("(-0.000946)", ng.toString());
+
+		AbstractNumber.scaleToDisplay = 1000;
+	}
+
 }
