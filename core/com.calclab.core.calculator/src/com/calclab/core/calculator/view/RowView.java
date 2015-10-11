@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import com.calclab.core.calculations.Calculable;
+import com.calclab.core.calculations.Expression;
 import com.calclab.core.calculations.Step;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
@@ -45,6 +46,17 @@ public class RowView implements CalculationView {
 	private void appendInput(Calculable expression, StringBuilder result, boolean single) {
 		if (!(single && isStdIn)) {
 			result.append(expression.getInput());
+		} else {
+			Calculable ans = calculationProcess.getVariables().get("ans");
+			if (ans != null && ans.equals(expression)) {
+				result.append("ans");
+			} else if (expression instanceof Expression) {
+				String varName = ((Expression) expression).getVariable();
+				Calculable var = calculationProcess.getVariables().get(varName);
+				if (var != null && var.equals(expression)) {
+					result.append(varName);
+				}
+			}
 		}
 	}
 

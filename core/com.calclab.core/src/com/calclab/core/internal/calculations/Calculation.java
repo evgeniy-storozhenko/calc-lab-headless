@@ -2,26 +2,30 @@ package com.calclab.core.internal.calculations;
 
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
+import com.calclab.core.calculations.Expression;
 import com.calclab.core.calculations.StepFactory;
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
 
-public class Calculation implements Calculable {
+public class Calculation implements Calculable, Expression {
 
 	private Operand operand;
 	private Operand result;
 	private final String input;
+	private final String variable;
 	private CalculationStatus status = new CalculationStatus();
 	private StepsMonitor monitor = StepFactory.getInstance().createDefaultStepMonitor();
 
 	public Calculation(Operand operand) {
 		this.operand = operand;
 		this.input = "";
+		this.variable = null;
 	}
 
-	public Calculation(Operand operand, String input) {
+	public Calculation(String variable, Operand operand, String input) {
 		this.operand = operand;
 		this.input = input;
+		this.variable = variable;
 	}
 
 	@Override
@@ -80,6 +84,11 @@ public class Calculation implements Calculable {
 	@Override
 	public void setStepMonitor(StepsMonitor monitor) {
 		this.monitor = monitor;
+	}
+
+	@Override
+	public String getVariable() {
+		return variable;
 	}
 
 }
