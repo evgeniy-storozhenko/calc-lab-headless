@@ -1,45 +1,35 @@
 package com.calclab.headless.internal;
 
 import org.eclipse.equinox.app.IApplication;
-import org.eclipse.equinox.app.IApplicationContext;
 
 import com.calclab.core.CalculationConfiguration;
 import com.calclab.core.calculator.CalcaulationJobFactory;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
-import com.calclab.core.calculator.view.HtmlView;
 import com.calclab.core.calculator.view.RowView;
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputFactory;
-import com.calclab.headless.utils.HeadlessCalculationHelper;
 
 /**
  * Bootstrap type for an application.
  */
-public class HeadlessCalculationApp implements IApplication {
+public class HeadlessCalculationServer {
 
-	public static final int ILLEGAL_ARGUMENT = 64;
+	private static HeadlessCalculationServer instance = null;
 
-	@Override
-	public Object start(IApplicationContext context) throws Exception {
-		final CalculationConfiguration config = new CalculationConfiguration();
-		if (!config.processArgs(parseArgs(context))) {
-			config.showHelp();
-			return ILLEGAL_ARGUMENT;
-		}
-		if (config.getPort() > 0) {
-			return HeadlessCalculationServer.getInstance().listen(config.getPort());
-		}
-		return perform(config);
+	private HeadlessCalculationServer() {
 	}
 
-	private String[] parseArgs(IApplicationContext context) {
-		return HeadlessCalculationHelper.deQuoteArgs((String[]) context
-				.getArguments().get(IApplicationContext.APPLICATION_ARGS));
+	public synchronized static HeadlessCalculationServer getInstance() {
+		if (instance == null) {
+			instance = new HeadlessCalculationServer();
+		}
+		return instance;
 	}
 
-	@Override
-	public void stop() {
+	public int listen(int port) {
+
+		return IApplication.EXIT_OK;
 	}
 
 	private int perform(final CalculationConfiguration config) {
@@ -62,16 +52,6 @@ public class HeadlessCalculationApp implements IApplication {
 	private void output(final CalculationJob process, final CalculationConfiguration config) {
 		CalculationView rowView;
 		String output = "";
-		if (config.getHtmlFileOutput() != null) {
-			CalculationView htmlView = new HtmlView();
-			htmlView.setCalculationProcess(process);
-			htmlView.output();
-		}
-		if (config.getRowFileOutput() != null) {
-			rowView = new RowView(false);
-			rowView.setCalculationProcess(process);
-			output = rowView.output();
-		}
 
 		if (config.getHtmlFileOutput() == null && config.getRowFileOutput() == null) {
 			if (output.isEmpty()) {
@@ -80,7 +60,7 @@ public class HeadlessCalculationApp implements IApplication {
 				rowView.setCalculationProcess(process);
 				output = rowView.output();
 			}
-			System.out.println(output);
+			System.out.println(output); // TODO replace
 		}
 	}
 }

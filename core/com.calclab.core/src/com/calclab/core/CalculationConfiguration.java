@@ -13,6 +13,7 @@ public class CalculationConfiguration {
 
 	private int scale = 60;
 	private int scaleToDisplay = 8;
+	private int port = 0;
 	private String inputData = null;
 	private File inputFile = null;
 	private File rowFileOutput = null;
@@ -24,6 +25,7 @@ public class CalculationConfiguration {
 		InputFile(Messages.CalculationConfiguration_3, "file", "f"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		RowFile(Messages.CalculationConfiguration_1, "row", "r"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		HTMLFile(Messages.CalculationConfiguration_9, "html", "H"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		Port(Messages.CalculationConfiguration_14, "port", "p"), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		Scale(Messages.CalculationConfiguration_10, "scale", "s"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		ScaleToDisplay(Messages.CalculationConfiguration_4, "display", "d"), //$NON-NLS-2$ //$NON-NLS-3$
 		Help(Messages.CalculationConfiguration_12, "help", "h", "?"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
@@ -58,6 +60,9 @@ public class CalculationConfiguration {
 			switch (cmdArg) {
 			case InputData:
 				inputData = i.next();
+				break;
+			case Port:
+				port = Integer.parseInt(i.next());
 				break;
 			case InputFile:
 				getFileInputArg(i);
@@ -163,5 +168,9 @@ public class CalculationConfiguration {
 
 	public int getScaleToDisplay() {
 		return scaleToDisplay;
+	}
+
+	public int getPort() {
+		return port;
 	}
 }
