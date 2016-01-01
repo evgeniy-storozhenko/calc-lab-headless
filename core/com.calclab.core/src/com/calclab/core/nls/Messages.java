@@ -24,6 +24,7 @@ public class Messages extends NLS {
 	public static String CalculationConfiguration_3;
 	public static String CalculationConfiguration_4;
 	public static String CalculationConfiguration_9;
+	public static String CalculationConfiguration_15;
 	public static String FileCalculationInput_0;
 
 	static {

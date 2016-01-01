@@ -1,5 +1,7 @@
 package com.calclab.core.calculations;
 
+import org.json.JSONObject;
+
 import com.calclab.core.operands.Operand;
 
 /**
@@ -18,4 +20,6 @@ public interface Calculable {
 	Operand getResult();
 
 	String getInput();
+
+	JSONObject toJSON();
 }

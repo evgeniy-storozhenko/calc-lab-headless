@@ -14,4 +14,5 @@ Export-Package: com.calclab.core,
  com.calclab.core.operands,
  com.calclab.core.operands.exceptions,
  com.calclab.core.operations
-Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0"
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.10.0",
+ org.json;bundle-version="1.0.0"

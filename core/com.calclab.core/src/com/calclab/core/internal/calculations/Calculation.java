@@ -1,5 +1,8 @@
 package com.calclab.core.internal.calculations;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.Expression;
@@ -89,6 +92,21 @@ public class Calculation implements Calculable, Expression {
 	@Override
 	public String getVariable() {
 		return variable;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("operand", operand.toJSON());
+			if (result != null) {
+				jsonResult.put("exact", result.isExact());
+				jsonResult.put("result", result.toJSON());
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

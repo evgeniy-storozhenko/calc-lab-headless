@@ -8,9 +8,11 @@ import com.calclab.core.calculator.CalcaulationJobFactory;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.calculator.CalculationView;
 import com.calclab.core.calculator.view.HtmlView;
+import com.calclab.core.calculator.view.JsonView;
 import com.calclab.core.calculator.view.RowView;
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.InputFactory;
+import com.calclab.core.input.InputType;
 import com.calclab.headless.utils.HeadlessCalculationHelper;
 
 /**
@@ -60,27 +62,24 @@ public class HeadlessCalculationApp implements IApplication {
 	}
 
 	private void output(final CalculationJob process, final CalculationConfiguration config) {
-		CalculationView rowView;
 		String output = "";
-		if (config.getHtmlFileOutput() != null) {
+		if (config.getOutputType().equals(InputType.JSON)) {
+			CalculationView jsonView = new JsonView();
+			jsonView.setCalculationProcess(process);
+			output = jsonView.output();
+		} else if (config.getOutputType().equals(InputType.HTML)) {
 			CalculationView htmlView = new HtmlView();
 			htmlView.setCalculationProcess(process);
-			htmlView.output();
+			output = htmlView.output();
+		} else if (config.getOutputType().equals(InputType.ROW)) {
+			CalculationView htmlView = new RowView(false);
+			htmlView.setCalculationProcess(process);
+			output = htmlView.output();
+		} else {
+			CalculationView rowViewStdin = new RowView(true);
+			rowViewStdin.setCalculationProcess(process);
+			rowViewStdin.output();
 		}
-		if (config.getRowFileOutput() != null) {
-			rowView = new RowView(false);
-			rowView.setCalculationProcess(process);
-			output = rowView.output();
-		}
-
-		if (config.getHtmlFileOutput() == null && config.getRowFileOutput() == null) {
-			if (output.isEmpty()) {
-				boolean isStdIn = config.getInputData() == null && config.getInputFile() == null;
-				rowView = new RowView(isStdIn);
-				rowView.setCalculationProcess(process);
-				output = rowView.output();
-			}
-			System.out.println(output);
-		}
+		System.out.println(output);
 	}
 }

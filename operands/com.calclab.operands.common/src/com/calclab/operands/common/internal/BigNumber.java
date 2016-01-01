@@ -6,6 +6,9 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Objects;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.constants.MathConstants;
 import com.calclab.core.operands.AbstractNumber;
@@ -504,6 +507,19 @@ public class BigNumber extends AbstractNumber {
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "number");
+			jsonResult.put("value", toString());
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

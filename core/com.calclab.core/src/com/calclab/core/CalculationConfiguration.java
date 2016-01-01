@@ -7,6 +7,7 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.equinox.app.IApplication;
 
+import com.calclab.core.input.InputType;
 import com.calclab.core.nls.Messages;
 
 public class CalculationConfiguration {
@@ -16,15 +17,13 @@ public class CalculationConfiguration {
 	private int port = 0;
 	private String inputData = null;
 	private File inputFile = null;
-	private File rowFileOutput = null;
-	private File htmlFileOutput = null;
+	private InputType outputType = InputType.ROW;
 	public static final String PLUGIN_ID = "com.calclab.core"; //$NON-NLS-1$
 
 	enum CommandArg {
 		InputData(Messages.CalculationConfiguration_0, "input", "i"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		InputFile(Messages.CalculationConfiguration_3, "file", "f"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		RowFile(Messages.CalculationConfiguration_1, "row", "r"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
-		HTMLFile(Messages.CalculationConfiguration_9, "html", "H"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		OutputType(Messages.CalculationConfiguration_1, "type", "t"), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		Port(Messages.CalculationConfiguration_14, "port", "p"), //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		Scale(Messages.CalculationConfiguration_10, "scale", "s"),  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		ScaleToDisplay(Messages.CalculationConfiguration_4, "display", "d"), //$NON-NLS-2$ //$NON-NLS-3$
@@ -62,16 +61,14 @@ public class CalculationConfiguration {
 				inputData = i.next();
 				break;
 			case Port:
-				port = Integer.parseInt(i.next());
+				try {
+					port = Integer.parseInt(i.next());
+				} catch (NumberFormatException e) {
+					return false;
+				}
 				break;
 			case InputFile:
 				getFileInputArg(i);
-				break;
-			case RowFile:
-				rowFileOutput = new File(i.next());
-				break;
-			case HTMLFile:
-				htmlFileOutput = new File(i.next());
 				break;
 			case Help:
 				showHelp();
@@ -79,8 +76,34 @@ public class CalculationConfiguration {
 			case Version:
 				showVersion();
 				exit();
+			case OutputType:
+				String type = i.next();
+				if (type.toUpperCase().equals("HTML")) {
+					outputType = InputType.HTML;
+				} else if (type.toUpperCase().equals("JSON")) {
+					outputType = InputType.JSON;
+				} else if (type.toUpperCase().equals("ROW")) {
+					outputType = InputType.ROW;
+				} else {
+					return false;
+				}
+				break;
+			case Scale:
+				try {
+					scale = Integer.parseInt(i.next());
+				} catch (NumberFormatException e) {
+					return false;
+				}
+				break;
+			case ScaleToDisplay:
+				try {
+					scaleToDisplay = Integer.parseInt(i.next());
+				} catch (NumberFormatException e) {
+					return false;
+				}
+				break;
 			default:
-				return false;
+				break;
 			}
 		}
 		return true;
@@ -154,14 +177,6 @@ public class CalculationConfiguration {
 		return inputFile;
 	}
 
-	public File getRowFileOutput() {
-		return rowFileOutput;
-	}
-
-	public File getHtmlFileOutput() {
-		return htmlFileOutput;
-	}
-
 	public int getScale() {
 		return scale;
 	}
@@ -173,4 +188,9 @@ public class CalculationConfiguration {
 	public int getPort() {
 		return port;
 	}
+
+	public InputType getOutputType() {
+		return outputType;
+	}
+
 }

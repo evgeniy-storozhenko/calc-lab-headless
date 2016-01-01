@@ -1,5 +1,8 @@
 package com.calclab.operands.common.internal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
@@ -106,6 +109,21 @@ public class CompositeOperand implements Operand, Calculable {
 	@Override
 	public void setStepMonitor(StepsMonitor monitor) {
 		this.monitor = monitor;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "CompositeOperand");
+			jsonResult.put("a", a.toJSON());
+			jsonResult.put("b", b.toJSON());
+			jsonResult.put("operation", operation.toString());
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

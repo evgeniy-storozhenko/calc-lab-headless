@@ -1,5 +1,8 @@
 package com.calclab.operands.common.internal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.Void;
@@ -33,6 +36,18 @@ public class VoidOperand implements Void, Operand {
 	@Override
 	public String toString() {
 		return "";
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "void");
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

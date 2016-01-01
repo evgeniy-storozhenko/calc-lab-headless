@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.functions.Function;
@@ -103,6 +106,27 @@ public abstract class AbstractFunction implements Function {
 	@Override
 	public void setStepMonitor(StepsMonitor monitor) {
 		this.monitor = monitor;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			List<JSONObject> args = arguments.stream()
+					.filter(item -> item != null)
+					.map(item -> item.toJSON())
+					.collect(Collectors.toList());
+
+			jsonResult.put("type", "function");
+			jsonResult.put("name", getName());
+			jsonResult.put("args", args);
+			jsonResult.put("value", result.toJSON());
+			jsonResult.put("exect", isExact());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 	protected abstract Operand runWithOneArg(Operand operand) throws OperatorNotFoundException;

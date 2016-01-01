@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.core,
- com.calclab.core.parser
+ com.calclab.core.parser,
+ org.json
 Export-Package: com.calclab.core.calculator,
  com.calclab.core.calculator.view

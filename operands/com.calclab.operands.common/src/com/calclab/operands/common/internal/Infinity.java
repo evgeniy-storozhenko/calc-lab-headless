@@ -5,6 +5,9 @@ import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
@@ -218,6 +221,19 @@ public class Infinity extends AbstractNumber {
 	public int signum() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "infinity");
+			jsonResult.put("value", toString());
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

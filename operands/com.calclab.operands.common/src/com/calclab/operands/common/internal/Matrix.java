@@ -1,5 +1,8 @@
 package com.calclab.operands.common.internal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InternalExpression;
@@ -60,6 +63,26 @@ public class Matrix implements Operand {
 		}
 		builder.append("\t]");
 		return builder.toString();
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "matrix");
+			JSONObject[][] jsonValue = new JSONObject[height][];
+			for (int i = 0; i < height; i++) {
+				jsonValue[i] = new JSONObject[width];
+				for (int j = 0; j < width; j++) {
+					jsonValue[i][j] = value[i][j].toJSON();
+				}
+			}
+			jsonResult.put("value", jsonValue);
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

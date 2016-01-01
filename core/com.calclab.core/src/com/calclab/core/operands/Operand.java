@@ -1,5 +1,7 @@
 package com.calclab.core.operands;
 
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.exceptions.InternalExpression;
 import com.calclab.core.operands.exceptions.InvalidActionException;
@@ -19,5 +21,7 @@ public interface Operand {
 			throws OperatorNotFoundException, InvalidActionException, InternalExpression;
 
 	boolean isExact();
+
+	JSONObject toJSON();
 
 }

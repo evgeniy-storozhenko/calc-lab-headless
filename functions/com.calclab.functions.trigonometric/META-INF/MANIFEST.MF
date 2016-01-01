@@ -7,4 +7,5 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.operands.common,
  com.calclab.core,
- com.calclab.functions.common
+ org.json
+Import-Package: com.calclab.functions.common

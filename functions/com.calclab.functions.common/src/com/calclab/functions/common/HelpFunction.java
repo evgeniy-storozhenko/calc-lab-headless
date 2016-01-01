@@ -3,6 +3,10 @@ package com.calclab.functions.common;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculations.StepFactory;
@@ -108,6 +112,27 @@ public class HelpFunction implements Function {
 	@Override
 	public void setStepMonitor(StepsMonitor monitor) {
 		this.monitor = monitor;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			List<JSONObject> args = arguments.stream()
+					.filter(item -> item != null)
+					.map(item -> item.toJSON())
+					.collect(Collectors.toList());
+
+			jsonResult.put("type", "function");
+			jsonResult.put("name", getName());
+			jsonResult.put("args", args);
+			jsonResult.put("value", toString());
+			jsonResult.put("exect", isExact());
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }

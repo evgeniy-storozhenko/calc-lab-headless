@@ -1,5 +1,8 @@
 package com.calclab.operands.common.internal;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.calclab.core.calculations.StepsMonitor;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operands.exceptions.InternalExpression;
@@ -38,6 +41,19 @@ public class StringOperand implements Operand {
 	@Override
 	public String toString() {
 		return value;
+	}
+
+	@Override
+	public JSONObject toJSON() {
+		JSONObject jsonResult = new JSONObject();
+		try {
+			jsonResult.put("type", "string");
+			jsonResult.put("value", value);
+			jsonResult.put("exect", isExact());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonResult;
 	}
 
 }
