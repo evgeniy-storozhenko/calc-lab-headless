@@ -115,10 +115,11 @@ public class CompositeOperand implements Operand, Calculable {
 	public JSONObject toJSON() {
 		JSONObject jsonResult = new JSONObject();
 		try {
-			jsonResult.put("type", "CompositeOperand");
+			jsonResult.put("type", "composite");
 			jsonResult.put("a", a.toJSON());
 			jsonResult.put("b", b.toJSON());
 			jsonResult.put("operation", operation.toString());
+			jsonResult.put("value", result.toJSON());
 			jsonResult.put("exect", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -11,8 +11,8 @@ The console environment for numerical computations. Eclipse based java applicati
 Calculation Laboratory Headless command line arguments:
 	-input, -i:	Input expression for calculation
 	-file, -f:	Input file for calculation
-	-row, -r:	Output result of calculation as row
-	-html, -H:	Output result of calculation as html
+	-type, -t:	The output format of the result data (row, html or json)
+	-port, -p:	Port for input
 	-scale, -s:	Scale determines the accuracy of calculations
 	-display, -d:	Scale for display of numbers
 	-help, -h, -?:	Help
@@ -34,7 +34,6 @@ a = 8
 ans = 3
 
 >> help sin
-ans
 
 Function: sin
 

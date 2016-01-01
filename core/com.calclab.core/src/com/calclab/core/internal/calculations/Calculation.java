@@ -98,6 +98,7 @@ public class Calculation implements Calculable, Expression {
 	public JSONObject toJSON() {
 		JSONObject jsonResult = new JSONObject();
 		try {
+			jsonResult.put("type", "calculation");
 			jsonResult.put("operand", operand.toJSON());
 			if (result != null) {
 				jsonResult.put("exact", result.isExact());
