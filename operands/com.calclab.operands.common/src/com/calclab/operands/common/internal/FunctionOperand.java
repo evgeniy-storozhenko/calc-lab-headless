@@ -140,7 +140,7 @@ public class FunctionOperand implements Operand, Calculable {
 	public JSONObject toJSON() {
 		JSONObject jsonResult = new JSONObject();
 		try {
-			jsonResult.put("type", "function");
+			jsonResult.put("type", "func");
 			jsonResult.put("name", function.getName());
 			jsonResult.put("args", arguments.stream()
 					.filter(item -> item != null)

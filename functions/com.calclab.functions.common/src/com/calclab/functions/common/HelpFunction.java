@@ -123,7 +123,7 @@ public class HelpFunction implements Function {
 					.map(item -> item.toJSON())
 					.collect(Collectors.toList());
 
-			jsonResult.put("type", "function");
+			jsonResult.put("type", "func");
 			jsonResult.put("name", getName());
 			jsonResult.put("args", args);
 			jsonResult.put("value", toString());
