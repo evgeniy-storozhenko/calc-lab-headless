@@ -43,7 +43,7 @@ public class VoidOperand implements Void, Operand {
 		JSONObject jsonResult = new JSONObject();
 		try {
 			jsonResult.put("type", "void");
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

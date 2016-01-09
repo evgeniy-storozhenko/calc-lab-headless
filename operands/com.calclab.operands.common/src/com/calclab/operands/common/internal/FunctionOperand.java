@@ -147,7 +147,7 @@ public class FunctionOperand implements Operand, Calculable {
 					.map(item -> item.toJSON())
 					.collect(Collectors.toList()));
 			jsonResult.put("value", result.toJSON());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 
 		} catch (JSONException e) {
 			e.printStackTrace();

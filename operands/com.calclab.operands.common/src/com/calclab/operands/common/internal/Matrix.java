@@ -16,7 +16,7 @@ public class Matrix implements Operand {
 	private final int width;
 	private final int height;
 
-	private boolean exect = true;
+	private boolean exact = true;
 
 	public Matrix(Operand[][] value) {
 		this.value = value;
@@ -40,7 +40,7 @@ public class Matrix implements Operand {
 
 	@Override
 	public boolean isExact() {
-		return exect;
+		return exact;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class Matrix implements Operand {
 				}
 			}
 			jsonResult.put("value", jsonValue);
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

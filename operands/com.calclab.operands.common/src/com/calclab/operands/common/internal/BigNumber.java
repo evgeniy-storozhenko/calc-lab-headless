@@ -515,7 +515,7 @@ public class BigNumber extends AbstractNumber {
 		try {
 			jsonResult.put("type", "number");
 			jsonResult.put("value", toString());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

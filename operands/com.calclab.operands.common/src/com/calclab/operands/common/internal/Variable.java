@@ -84,7 +84,7 @@ public class Variable implements Operand, Calculable {
 			jsonResult.put("type", "variable");
 			jsonResult.put("key", key);
 			jsonResult.put("expression", expression.toJSON());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

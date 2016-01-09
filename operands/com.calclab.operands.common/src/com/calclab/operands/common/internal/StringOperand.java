@@ -49,7 +49,7 @@ public class StringOperand implements Operand {
 		try {
 			jsonResult.put("type", "string");
 			jsonResult.put("value", value);
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

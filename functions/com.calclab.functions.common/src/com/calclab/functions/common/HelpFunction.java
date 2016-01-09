@@ -127,7 +127,7 @@ public class HelpFunction implements Function {
 			jsonResult.put("name", getName());
 			jsonResult.put("args", args);
 			jsonResult.put("value", toString());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 
 		} catch (JSONException e) {
 			e.printStackTrace();

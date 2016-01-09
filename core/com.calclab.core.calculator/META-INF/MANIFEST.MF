@@ -7,6 +7,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: com.calclab.core,
  com.calclab.core.parser,
- org.json
+ org.json,
+ com.calclab.operands.common
 Export-Package: com.calclab.core.calculator,
  com.calclab.core.calculator.view

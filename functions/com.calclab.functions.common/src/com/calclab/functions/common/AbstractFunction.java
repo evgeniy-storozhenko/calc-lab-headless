@@ -22,7 +22,7 @@ public abstract class AbstractFunction implements Function {
 	protected List<Operand> arguments = new ArrayList<Operand>();
 	protected CalculationStatus status = new CalculationStatus();
 	protected Operand result = null;
-	protected boolean exect = true;
+	protected boolean exact = true;
 	private StepsMonitor monitor;
 
 	@Override
@@ -47,7 +47,7 @@ public abstract class AbstractFunction implements Function {
 
 	@Override
 	public boolean isExact() {
-		return exect;
+		return exact;
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public abstract class AbstractFunction implements Function {
 			jsonResult.put("name", getName());
 			jsonResult.put("args", args);
 			jsonResult.put("value", result.toJSON());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 
 		} catch (JSONException e) {
 			e.printStackTrace();

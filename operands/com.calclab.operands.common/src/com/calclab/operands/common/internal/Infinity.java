@@ -229,7 +229,7 @@ public class Infinity extends AbstractNumber {
 		try {
 			jsonResult.put("type", "infinity");
 			jsonResult.put("value", toString());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

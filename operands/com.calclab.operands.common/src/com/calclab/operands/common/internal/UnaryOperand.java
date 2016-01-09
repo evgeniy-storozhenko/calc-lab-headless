@@ -122,7 +122,7 @@ public class UnaryOperand implements Operand, Calculable {
 			jsonResult.put("after", after);
 			jsonResult.put("operation", operation.getName());
 			jsonResult.put("operand", operand.toJSON());
-			jsonResult.put("exect", isExact());
+			jsonResult.put("exact", isExact());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
