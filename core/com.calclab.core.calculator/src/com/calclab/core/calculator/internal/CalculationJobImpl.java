@@ -9,11 +9,9 @@ import com.calclab.core.calculations.Calculable;
 import com.calclab.core.calculations.CalculationStatus;
 import com.calclab.core.calculator.CalculationJob;
 import com.calclab.core.input.CalculationInput;
-import com.calclab.core.input.exceptions.InputException;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.parser.Parser;
 import com.calclab.core.parser.ParserFactory;
-import com.calclab.core.parser.extensions.SyntaxErrorException;
 
 public class CalculationJobImpl implements CalculationJob {
 
@@ -53,7 +51,7 @@ public class CalculationJobImpl implements CalculationJob {
 				expression.calculate();
 			}
 			status.setStage(CalculationStatus.Stage.DONE);
-		} catch (InputException | SyntaxErrorException e) {
+		} catch (Exception e) {
 			status.setStage(CalculationStatus.Stage.ERROR);
 			status.setMessage(e.toString());
 		}
