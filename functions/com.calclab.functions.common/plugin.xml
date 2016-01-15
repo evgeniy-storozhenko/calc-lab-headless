@@ -45,6 +45,16 @@
                syntax="help function">
          </information>
       </client>
+      <client
+            class="com.calclab.functions.common.SqrtFunction"
+            name="sqrt">
+         <information
+               description="%information.description.4"
+               example="y = sqrt(16);"
+               example_result="4"
+               syntax="sqrt(x)">
+         </information>
+      </client>
    </extension>
 
 </plugin>
