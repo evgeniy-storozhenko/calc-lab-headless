@@ -57,7 +57,7 @@ public class HeadlessCalculationApp implements IApplication {
 			process.run();
 			output(process, config);
 			input.setExpressions(null);
-		} while (input.isExpectedMoreData() && !process.getStatus().isError());
+		} while (input.isExpectedMoreData());
 		return IApplication.EXIT_OK;
 	}
 
