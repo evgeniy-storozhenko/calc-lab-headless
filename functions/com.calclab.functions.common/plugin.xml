@@ -55,6 +55,26 @@
                syntax="sqrt(x)">
          </information>
       </client>
+      <client
+            class="com.calclab.functions.common.MinFunction"
+            name="min">
+         <information
+               description="%information.description.5"
+               example="z = min(16,11);"
+               example_result="11"
+               syntax="min(x,y)">
+         </information>
+      </client>
+      <client
+            class="com.calclab.functions.common.MaxFunction"
+            name="max">
+         <information
+               description="%information.description.6"
+               example="z = max(16,11);"
+               example_result="16"
+               syntax="max(x,y)">
+         </information>
+      </client>
    </extension>
 
 </plugin>
