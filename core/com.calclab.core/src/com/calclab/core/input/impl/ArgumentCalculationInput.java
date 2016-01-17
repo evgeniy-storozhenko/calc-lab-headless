@@ -25,4 +25,9 @@ public class ArgumentCalculationInput implements CalculationInput {
 		this.expressions = expressions;
 	}
 
+	@Override
+	public boolean isStdIn() {
+		return false;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.calclab.core.parser.extensions;
+package com.calclab.core.parser.exception;
 
 import com.calclab.core.parser.nls.Messages;
 

@@ -7,14 +7,14 @@
 	import java.util.HashMap;
 	import java.util.List;
 	import java.util.Map;
-	
-	import com.calclab.core.parser.extensions.SyntaxErrorException;
-	import com.calclab.operations.common.CommonOperationFactory;
+
+import com.calclab.operations.common.CommonOperationFactory;
 	import com.calclab.operands.common.CommonOperandFactory;
 	import com.calclab.core.calculations.CalculationFactory;
 	import com.calclab.core.calculations.Calculable;
 	import com.calclab.core.operations.Operation;
-	import com.calclab.core.operands.Operand;
+import com.calclab.core.parser.exception.SyntaxErrorException;
+import com.calclab.core.operands.Operand;
 	
 
 

@@ -1,4 +1,4 @@
-package com.calclab.core.parser.extensions;
+package com.calclab.core.parser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import org.antlr.runtime.RecognitionException;
 import com.calclab.core.calculations.Calculable;
 import com.calclab.core.input.CalculationInput;
 import com.calclab.core.input.exceptions.InputException;
-import com.calclab.core.parser.Parser;
+import com.calclab.core.parser.exception.SyntaxErrorException;
 import com.calclab.core.parser.internal.CalcLabLexer;
 import com.calclab.core.parser.internal.CalcLabParser;
 

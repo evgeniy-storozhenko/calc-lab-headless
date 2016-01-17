@@ -41,4 +41,9 @@ public class StdCalculationInput implements CalculationInput {
 		this.expressions = expressions;
 	}
 
+	@Override
+	public boolean isStdIn() {
+		return true;
+	}
+
 }

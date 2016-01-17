@@ -7,7 +7,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.eclipse.core.runtime
 Export-Package: com.calclab.core.parser,
- com.calclab.core.parser.extensions
+ com.calclab.core.parser.exception
 Require-Bundle: com.calclab.core,
  org.antlr.runtime,
  com.calclab.operations.common,

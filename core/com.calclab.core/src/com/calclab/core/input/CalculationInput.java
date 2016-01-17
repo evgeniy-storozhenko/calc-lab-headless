@@ -13,4 +13,6 @@ public interface CalculationInput {
 
 	boolean isExpectedMoreData();
 
+	boolean isStdIn();
+
 }

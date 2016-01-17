@@ -51,11 +51,7 @@ public class JsonView implements CalculationView {
 
 	private JSONObject itemToJson(Calculable expression) {
 		JSONObject result = expression.toJSON();
-		Calculable ans = calculationProcess.getVariables().get("ans");
-		if (ans != null && ans.equals(expression)) {
-			result = CommonOperandFactory.getInstance()
-					.createVariableOperand("ans", expression).toJSON();
-		} else if (expression instanceof Expression) {
+		if (expression instanceof Expression) {
 			String varName = ((Expression) expression).getVariable();
 			Calculable var = calculationProcess.getVariables().get(varName);
 			if (var != null && var.equals(expression)) {
