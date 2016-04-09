@@ -1,4 +1,4 @@
-package com.calclab.core.internal.calculations;
+package com.calclab.core.calculations.impl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,6 +29,15 @@ public class Calculation implements Calculable, Expression {
 		this.operand = operand;
 		this.input = input;
 		this.variable = variable;
+	}
+
+	public Calculation(String variable, Operand operand, String input,
+			CalculationStatus status, Operand result) {
+		this.operand = operand;
+		this.input = input;
+		this.status = status;
+		this.variable = variable;
+		this.result = result;
 	}
 
 	@Override
@@ -92,6 +101,11 @@ public class Calculation implements Calculable, Expression {
 	@Override
 	public String getVariable() {
 		return variable;
+	}
+
+	@Override
+	public Operand getOperand() {
+		return operand;
 	}
 
 	@Override

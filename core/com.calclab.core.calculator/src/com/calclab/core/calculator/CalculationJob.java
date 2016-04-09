@@ -8,6 +8,8 @@ import com.calclab.core.calculations.CalculationStatus;
 
 public interface CalculationJob {
 
+	public static String resultVar = "ans";
+
 	public void run();
 
 	public CalculationStatus getStatus();

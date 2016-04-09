@@ -14,7 +14,7 @@ options {
 	import java.util.List;
 	import java.util.Map;
 	
-	import com.calclab.core.parser.extensions.SyntaxErrorException;
+	import com.calclab.core.parser.exception.SyntaxErrorException;
 	import com.calclab.operations.common.CommonOperationFactory;
 	import com.calclab.operands.common.CommonOperandFactory;
 	import com.calclab.core.calculations.CalculationFactory;
@@ -63,13 +63,16 @@ calculation
 				in.append($EQUALS.text);
 			})?
 		e=expression {
-			if (variable == null) {
-		 		variable = "ans";
-		 	}
 		 	in.append($e.text);
-		 	Calculable calculable = calcFactory.createCalculation(variable, $e.value, in.toString());
-		 	calculations.add(calculable);
-		 	variables.put(variable, calculable);
+		 	if (variable != null) {
+		 		Calculable calculable = calcFactory.createCalculation(variable, $e.value, in.toString());
+			 	calculations.add(calculable);
+			 	variables.put(variable, calculable);
+		 	} else {
+		 		Calculable calculable = calcFactory.createCalculation($e.value, in.toString());
+			 	calculations.add(calculable);
+		 	}
+		 	
 		 }
 		EXPRESSIONS_SEPARATOR
 		)+
