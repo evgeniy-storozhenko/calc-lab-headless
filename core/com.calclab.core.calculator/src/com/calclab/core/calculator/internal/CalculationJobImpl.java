@@ -29,8 +29,8 @@ public class CalculationJobImpl implements CalculationJob {
 	private Map<String, Calculable> variables = new HashMap<>();
 
 	public CalculationJobImpl(CalculationInput input) {
-		this.scale = 60;
-		this.scaleToDisplay = 8;
+		this.scale = AbstractNumber.scale;
+		this.scaleToDisplay = AbstractNumber.scaleToDisplay;
 		this.input = input;
 		this.parser = ParserFactory.createCalculationParser();
 	}

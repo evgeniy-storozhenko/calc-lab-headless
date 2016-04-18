@@ -17,9 +17,13 @@ import com.calclab.core.operands.exceptions.InvalidActionException;
 import com.calclab.core.operands.exceptions.OperatorNotFoundException;
 import com.calclab.core.operations.Operation;
 import com.calclab.operands.common.nls.Messages;
+import com.calclab.operands.common.utils.BigNumberUtils;
 
 import numbercruncher.mathutils.BigFunctions;
 
+/**
+ * Heavy implementation of number. It's used for high accuracy calculations
+ */
 public class BigNumber extends AbstractNumber {
 
 	public static final BigNumber MINUS_ONE = new BigNumber("-1"); //$NON-NLS-1$

@@ -7,7 +7,6 @@ import com.calclab.core.calculations.Calculable;
 import com.calclab.core.operands.AbstractNumber;
 import com.calclab.core.operands.Operand;
 import com.calclab.core.operations.Operation;
-import com.calclab.operands.common.internal.BigNumber;
 import com.calclab.operands.common.internal.CompositeOperand;
 import com.calclab.operands.common.internal.FunctionOperand;
 import com.calclab.operands.common.internal.Infinity;
@@ -19,9 +18,16 @@ import com.calclab.operands.common.internal.VoidOperand;
 
 public class CommonOperandFactory {
 
+	private AbstractNumberFactory numberFactory = null;
+
 	private static CommonOperandFactory instance = null;
 
 	private CommonOperandFactory() {
+		if (AbstractNumber.scale > 15) {
+			numberFactory = new BigNumberFactory();
+		} else {
+			numberFactory = new CLNumberFactory();
+		}
 	}
 
 	public synchronized static CommonOperandFactory getInstance() {
@@ -32,11 +38,19 @@ public class CommonOperandFactory {
 	}
 
 	public AbstractNumber createNumber(double input) {
-		return new BigNumber("" + input);
+		return numberFactory.createNumber(input);
 	}
 
 	public AbstractNumber createNumber(String input) {
-		return new BigNumber(input);
+		return numberFactory.createNumber(input);
+	}
+
+	public AbstractNumber createNumber(BigDecimal input) {
+		return numberFactory.createNumber(input);
+	}
+
+	public AbstractNumber createNumber(BigDecimal num, BigDecimal denum) {
+		return numberFactory.createNumber(num, denum);
 	}
 
 	public Operand createStringOperand(String input) {
@@ -45,14 +59,6 @@ public class CommonOperandFactory {
 
 	public Operand createVoidOperand() {
 		return new VoidOperand();
-	}
-
-	public AbstractNumber createNumber(BigDecimal input) {
-		return new BigNumber(input);
-	}
-
-	public AbstractNumber createNumber(BigDecimal num, BigDecimal denum) {
-		return new BigNumber(num, denum);
 	}
 
 	public Operand createCompositeOperand(Operand a, Operation operation, Operand b) {

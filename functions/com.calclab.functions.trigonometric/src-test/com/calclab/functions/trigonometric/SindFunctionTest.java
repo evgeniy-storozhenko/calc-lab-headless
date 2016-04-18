@@ -14,6 +14,7 @@ public class SindFunctionTest extends TestCase {
 
 	public SindFunctionTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

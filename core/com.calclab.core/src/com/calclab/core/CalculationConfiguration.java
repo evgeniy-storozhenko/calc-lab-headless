@@ -9,11 +9,12 @@ import org.eclipse.equinox.app.IApplication;
 
 import com.calclab.core.input.InputType;
 import com.calclab.core.nls.Messages;
+import com.calclab.core.operands.AbstractNumber;
 
 public class CalculationConfiguration {
 
-	private int scale = 60;
-	private int scaleToDisplay = 8;
+	private int scale = AbstractNumber.scale;
+	private int scaleToDisplay = AbstractNumber.scaleToDisplay;
 	private int port = 0;
 	private String inputData = null;
 	private File inputFile = null;

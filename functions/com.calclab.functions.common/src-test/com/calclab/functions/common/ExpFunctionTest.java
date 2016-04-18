@@ -14,6 +14,7 @@ public class ExpFunctionTest extends TestCase {
 
 	public ExpFunctionTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

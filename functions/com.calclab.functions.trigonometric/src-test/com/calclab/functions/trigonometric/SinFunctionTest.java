@@ -14,6 +14,7 @@ public class SinFunctionTest extends TestCase {
 
 	public SinFunctionTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

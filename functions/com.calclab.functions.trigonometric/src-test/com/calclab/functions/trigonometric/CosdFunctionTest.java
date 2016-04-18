@@ -14,6 +14,7 @@ public class CosdFunctionTest extends TestCase {
 
 	public CosdFunctionTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

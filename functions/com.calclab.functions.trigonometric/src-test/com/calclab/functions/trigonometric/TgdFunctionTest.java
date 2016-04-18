@@ -14,6 +14,7 @@ public class TgdFunctionTest extends TestCase {
 
 	public TgdFunctionTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

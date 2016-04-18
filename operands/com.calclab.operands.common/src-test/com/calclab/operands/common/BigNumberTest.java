@@ -12,6 +12,7 @@ public class BigNumberTest extends TestCase {
 
 	public BigNumberTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

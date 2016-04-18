@@ -15,6 +15,7 @@ public class CalcLabParserTest extends TestCase {
 
 	public CalcLabParserTest(String testName) {
 		super(testName);
+		AbstractNumber.scale = 60;
 		AbstractNumber.scaleToDisplay = 1000;
 	}
 

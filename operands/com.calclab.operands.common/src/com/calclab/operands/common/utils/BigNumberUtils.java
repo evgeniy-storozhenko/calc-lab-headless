@@ -1,7 +1,9 @@
-package com.calclab.operands.common.internal;
+package com.calclab.operands.common.utils;
 
 import java.math.BigInteger;
 import java.util.stream.IntStream;
+
+import com.calclab.operands.common.internal.BigNumber;
 
 public class BigNumberUtils {
 

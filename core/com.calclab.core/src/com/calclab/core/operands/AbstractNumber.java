@@ -14,7 +14,7 @@ public abstract class AbstractNumber extends Number
 
 	public static final String dsecimalMark = ".";
 
-	public static int scale = 60;
+	public static int scale = 15;
 
 	public static int scaleToDisplay = 8;
 
